@@ -1,0 +1,17 @@
+# dependencies
+/node_modules
+
+# production
+/.next
+/out
+/out-static
+
+# misc
+.DS_Store
+*.log
+.env*
+*.local
+
+# editor
+.vscode
+.idea
