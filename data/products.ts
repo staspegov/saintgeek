@@ -41,6 +41,146 @@ export const products: Product[] = [
     mercadoLibreUrl: "https://example.com/mercadolibre/ag61-blue"
   },
   {
+    slug: "ag61-blue-switch",
+    name: "AG61 Keyboard Blue Switch",
+    brand: "SAINTGEEK",
+    subtitle: "SAINTGEEK KEYBOARD",
+    status: "in_stock",
+    priceRub: 35990,
+    monthlyRub: 417,
+    model: "AG61",
+    color: "black",
+    numpad: "No",
+    switch: "Blue",
+    switchType: "Mecánicos",
+    images: [
+      { id: "ag61a", label: "Front", url: "/images/templates.png" },
+      { id: "ag61b", label: "Angle", url: "/images/blue-keyboard-rgb-1.webp" },
+      { id: "ag61c", label: "Keys", url: "/images/blue-switch-1.webp" }
+    ],
+    mercadoLibreUrl: "https://example.com/mercadolibre/ag61-blue"
+  },
+  {
+    slug: "ag61-blue-switch",
+    name: "AG61 Keyboard Blue Switch",
+    brand: "SAINTGEEK",
+    subtitle: "SAINTGEEK KEYBOARD",
+    status: "in_stock",
+    priceRub: 35990,
+    monthlyRub: 417,
+    model: "AG61",
+    color: "black",
+    numpad: "No",
+    switch: "Blue",
+    switchType: "Mecánicos",
+    images: [
+      { id: "ag61a", label: "Front", url: "/images/templates.png" },
+      { id: "ag61b", label: "Angle", url: "/images/blue-keyboard-rgb-1.webp" },
+      { id: "ag61c", label: "Keys", url: "/images/blue-switch-1.webp" }
+    ],
+    mercadoLibreUrl: "https://example.com/mercadolibre/ag61-blue"
+  },
+  {
+    slug: "ag61-blue-switch",
+    name: "AG61 Keyboard Blue Switch",
+    brand: "SAINTGEEK",
+    subtitle: "SAINTGEEK KEYBOARD",
+    status: "in_stock",
+    priceRub: 35990,
+    monthlyRub: 417,
+    model: "AG61",
+    color: "black",
+    numpad: "No",
+    switch: "Blue",
+    switchType: "Mecánicos",
+    images: [
+      { id: "ag61a", label: "Front", url: "/images/templates.png" },
+      { id: "ag61b", label: "Angle", url: "/images/blue-keyboard-rgb-1.webp" },
+      { id: "ag61c", label: "Keys", url: "/images/blue-switch-1.webp" }
+    ],
+    mercadoLibreUrl: "https://example.com/mercadolibre/ag61-blue"
+  },
+  {
+    slug: "ag61-blue-switch",
+    name: "AG61 Keyboard Blue Switch",
+    brand: "SAINTGEEK",
+    subtitle: "SAINTGEEK KEYBOARD",
+    status: "in_stock",
+    priceRub: 35990,
+    monthlyRub: 417,
+    model: "AG61",
+    color: "black",
+    numpad: "No",
+    switch: "Blue",
+    switchType: "Mecánicos",
+    images: [
+      { id: "ag61a", label: "Front", url: "/images/templates.png" },
+      { id: "ag61b", label: "Angle", url: "/images/blue-keyboard-rgb-1.webp" },
+      { id: "ag61c", label: "Keys", url: "/images/blue-switch-1.webp" }
+    ],
+    mercadoLibreUrl: "https://example.com/mercadolibre/ag61-blue"
+  },
+  {
+    slug: "ag61-blue-switch",
+    name: "AG61 Keyboard Blue Switch",
+    brand: "SAINTGEEK",
+    subtitle: "SAINTGEEK KEYBOARD",
+    status: "in_stock",
+    priceRub: 35990,
+    monthlyRub: 417,
+    model: "AG61",
+    color: "black",
+    numpad: "No",
+    switch: "Blue",
+    switchType: "Mecánicos",
+    images: [
+      { id: "ag61a", label: "Front", url: "/images/templates.png" },
+      { id: "ag61b", label: "Angle", url: "/images/blue-keyboard-rgb-1.webp" },
+      { id: "ag61c", label: "Keys", url: "/images/blue-switch-1.webp" }
+    ],
+    mercadoLibreUrl: "https://example.com/mercadolibre/ag61-blue"
+  },
+  {
+    slug: "ag61-blue-switch",
+    name: "AG61 Keyboard Blue Switch",
+    brand: "SAINTGEEK",
+    subtitle: "SAINTGEEK KEYBOARD",
+    status: "in_stock",
+    priceRub: 35990,
+    monthlyRub: 417,
+    model: "AG61",
+    color: "black",
+    numpad: "No",
+    switch: "Blue",
+    switchType: "Mecánicos",
+    images: [
+      { id: "ag61a", label: "Front", url: "/images/templates.png" },
+      { id: "ag61b", label: "Angle", url: "/images/blue-keyboard-rgb-1.webp" },
+      { id: "ag61c", label: "Keys", url: "/images/blue-switch-1.webp" }
+    ],
+    mercadoLibreUrl: "https://example.com/mercadolibre/ag61-blue"
+  },
+  {
+    slug: "ag61-blue-switch",
+    name: "AG61 Keyboard Blue Switch",
+    brand: "SAINTGEEK",
+    subtitle: "SAINTGEEK KEYBOARD",
+    status: "in_stock",
+    priceRub: 35990,
+    monthlyRub: 417,
+    model: "AG61",
+    color: "black",
+    numpad: "No",
+    switch: "Blue",
+    switchType: "Mecánicos",
+    images: [
+      { id: "ag61a", label: "Front", url: "/images/templates.png" },
+      { id: "ag61b", label: "Angle", url: "/images/blue-keyboard-rgb-1.webp" },
+      { id: "ag61c", label: "Keys", url: "/images/blue-switch-1.webp" }
+    ],
+    mercadoLibreUrl: "https://example.com/mercadolibre/ag61-blue"
+  },
+  {
     slug: "tk68-red-switch",
     name: "TK68 Keyboard Red Switch",
     brand: "Redragon",

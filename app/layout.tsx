@@ -35,16 +35,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ru">
-     <body
-  className="flex flex-col min-h-screen text-[#e9e9ea]"
-  style={{
-    background: `
-      radial-gradient(circle at top right, rgba(141, 215, 223, 0), transparent 40%),
-      linear-gradient(180deg, rgb(14, 14, 15) 0%, rgb(10, 10, 11) 100%)
-    `
-  }}
->
-
+      <body className="flex flex-col min-h-screen bg-[#0C0D0E] text-[#e9e9ea] ">
         {/* Always at the top */}
         <Topbar />
 
