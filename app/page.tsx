@@ -30,6 +30,7 @@ export default function Page() {
   return (
     <div
       style={{
+        minHeight: "100vh",
         margin: 0,
         background: `
           radial-gradient(circle at top right, rgba(141, 215, 223, 0), transparent 40%),
