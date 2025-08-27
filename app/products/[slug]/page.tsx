@@ -8,6 +8,8 @@ import { site } from "@/lib/utils"
 import ProductGallery from "@/components/ProductGallery"
 import ProductSpecs from "@/components/ProductSpecs"
 import VideoSection from "@/components/VideoSection"
+import ProductFeatures from "@/components/ProductFeatures"
+import SelectorKeycaps from "@/components/SelectorKeycaps"
 
 type Props = { params: { slug: string } }
 
@@ -87,11 +89,9 @@ export default function ProductPage({ params }: Props) {
               Купить
             </a>
             <button className="block w-full text-center rounded-lg border border-[#2c2c2f] px-4 py-3 text-sm hover:border-lime-400 transition">
-              Забрать из магазина сегодня
+              Entrega 
             </button>
-            <button className="block w-full text-center rounded-lg border border-[#2c2c2f] px-4 py-3 text-sm hover:border-lime-400 transition">
-              Выбрать магазин
-            </button>
+            
             <p className="text-sm text-[#9ea0a6]">В наличии • Москва</p>
           </div>
 
@@ -120,7 +120,8 @@ export default function ProductPage({ params }: Props) {
       
       <VideoSection videoId="UPpDrkN-otQ" />
 <ProductSpecs />
-
+<ProductFeatures/>
+<SelectorKeycaps/>
 <div className="mt-12">
         <h2 className="text-xl font-semibold mb-4">Характеристики</h2>
         <div className="overflow-x-auto rounded-xl border border-[#1f1f20] bg-[#0f0f11]">

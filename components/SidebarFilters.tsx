@@ -2,11 +2,40 @@
 
 import { useState } from 'react'
 
-export default function SidebarFilters({ onModel }: { onModel: (m: string | null) => void }) {
-  // estado del acordeón
+type Props = {
+  onModel: (m: string | null) => void
+  onNumpad?: (n: string | null) => void
+  onSwitch?: (sw: string | null) => void
+  onSwitchType?: (t: string | null) => void
+}
+
+export default function SidebarFilters({
+  onModel,
+  onNumpad,
+  onSwitch,
+  onSwitchType,
+}: Props) {
   const [open, setOpen] = useState<string | null>(null)
-  // estado global (mobile dropdown)
   const [visible, setVisible] = useState(false)
+
+  // estados seleccionados
+  const [selected, setSelected] = useState<Record<string, string | null>>({})
+  const [resetHighlight, setResetHighlight] = useState(false)
+
+  const handleSelect = (id: string, value: string | null, cb?: (v: string | null) => void) => {
+    setSelected(prev => ({ ...prev, [id]: value }))
+    setResetHighlight(false)
+    cb?.(value)
+  }
+
+  const handleReset = (id: string, cb?: (v: string | null) => void) => {
+    setSelected(prev => ({ ...prev, [id]: null }))
+    cb?.(null)
+    setResetHighlight(true)
+  }
+
+  // 👇 calculamos si algún filtro está activo
+  const anySelected = Object.values(selected).some(v => v !== null)
 
   const Row = ({ title, id, children }: any) => (
     <div>
@@ -19,13 +48,13 @@ export default function SidebarFilters({ onModel }: { onModel: (m: string | null
           {open === id ? '–' : '+'}
         </span>
       </button>
-      {open === id && children}
+      {open === id && <div className="px-2 pb-2">{children}</div>}
     </div>
   )
 
   return (
-    <aside aria-label="Фильтры" className="w-full lg:w-[270px]">
-      {/* Botón toggle solo en mobile */}
+    <aside aria-label="Filtros" className="w-full lg:w-[270px]">
+      {/* Botón toggle en móvil */}
       <button
         className="lg:hidden w-full mb-3 rounded-xl px-4 py-2 text-sm font-semibold"
         style={{ background: '#1a1a1c', color: '#eaeaea' }}
@@ -34,7 +63,6 @@ export default function SidebarFilters({ onModel }: { onModel: (m: string | null
         {visible ? 'Ocultar filtros ▲' : 'Mostrar filtros ▼'}
       </button>
 
-      {/* Contenedor principal de filtros */}
       <div
         className={`overflow-hidden transition-all duration-300 
         ${visible ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0 lg:opacity-100 lg:max-h-none'}`}
@@ -43,37 +71,110 @@ export default function SidebarFilters({ onModel }: { onModel: (m: string | null
           <div className="flex items-center gap-2 px-2 pb-3 border-b border-[#1a1a1c]">
             <svg width="18" height="18" viewBox="0 0 24 24" className="opacity-80">
               <path
-                fill="#b6b6b8"
+                fill={anySelected ? '#89ff00' : '#b6b6b8'} // 👈 verde si hay filtros
                 d="M3 6h18v2H3V6zm4 5h10v2H7v-2zm3 5h4v2h-4v-2z"
               />
             </svg>
-            <div className="font-bold text-[#f0f0f1]">Фильтры</div>
+            <div className="font-bold text-[#f0f0f1]">Filtros</div>
           </div>
 
-          <div className="pt-1 space-y-1">
-            <Row title="Магазин" id="shop" />
-            <Row title="Производитель" id="brand" />
-            <Row title="Цифровой блок" id="numpad" />
-            <Row title="Переключатели" id="switch" />
-            <Row title="Тип переключателей" id="switch-type" />
+          <div className="pt-1 space-y-1 text-sm text-[#d4d4d8]">
+            {/* Teclado numérico */}
+            <Row title="Teclado numérico" id="numpad">
+              <div className="grid grid-cols-2 gap-2">
+                {['Sí', 'No'].map(n => (
+                  <button
+                    key={n}
+                    onClick={() => handleSelect('numpad', n, onNumpad)}
+                    className={`rounded-lg py-1 border transition ${
+                      selected['numpad'] === n ? 'border-lime-400' : 'border-[#262629] hover:border-[#89ff00]'
+                    }`}
+                  >
+                    {n}
+                  </button>
+                ))}
+                <button
+                  onClick={() => handleReset('numpad', onNumpad)}
+                  className={`col-span-2 rounded-lg py-1 border transition ${
+                    resetHighlight ? 'border-lime-400' : 'border-[#262629]'
+                  }`}
+                >
+                  Todos
+                </button>
+              </div>
+            </Row>
 
-            {/* Model filter (AG61/TK68/TK61) */}
-            <Row title="Модель" id="model">
-              <div className="px-2 pb-2 grid grid-cols-3 gap-2 text-sm text-[#d4d4d8]">
-                {['AG61', 'TK68', 'TK61'].map((m) => (
+            {/* Switches */}
+            <Row title="Switches" id="switch">
+              <div className="grid grid-cols-2 gap-2">
+                {['Blue', 'Red', 'Brown', 'Silent'].map(sw => (
+                  <button
+                    key={sw}
+                    onClick={() => handleSelect('switch', sw, onSwitch)}
+                    className={`rounded-lg py-1 border transition ${
+                      selected['switch'] === sw ? 'border-lime-400' : 'border-[#262629] hover:border-[#89ff00]'
+                    }`}
+                  >
+                    {sw}
+                  </button>
+                ))}
+                <button
+                  onClick={() => handleReset('switch', onSwitch)}
+                  className={`col-span-2 rounded-lg py-1 border transition ${
+                    resetHighlight ? 'border-lime-400' : 'border-[#262629]'
+                  }`}
+                >
+                  Todos
+                </button>
+              </div>
+            </Row>
+
+            {/* Tipo de switch */}
+            <Row title="Tipo de switch" id="switch-type">
+              <div className="grid grid-cols-2 gap-2">
+                {['Mecánicos', 'De membrana'].map(t => (
+                  <button
+                    key={t}
+                    onClick={() => handleSelect('switch-type', t, onSwitchType)}
+                    className={`rounded-lg py-1 border transition ${
+                      selected['switch-type'] === t ? 'border-lime-400' : 'border-[#262629] hover:border-[#89ff00]'
+                    }`}
+                  >
+                    {t}
+                  </button>
+                ))}
+                <button
+                  onClick={() => handleReset('switch-type', onSwitchType)}
+                  className={`col-span-2 rounded-lg py-1 border transition ${
+                    resetHighlight ? 'border-lime-400' : 'border-[#262629]'
+                  }`}
+                >
+                  Todos
+                </button>
+              </div>
+            </Row>
+
+            {/* Modelo */}
+            <Row title="Modelo" id="model">
+              <div className="grid grid-cols-3 gap-2">
+                {['AG61', 'TK68', 'TK61'].map(m => (
                   <button
                     key={m}
-                    className="border border-[#262629] rounded-lg py-1 hover:border-[#89ff00]"
-                    onClick={() => onModel(m)}
+                    onClick={() => handleSelect('model', m, onModel)}
+                    className={`rounded-lg py-1 border transition ${
+                      selected['model'] === m ? 'border-lime-400' : 'border-[#262629] hover:border-[#89ff00]'
+                    }`}
                   >
                     {m}
                   </button>
                 ))}
                 <button
-                  className="col-span-3 border border-[#262629] rounded-lg py-1"
-                  onClick={() => onModel(null)}
+                  onClick={() => handleReset('model', onModel)}
+                  className={`col-span-3 rounded-lg py-1 border transition ${
+                    resetHighlight ? 'border-lime-400' : 'border-[#262629]'
+                  }`}
                 >
-                  Сбросить
+                  Todos
                 </button>
               </div>
             </Row>

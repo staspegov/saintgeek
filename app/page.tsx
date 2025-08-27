@@ -8,29 +8,51 @@ import { orgJsonLd, websiteJsonLd, faqJsonLd, productJsonLd } from '@/lib/jsonld
 import { useMemo, useState } from 'react'
 
 export default function Page() {
+  // 🔹 estados de filtros
   const [model, setModel] = useState<string | null>(null)
-  const filtered = useMemo(
-    () => products.filter(p => !model || p.model === model),
-    [model]
-  )
+  const [numpad, setNumpad] = useState<string | null>(null)
+  const [switchType, setSwitchType] = useState<string | null>(null)
+  const [switchName, setSwitchName] = useState<string | null>(null)
+
+  const [open, setOpen] = useState(false) // modal
+
+  // 🔹 lógica de filtrado
+  const filtered = useMemo(() => {
+    return products.filter((p) => {
+      if (model && p.model !== model) return false
+      if (numpad && p.numpad !== numpad) return false
+      if (switchName && p.switch !== switchName) return false
+      if (switchType && p.switchType !== switchType) return false
+      return true
+    })
+  }, [model, numpad, switchName, switchType])
 
   return (
-    <div style={{ margin: 0, background: '#0e0e0f', color: '#e9e9ea' }}>
+    <div
+      style={{
+        margin: 0,
+        background: `
+          radial-gradient(circle at top right, rgba(141, 215, 223, 0), transparent 40%),
+          linear-gradient(180deg, #0e0e0f 0%, #0a0a0b 100%)
+        `,
+        color: '#e9e9ea',
+      }}
+    >
       <div className="max-w-[1450px] mx-auto px-6 pb-20 pt-10">
-
-        {/* Header / Hero */}
+        {/* Hero */}
         <div className="pt-2 pb-6">
           <h1 className="m-0 mb-3 text-[46px] leading-[1.1] tracking-[.2px] text-[#f4f4f5]">
             Игровые клавиатуры
           </h1>
           <p className="max-w-[860px] m-0 mb-4 text-[16px] leading-[1.6] text-[#b6b6b8]">
-            Игровые клавиатуры — это особая компьютерная периферия, созданная для тех, кто увлекается играми.
-            В отличие от стандартной офисной модели, данное устройство помогает получать больше удовольствия за счёт своего красивого внешнего вида,
-            удобства использования и применения дополнительных функций.
+            Игровые клавиатуры – это особая компьютерная периферия, созданная для тех, кто увлекается играми.
+            В отличие от стандартной/офисной модели, данное устройство помогают получать гораздо больше
+            удовольствия за счёт своего красивого внешнего вида, удобства использования и применения
+            дополнительных функций.
           </p>
-          <a
-            href="#more"
-            className="inline-block no-underline font-semibold text-[14px] px-4 py-2 rounded-full"
+          <button
+            onClick={() => setOpen(true)}
+            className="inline-block font-semibold text-[14px] px-4 py-2 rounded-full"
             style={{
               background: '#89ff00',
               color: '#101010',
@@ -38,22 +60,51 @@ export default function Page() {
             }}
           >
             Узнать больше
-          </a>
+          </button>
         </div>
 
         {/* Main layout */}
         <div className="grid grid-cols-1 lg:grid-cols-[260px,1fr] gap-6 items-start">
-          {/* Sidebar → arriba en mobile, lateral en desktop */}
-          <SidebarFilters onModel={setModel} />
-
-          {/* Product Grid */}
+          <SidebarFilters
+            onModel={setModel}
+            onNumpad={setNumpad}
+            onSwitch={setSwitchName}
+            onSwitchType={setSwitchType}
+          />
           <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {filtered.map(p => (
+            {filtered.map((p) => (
               <ProductCard key={p.slug} p={p} />
             ))}
           </section>
         </div>
       </div>
+
+      {/* Modal */}
+      {open && (
+        <div
+          className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4"
+          onClick={() => setOpen(false)}
+        >
+          <div
+            className="bg-[#1a1a1c] rounded-xl max-w-3xl w-full p-6 text-[#e9e9ea] overflow-y-auto max-h-[80vh] relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className="absolute top-4 right-4 text-gray-400 hover:text-white"
+              onClick={() => setOpen(false)}
+            >
+              ✕
+            </button>
+            <h2 className="text-2xl font-bold mb-4">Игровые клавиатуры</h2>
+            <p className="mb-4">
+              Игровые клавиатуры – это особая компьютерная периферия, созданная для тех, кто увлекается играми. 
+              В отличие от стандартной/офисной модели, данное устройство помогают получать гораздо больше 
+              удовольствия за счёт своего красивого внешнего вида, удобства использования и применения 
+              дополнительных функций.
+            </p>
+          </div>
+        </div>
+      )}
 
       {/* JSON-LD */}
       <Script id="ld-org" type="application/ld+json"

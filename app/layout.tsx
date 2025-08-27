@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { site } from "@/lib/utils";
+import Topbar from "@/components/Topbar";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -33,7 +35,16 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ru">
-      <body>{children}</body>
+      <body className="flex flex-col min-h-screen bg-[#0e0e0f] text-[#e9e9ea] ">
+        {/* Always at the top */}
+        <Topbar />
+
+        {/* Main content expands to fill available height */}
+        <main className="flex-1">{children}</main>
+
+        {/* Always at bottom */}
+        <Footer />
+      </body>
     </html>
   );
 }
