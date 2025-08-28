@@ -1,53 +1,58 @@
 "use client"
 import { useState } from "react"
 import Image from "next/image"
+import type { Product } from "@/data/products"
 
-const colors = [
-  { id: "black", hex: "#000000", img: "/images/hyperpc-keyboard-tkl-color-green-and-grey.jpg" },
-  { id: "white", hex: "#f3f4f6", img: "/images/keyboard-white.png" },
-  { id: "green", hex: "#84cc16", img: "/images/keyboard-green.png" },
-  { id: "blue", hex: "#3b82f6", img: "/images/keyboard-blue.png" },
-  { id: "purple", hex: "#a855f7", img: "/images/keyboard-purple.png" },
-  { id: "gray", hex: "#9ca3af", img: "/images/keyboard-gray.png" },
-]
+type Props = {
+  product: Product
+}
 
-export default function KeycapColors() {
-  const [selected, setSelected] = useState(colors[0])
+export default function KeycapColors({ product }: Props) {
+  // tomamos el primer color como seleccionado por defecto
+  const [selected, setSelected] = useState(product.colors[0])
+
+  // buscamos la imagen que corresponde al color seleccionado
+  const selectedImage =
+    product.images.find(img => img.label.toLowerCase() === selected.toLowerCase()) ||
+    product.images[0]
 
   return (
     <section className="mt-16 bg-[#111] rounded-2xl p-6 grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-      {/* Left side text (1/3) */}
+      {/* Lado izquierdo (texto) */}
       <div className="md:col-span-1 space-y-4">
         <h2 className="text-2xl font-bold text-white mb-3">
-          ЦВЕТА, КОТОРЫЕ ГОВОРЯТ ЗА ВАС
+          COLORES DISPONIBLES
         </h2>
         <p className="text-[#b6b6b8] text-sm leading-relaxed">
-          Откройте новые горизонты персонализации с кейкапами, предлагающими
-          уникальные цвета: черный, белый, серый, синий, фиолетовый и зеленый.
-          Комбинируйте их, чтобы создать действительно уникальный аксессуар.
-        </p>
+  Descubre nuevos horizontes de personalización con el modelo{" "}
+  <span className="font-semibold text-white">{product.model}</span>, 
+  disponible en colores: {product.colors.join(", ")}. 
+  Combínalos y crea un accesorio único que refleje tu estilo y personalidad. 
+  Desde la sobriedad del negro hasta la frescura del verde, cada color aporta su propia energía.
+</p>
 
-        {/* Color selectors */}
+
+        {/* Selectores de color */}
         <div className="flex gap-3 flex-wrap">
-          {colors.map(c => (
+          {product.colors.map(c => (
             <button
-              key={c.id}
+              key={c}
               onClick={() => setSelected(c)}
-              aria-label={c.id}
+              aria-label={c}
               className={`w-8 h-8 rounded-full border-2 transition ${
-                selected.id === c.id ? "border-lime-400 scale-110" : "border-gray-600"
+                selected === c ? "border-lime-400 scale-110" : "border-gray-600"
               }`}
-              style={{ background: c.hex }}
+              style={{ background: getColorHex(c) }}
             />
           ))}
         </div>
       </div>
 
-      {/* Right side image (2/3) */}
+      {/* Imagen lado derecho */}
       <div className="md:col-span-2 relative flex items-center justify-center">
         <Image
-          src={selected.img}
-          alt={`Keyboard ${selected.id}`}
+          src={selectedImage.url}
+          alt={`Teclado ${product.model} en color ${selected}`}
           width={1200}
           height={300}
           className="object-contain w-full h-auto rounded-xl transition-opacity duration-300"
@@ -55,4 +60,18 @@ export default function KeycapColors() {
       </div>
     </section>
   )
+}
+
+// 👇 helper para convertir nombres a HEX
+function getColorHex(name: string) {
+  const map: Record<string, string> = {
+    Negro: "#000000",
+    Blanco: "#f3f4f6",
+    Verde: "#84cc16",
+    Azul: "#3b82f6",
+    Morado: "#a855f7",
+    Gris: "#9ca3af",
+    Rojo: "#ef4444",
+  }
+  return map[name] ?? "#d1d5db" // fallback gris
 }

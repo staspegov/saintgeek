@@ -42,126 +42,121 @@ export default function ProductPage({ params }: Props) {
 
   return (
     <div className="max-w-[1300px] mx-auto px-6 pb-20 pt-10 text-[#e9e9ea]">
-      {/* Breadcrumbs */}
+      {/* Migas de pan */}
       <nav className="text-sm text-[#a9abb0] mb-4">
         <Link href="/" className="hover:text-white">
-          Главная
+          Inicio
         </Link>{" "}
         / <span>{p.name}</span>
       </nav>
 
-      {/* Gallery + Right info */}
+      {/* Galería + Info derecha */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
         <ProductGallery images={p.images} />
 
         <div className="space-y-5">
-          {/* Title + Description */}
+          {/* Título + Descripción */}
           <div>
-            <h1 className="text-3xl text-white font-semibold">
-              HYPERPC KEYBOARD TKL Black G3MS Sapphire
-            </h1>
+            <h1 className="text-3xl text-white font-semibold">{p.name}</h1>
             <p className="text-sm text-[#b6b6b8] mt-2 leading-relaxed">
-              Линейные переключатели G3ms обладают стандартным ходом и усилием
-              нажатия. Это золотой стандарт механических клавиатур. На него
-              ориентируются почти все современные производители. Переключатели
-              G3ms – это отличный вариант для тех, кто только знакомится с миром
-              механических клавиатур.
+              {p.description}
             </p>
           </div>
 
-          {/* Price + Credit */}
+          {/* Precio + Crédito */}
           <div>
             <div className="text-white font-extrabold text-[26px] mb-1">
-              Цена: 11 200 ₽
+              Precio: {p.priceRub}
             </div>
             <button className="inline-block rounded-lg border border-lime-400 px-4 py-2 text-sm text-lime-400 hover:bg-lime-400 hover:text-black transition">
-              Рассчитать кредит
+              Calcular crédito
             </button>
           </div>
 
-          {/* Buy + Pickup */}
+          {/* Comprar + Entrega */}
           <div className="space-y-3">
             <a
               href={p.mercadoLibreUrl}
               rel="sponsored nofollow"
               className="block w-full text-center rounded-lg bg-lime-400 px-4 py-3 font-bold text-black shadow-md hover:brightness-95"
             >
-              Купить
+              Comprar
             </a>
             <button className="block w-full text-center rounded-lg border border-[#2c2c2f] px-4 py-3 text-sm hover:border-lime-400 transition">
-              Entrega 
+              Entrega
             </button>
-            
-            <p className="text-sm text-[#9ea0a6]">В наличии • Москва</p>
+            <p className="text-sm text-[#9ea0a6]">En stock • Santiago</p>
           </div>
 
-          {/* Delivery */}
+          {/* Métodos de envío */}
           <div className="border-t border-[#2c2c2f] pt-4 space-y-3">
             <h3 className="text-lg font-semibold text-white">
-              Способы доставки
+              Métodos de envío
             </h3>
             <div className="space-y-2 text-sm text-[#d4d4d8]">
               <div className="flex justify-between">
-                <span>Срочная доставка за 2 часа (Yandex.Go)</span>
-                <span className="text-white font-bold">от 1 500 ₽</span>
+                <span>Envío express en 2 horas (Starken/Chilexpress)</span>
+                <span className="text-white font-bold">desde $5.000</span>
               </div>
               <div className="flex justify-between">
-                <span>Стандартная доставка — 27 августа</span>
-                <span className="text-white font-bold">от 350 ₽</span>
+                <span>Envío estándar — 3 a 5 días</span>
+                <span className="text-white font-bold">desde $3.000</span>
               </div>
               <div className="flex justify-between">
-                <span>Получить в пункте выдачи — 27 августа</span>
-                <span className="text-white font-bold">350 ₽</span>
+                <span>Retiro en tienda</span>
+                <span className="text-white font-bold">Gratis</span>
               </div>
             </div>
           </div>
         </div>
       </div>
-      
+
       <VideoSection videoId="UPpDrkN-otQ" />
-<ProductSpecs />
-<ProductFeatures/>
-<SelectorKeycaps/>
-<div className="mt-12">
-        <h2 className="text-xl font-semibold mb-4">Характеристики</h2>
+      <ProductSpecs />
+      <ProductFeatures />
+      <SelectorKeycaps product={p} />
+
+      {/* Características */}
+      <div className="mt-12">
+        <h2 className="text-xl font-semibold mb-4">Características</h2>
         <div className="overflow-x-auto rounded-xl border border-[#1f1f20] bg-[#0f0f11]">
           <table className="w-full text-sm">
             <tbody>
               <tr className="border-b border-[#1f1f20]">
-                <td className="p-3 text-[#a9abb0]">Модель</td>
+                <td className="p-3 text-[#a9abb0]">Modelo</td>
                 <td className="p-3">{p.model}</td>
               </tr>
               <tr className="border-b border-[#1f1f20]">
-                <td className="p-3 text-[#a9abb0]">Цвет</td>
+                <td className="p-3 text-[#a9abb0]">Color</td>
                 <td className="p-3">{p.color}</td>
               </tr>
               <tr className="border-b border-[#1f1f20]">
-                <td className="p-3 text-[#a9abb0]">Клавиш</td>
-                <td className="p-3">87</td>
+                <td className="p-3 text-[#a9abb0]">Teclas</td>
+                <td className="p-3">{p.keys}</td>
               </tr>
               <tr className="border-b border-[#1f1f20]">
-                <td className="p-3 text-[#a9abb0]">Переключатели</td>
-                <td className="p-3">G3MS Sapphire</td>
+                <td className="p-3 text-[#a9abb0]">Switches</td>
+                <td className="p-3">{p.switch}</td>
               </tr>
               <tr className="border-b border-[#1f1f20]">
-                <td className="p-3 text-[#a9abb0]">Тип переключателя</td>
-                <td className="p-3">Линейный</td>
+                <td className="p-3 text-[#a9abb0]">Tipo de switch</td>
+                <td className="p-3">{p.switchType}</td>
               </tr>
               <tr className="border-b border-[#1f1f20]">
-                <td className="p-3 text-[#a9abb0]">Сила нажатия</td>
-                <td className="p-3">50 г</td>
+                <td className="p-3 text-[#a9abb0]">Fuerza de actuación</td>
+                <td className="p-3">{p.actuationForce}</td>
               </tr>
               <tr className="border-b border-[#1f1f20]">
-                <td className="p-3 text-[#a9abb0]">Подсветка</td>
-                <td className="p-3">RGB</td>
+                <td className="p-3 text-[#a9abb0]">Iluminación</td>
+                <td className="p-3">{p.lighting}</td>
+              </tr>
+              <tr className="border-b border-[#1f1f20]">
+                <td className="p-3 text-[#a9abb0]">Dimensiones</td>
+                <td className="p-3">{p.dimensions}</td>
               </tr>
               <tr>
-                <td className="p-3 text-[#a9abb0]">Габариты</td>
-                <td className="p-3">360×135×39 мм</td>
-              </tr>
-              <tr>
-                <td className="p-3 text-[#a9abb0]">Вес</td>
-                <td className="p-3">1200 г</td>
+                <td className="p-3 text-[#a9abb0]">Peso</td>
+                <td className="p-3">{p.weight}</td>
               </tr>
             </tbody>
           </table>
@@ -175,8 +170,8 @@ export default function ProductPage({ params }: Props) {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(
             breadcrumbJsonLd([
-              { name: "Главная", url: site.url },
-              { name: "Клавиатуры", url: site.url + "/" },
+              { name: "Inicio", url: site.url },
+              { name: "Teclados", url: site.url + "/" },
               { name: p.name, url: `${site.url}/products/${p.slug}` },
             ])
           ),

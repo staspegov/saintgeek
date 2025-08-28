@@ -8,7 +8,7 @@ export default function Footer() {
   const [message, setMessage] = useState("")
 
   const handleSendWhatsApp = () => {
-    const phone = "56912345678" // 👈 сюда свой WhatsApp
+    const phone = "56912345678" // 👈 aquí tu WhatsApp real
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`
     window.open(url, "_blank")
   }
@@ -17,25 +17,25 @@ export default function Footer() {
     <>
       <footer className="bg-[#0c0c0d] border-t border-[#1a1a1c] mt-20">
         <div className="max-w-[1450px] mx-auto px-6 py-10 grid grid-cols-1 sm:grid-cols-3 gap-8 text-[#a9abb0] text-sm">
-          {/* Column 1 */}
+          {/* Columna 1 */}
           <div>
             <h3 className="text-white font-bold mb-3">SaintGeek</h3>
-            <p>Игровые клавиатуры и аксессуары в Чили</p>
+            <p>Teclados gamer y accesorios en Chile</p>
           </div>
 
-          {/* Column 2 */}
+          {/* Columna 2 */}
           <div>
-            <h3 className="text-white font-bold mb-3">Навигация</h3>
+            <h3 className="text-white font-bold mb-3">Navegación</h3>
             <ul className="space-y-1">
-              <li><Link href="/" className="hover:text-white">Каталог</Link></li>
-              <li><button onClick={() => setOpenPopup("about")} className="hover:text-white">О нас</button></li>
-              <li><button onClick={() => setOpenPopup("help")} className="hover:text-white">Помощь</button></li>
+              <li><Link href="/" className="hover:text-white">Catálogo</Link></li>
+              <li><button onClick={() => setOpenPopup("about")} className="hover:text-white">Sobre nosotros</button></li>
+              <li><button onClick={() => setOpenPopup("help")} className="hover:text-white">Ayuda</button></li>
             </ul>
           </div>
 
-          {/* Column 3 */}
+          {/* Columna 3 */}
           <div>
-            <h3 className="text-white font-bold mb-3">Контакты</h3>
+            <h3 className="text-white font-bold mb-3">Contacto</h3>
             <p>Email: <a href="mailto:info@saintgeek.cl" className="hover:text-white">info@saintgeek.cl</a></p>
             <button
               onClick={() => setOpenPopup("contact")}
@@ -47,7 +47,7 @@ export default function Footer() {
         </div>
 
         <div className="text-center text-xs text-[#666] py-4 border-t border-[#1a1a1c]">
-          © {new Date().getFullYear()} SaintGeek. Все права защищены.
+          © {new Date().getFullYear()} SaintGeek. Todos los derechos reservados.
         </div>
       </footer>
 
@@ -64,33 +64,33 @@ export default function Footer() {
 
             {openPopup === "about" && (
               <>
-                <h2 className="text-xl font-bold mb-3">О нас</h2>
+                <h2 className="text-xl font-bold mb-3">Sobre nosotros</h2>
                 <p className="text-sm text-[#b6b6b8]">
-                  Мы — команда SaintGeek, занимаемся клавиатурами и игровой периферией.
-                  Наша цель — сделать продукцию доступной в Чили с качественным сервисом и поддержкой.
+                  Somos el equipo de SaintGeek, nos dedicamos a teclados y periféricos gamer.
+                  Nuestra meta es ofrecer productos en Chile con un servicio de calidad y soporte confiable.
                 </p>
               </>
             )}
 
             {openPopup === "help" && (
               <>
-                <h2 className="text-xl font-bold mb-3">Помощь / FAQ</h2>
+                <h2 className="text-xl font-bold mb-3">Ayuda / Preguntas frecuentes</h2>
                 <ul className="list-disc pl-4 space-y-2 text-sm text-[#b6b6b8]">
-                  <li>Как оформить заказ? → Добавьте товар в корзину и оформите покупку через сайт.</li>
-                  <li>Какие способы доставки? → Отправляем по всему Чили курьером или через Starken/Chilexpress.</li>
-                  <li>Есть ли гарантия? → Да, все товары с официальной гарантией 6–12 месяцев.</li>
+                  <li>¿Cómo comprar? → Agrega el producto al carrito y completa la compra en el sitio.</li>
+                  <li>¿Formas de envío? → Enviamos a todo Chile por Starken/Chilexpress o courier.</li>
+                  <li>¿Tienen garantía? → Sí, todos los productos cuentan con garantía oficial de 6 a 12 meses.</li>
                 </ul>
               </>
             )}
 
             {openPopup === "contact" && (
               <>
-                <h2 className="text-xl font-bold mb-3">Связаться с нами</h2>
-                <p className="text-sm text-[#b6b6b8] mb-3">Напишите сообщение, и мы ответим в WhatsApp:</p>
+                <h2 className="text-xl font-bold mb-3">Contáctanos</h2>
+                <p className="text-sm text-[#b6b6b8] mb-3">Escribe un mensaje y te responderemos en WhatsApp:</p>
                 <textarea
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  placeholder="Ваше сообщение..."
+                  placeholder="Tu mensaje..."
                   className="w-full h-28 p-2 rounded-md bg-[#0f0f11] border border-[#262629] text-white text-sm"
                 />
                 <button
@@ -98,7 +98,7 @@ export default function Footer() {
                   disabled={!message.trim()}
                   className="mt-3 w-full bg-lime-400 text-[#101010] py-2 rounded-full font-semibold text-sm shadow-md hover:brightness-95 disabled:opacity-50"
                 >
-                  Отправить в WhatsApp
+                  Enviar a WhatsApp
                 </button>
               </>
             )}

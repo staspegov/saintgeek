@@ -1,31 +1,35 @@
 "use client"
 import Image from "next/image"
+import type { Product } from "@/data/products"
 
-export default function ProductSpecs() {
+type Props = {
+  product: Product
+}
+
+export default function ProductSpecs({ product }: Props) {
   return (
     <section className="mt-20 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-      {/* Left side: text + spec cards */}
+      {/* Lado izquierdo: texto + tarjetas de especificaciones */}
       <div className="space-y-8">
         <div>
           <h2 className="text-3xl font-semibold text-white mb-4 tracking-tight">
-            ミニマリズム (Минимализм)
+            Minimalismo
           </h2>
           <p className="text-[#c9c9c9] text-base leading-relaxed max-w-md">
-            В современном мире, где каждый сантиметр рабочего пространства
-            важен, компактная клавиатура HYPERPC в формате TKL сочетает
-            функциональность и эстетику. Дизайн вдохновлён японской
-            минималистичной философией — чистота, баланс и удобство без
-            компромиссов.
+            En el mundo moderno, donde cada centímetro de espacio en el escritorio
+            es importante, el teclado compacto HYPERPC en formato TKL combina
+            funcionalidad y estética. El diseño está inspirado en la filosofía
+            japonesa minimalista: pureza, equilibrio y comodidad sin compromisos.
           </p>
         </div>
 
-        {/* Floating spec cards */}
+        {/* Tarjetas de especificaciones dinámicas */}
         <div className="flex flex-wrap gap-4">
           {[
-            { label: "Ширина", value: "360 мм" },
-            { label: "Глубина", value: "135 мм" },
-            { label: "Высота", value: "39 мм" },
-            { label: "Вес", value: "1.2 кг" },
+            { label: "Ancho", value: product.ancho },
+            { label: "Largo", value: product.largo },
+            { label: "Alto", value: product.alto },
+            { label: "Peso", value: product.weight },
           ].map((spec, i) => (
             <div
               key={i}
@@ -38,11 +42,11 @@ export default function ProductSpecs() {
         </div>
       </div>
 
-      {/* Right side: image with soft shadow + rounded */}
+      {/* Lado derecho: imagen */}
       <div className="relative h-72 md:h-full rounded-3xl overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.35)]">
         <Image
-          src="/images/blue-keyboard-3.png"
-          alt="Минимализм"
+          src={product.images[0].url}
+          alt={`Vista del modelo ${product.model}`}
           fill
           className="object-cover scale-105 hover:scale-110 transition-transform duration-500"
         />

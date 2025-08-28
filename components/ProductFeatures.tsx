@@ -5,33 +5,33 @@ export default function ProductFeatures() {
   return (
     <section className="mt-16">
       <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">
-        ДОПОЛНИТЕЛЬНЫЕ ФУНКЦИИ И ТЕХНОЛОГИИ
+        FUNCIONES Y TECNOLOGÍAS ADICIONALES
       </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {/* Image cards */}
-        <div className="bg-[#111] rounded-2xl overflow-hidden">
+      {/* Bloques de imágenes */}
+      <div className="flex md:grid gap-6 overflow-x-auto md:overflow-visible md:grid-cols-3 pb-4 scrollbar-hide">
+        <div className="bg-[#111] rounded-2xl overflow-hidden min-w-[80%] md:min-w-0">
           <Image
-            src="/images/feature-legs.png" // 👉 replace with your image
-            alt="Выдвижные ножки"
+            src="/images/feature-legs.png"
+            alt="Patas ajustables"
             width={500}
             height={300}
             className="object-cover w-full h-48"
           />
         </div>
-        <div className="bg-[#111] rounded-2xl overflow-hidden">
+        <div className="bg-[#111] rounded-2xl overflow-hidden min-w-[80%] md:min-w-0">
           <Image
             src="/images/feature-keys.png"
-            alt="Регистрация нажатий"
+            alt="Registro de teclas"
             width={500}
             height={300}
             className="object-cover w-full h-48"
           />
         </div>
-        <div className="bg-[#111] rounded-2xl overflow-hidden">
+        <div className="bg-[#111] rounded-2xl overflow-hidden min-w-[80%] md:min-w-0">
           <Image
             src="/images/feature-fn.png"
-            alt="Быстрый доступ"
+            alt="Acceso rápido"
             width={500}
             height={300}
             className="object-cover w-full h-48"
@@ -39,36 +39,34 @@ export default function ProductFeatures() {
         </div>
       </div>
 
-      {/* Text blocks */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-        <div className="bg-[#111] rounded-2xl p-5">
+      {/* Bloques de texto */}
+      <div className="flex md:grid gap-6 overflow-x-auto md:overflow-visible md:grid-cols-3 mt-6 pb-4 scrollbar-hide">
+        <div className="bg-[#111] rounded-2xl p-5 min-w-[80%] md:min-w-0">
           <h3 className="text-lg font-semibold text-white mb-2">
-            ВЫДВИЖНЫЕ НОЖКИ
+            PATAS AJUSTABLES
           </h3>
           <p className="text-[#b6b6b8] text-sm leading-relaxed">
-            В конструкции предусмотрены две выдвижные ножки, с помощью которых
-            можно расположить клавиатуру под разными углами. Так вы сможете
-            подобрать для себя идеальное положение устройства для максимальной
-            результативности в играх.
+            El diseño incluye dos patas ajustables que permiten colocar el
+            teclado en diferentes ángulos. Así podrás encontrar la posición
+            ideal para un máximo confort y rendimiento en juegos.
           </p>
         </div>
-        <div className="bg-[#111] rounded-2xl p-5">
+        <div className="bg-[#111] rounded-2xl p-5 min-w-[80%] md:min-w-0">
           <h3 className="text-lg font-semibold text-white mb-2">
-            РЕГИСТРАЦИЯ КАЖДОГО НАЖАТИЯ
+            REGISTRO DE CADA TECLA
           </h3>
           <p className="text-[#b6b6b8] text-sm leading-relaxed">
-            Каждое нажатие регистрируется отдельно. Это позволяет избежать
-            залипания клавиш в играх.
+            Cada pulsación se registra de manera independiente, evitando
+            problemas de ghosting o bloqueo de teclas durante tus partidas.
           </p>
         </div>
-        <div className="bg-[#111] rounded-2xl p-5">
+        <div className="bg-[#111] rounded-2xl p-5 min-w-[80%] md:min-w-0">
           <h3 className="text-lg font-semibold text-white mb-2">
-            БЫСТРЫЙ ДОСТУП
+            ACCESO RÁPIDO
           </h3>
           <p className="text-[#b6b6b8] text-sm leading-relaxed">
-            Управляйте компьютером с помощью клавиши «Fn». Она активирует
-            дополнительные команды в Windows, такие как включение беззвучного
-            режима, остановка плеера, повышение уровня громкости и так далее.
+            Controla tu PC con la tecla «Fn». Activa comandos adicionales como
+            silenciar, pausar el reproductor, subir o bajar volumen y mucho más.
           </p>
         </div>
       </div>
