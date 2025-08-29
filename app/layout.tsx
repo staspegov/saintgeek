@@ -3,6 +3,8 @@ import "./globals.css";
 import { site } from "@/lib/utils";
 import Topbar from "@/components/Topbar";
 import Footer from "@/components/Footer";
+import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -36,9 +38,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="ru">
       <body className="flex flex-col min-h-screen bg-[#0C0D0E] text-[#e9e9ea] ">
+      
         {/* Always at the top */}
         <Topbar />
-
+        <SpeedInsights/>
+        <Analytics/>
         {/* Main content expands to fill available height */}
         <main className="flex-1">{children}</main>
 
