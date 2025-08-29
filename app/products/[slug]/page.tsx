@@ -112,7 +112,7 @@ export default function ProductPage({ params }: Props) {
       </div>
 
       <VideoSection videoId="UPpDrkN-otQ" />
-      <ProductSpecs />
+      <ProductSpecs product={p}/>
       <ProductFeatures />
       <SelectorKeycaps product={p} />
 
