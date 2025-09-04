@@ -8,7 +8,7 @@ export default function Topbar() {
   const [message, setMessage] = useState("")
 
   const handleSendWhatsApp = () => {
-    const phone = "56912345678" // 👈 сюда вставь свой WhatsApp в международном формате (без +)
+    const phone = "56912345678" // 👈 aquí coloca tu WhatsApp en formato internacional (sin +)
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`
     window.open(url, "_blank")
   }
@@ -24,8 +24,8 @@ export default function Topbar() {
 
           {/* Nav */}
           <nav className="flex gap-6 text-sm text-[#d4d4d8]">
-            <button onClick={() => setOpenPopup("about")} className="hover:text-white">О нас</button>
-            <button onClick={() => setOpenPopup("help")} className="hover:text-white">Помощь</button>
+            <button onClick={() => setOpenPopup("about")} className="hover:text-white">Sobre nosotros</button>
+            <button onClick={() => setOpenPopup("help")} className="hover:text-white">Ayuda</button>
           </nav>
 
           {/* CTA */}
@@ -33,7 +33,7 @@ export default function Topbar() {
             onClick={() => setOpenPopup("contact")}
             className="hidden sm:inline-block bg-lime-400 text-[#101010] px-3.5 py-1.5 rounded-full font-semibold text-sm shadow-md hover:brightness-95"
           >
-            Связаться
+            Contactar
           </button>
         </div>
       </header>
@@ -52,10 +52,10 @@ export default function Topbar() {
             {/* About */}
             {openPopup === "about" && (
               <>
-                <h2 className="text-xl font-bold mb-3">О нас</h2>
+                <h2 className="text-xl font-bold mb-3">Sobre nosotros</h2>
                 <p className="text-sm text-[#b6b6b8]">
-                  Мы — команда SaintGeek, занимаемся клавиатурами и игровой периферией. 
-                  Наша цель — сделать продукцию доступной в Чили с качественным сервисом и поддержкой.
+                  Somos el equipo de SaintGeek, nos dedicamos a los teclados y a la periferia gamer. 
+                  Nuestro objetivo es hacer que los productos sean accesibles en Chile con un servicio y soporte de calidad.
                 </p>
               </>
             )}
@@ -63,11 +63,16 @@ export default function Topbar() {
             {/* Help */}
             {openPopup === "help" && (
               <>
-                <h2 className="text-xl font-bold mb-3">Помощь / FAQ</h2>
+                <h2 className="text-xl font-bold mb-3">Ayuda / FAQ</h2>
                 <ul className="list-disc pl-4 space-y-2 text-sm text-[#b6b6b8]">
-                  <li>Как оформить заказ? → Добавьте товар в корзину и оформите покупку через сайт.</li>
-                  <li>Какие способы доставки? → Отправляем по всему Чили курьером или через Starken/Chilexpress.</li>
-                  <li>Есть ли гарантия? → Да, все товары с официальной гарантией 6–12 месяцев.</li>
+                  <ul className="list-disc pl-4 space-y-2 text-sm text-[#b6b6b8]">
+  <li>¿Cómo comprar? → Las compras se realizan en MercadoLibre.</li>
+  <li>¿Envíos? → Si compras en MercadoLibre, enviamos a todo Chile vía Chilexpress.</li>
+  <li>¿Transferencia bancaria? → Aceptada; por ahora la entrega es solo en Santiago. Próximamente habilitaremos envíos a todo Chile para compras por transferencia.</li>
+  <li>¿Garantía? → 6 meses (no cubre daño físico).</li>
+  <li>¿Pruebas de calidad? → Todos los teclados se prueban antes del despacho.</li>
+</ul>
+
                 </ul>
               </>
             )}
@@ -75,12 +80,12 @@ export default function Topbar() {
             {/* Contact */}
             {openPopup === "contact" && (
               <>
-                <h2 className="text-xl font-bold mb-3">Связаться с нами</h2>
-                <p className="text-sm text-[#b6b6b8] mb-3">Напишите сообщение, и мы ответим в WhatsApp:</p>
+                <h2 className="text-xl font-bold mb-3">Contacta con nosotros</h2>
+                <p className="text-sm text-[#b6b6b8] mb-3">Escribe un mensaje y te responderemos por WhatsApp:</p>
                 <textarea
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  placeholder="Ваше сообщение..."
+                  placeholder="Tu mensaje..."
                   className="w-full h-28 p-2 rounded-md bg-[#0f0f11] border border-[#262629] text-white text-sm"
                 />
                 <button
@@ -88,7 +93,7 @@ export default function Topbar() {
                   disabled={!message.trim()}
                   className="mt-3 w-full bg-lime-400 text-[#101010] py-2 rounded-full font-semibold text-sm shadow-md hover:brightness-95 disabled:opacity-50"
                 >
-                  Отправить в WhatsApp
+                  Enviar a WhatsApp
                 </button>
               </>
             )}

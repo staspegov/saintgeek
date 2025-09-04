@@ -93,7 +93,7 @@ export default function GalleryModal({ images }: { images: Img[] }) {
 
             <div className="mt-4 flex justify-end">
               <button onClick={()=>setOpen(false)} className="px-4 py-2 rounded-lg border border-[#2a2a2d] text-sm text-[#dcdcde]">
-                Закрыть
+                Cerrar
               </button>
             </div>
           </div>

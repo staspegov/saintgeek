@@ -9,7 +9,7 @@ export default function ProductCard({ p }: { p: Product }) {
   const [open, setOpen] = useState(false)
 
   const statusDot = p.status === "in_stock" ? "#75ff00" : "#ffb02e"
-  const statusText = p.status === "in_stock" ? "В наличии" : "Под заказ"
+  const statusText = p.status === "in_stock" ? "Disponible" : "Por pedido"
 
   const radial = {
     black: "rgba(137,255,0,.18)",
@@ -96,10 +96,10 @@ export default function ProductCard({ p }: { p: Product }) {
       <div className="flex items-end justify-between gap-3">
         <div>
           <div className="text-white font-extrabold text-[18px]">
-            {p.priceRub.toLocaleString("ru-RU")} ₽
+            {p.priceRub.toLocaleString("ru-RU")} CLP
           </div>
           <div className="text-[12px] text-[#8d8f95] mt-0.5">
-            от {p.monthlyRub.toLocaleString("ru-RU")} ₽/мес.
+            desde {p.monthlyRub.toLocaleString("ru-RU")} clp/mes.
           </div>
         </div>
         <Link

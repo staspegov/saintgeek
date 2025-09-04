@@ -76,9 +76,11 @@ export default function Footer() {
               <>
                 <h2 className="text-xl font-bold mb-3">Ayuda / Preguntas frecuentes</h2>
                 <ul className="list-disc pl-4 space-y-2 text-sm text-[#b6b6b8]">
-                  <li>¿Cómo comprar? → Agrega el producto al carrito y completa la compra en el sitio.</li>
-                  <li>¿Formas de envío? → Enviamos a todo Chile por Starken/Chilexpress o courier.</li>
-                  <li>¿Tienen garantía? → Sí, todos los productos cuentan con garantía oficial de 6 a 12 meses.</li>
+                  <li>¿Cómo comprar? → Las compras se realizan en MercadoLibre.</li>
+  <li>¿Envíos? → Si compras en MercadoLibre, enviamos a todo Chile vía Chilexpress.</li>
+  <li>¿Transferencia bancaria? → Aceptada; por ahora la entrega es solo en Santiago. Próximamente habilitaremos envíos a todo Chile para compras por transferencia.</li>
+  <li>¿Garantía? → 6 meses (no cubre daño físico).</li>
+  <li>¿Pruebas de calidad? → Todos los teclados se prueban antes del despacho.</li>
                 </ul>
               </>
             )}
