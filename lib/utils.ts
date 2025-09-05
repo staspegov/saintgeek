@@ -1,11 +1,13 @@
+// lib/utils.ts
 export function clsx(...parts: Array<string | false | null | undefined>) {
   return parts.filter(Boolean).join(" ");
 }
 
+const DEFAULT_URL = "https://saintgeek.cl"; // canónico (sin www)
 export const site = {
-  name: "Игровые клавиатуры",
-  url: "https://example.com",
+  name: "Teclados gaming",
+  url: (process.env.NEXT_PUBLIC_SITE_URL ?? DEFAULT_URL).replace(/\/+$/,''),
   description:
-    "Игровые клавиатуры — особая компьютерная периферия для тех, кто увлекается играми. Красивый внешний вид, удобство и дополнительные функции.",
-  locale: "ru-RU",
+    "Los teclados gaming son periféricos especiales para quienes disfrutan de los videojuegos. Ofrecen un diseño atractivo, comodidad y funciones adicionales.",
+  locale: "es-CL",
 };
