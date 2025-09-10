@@ -80,7 +80,7 @@ export default function ProductPage({ params }: Props) {
               rel="sponsored nofollow"
               className="block w-full text-center rounded-lg bg-lime-400 px-4 py-3 font-bold text-black shadow-md hover:brightness-95"
             >
-              Comprar
+              Comprar en Mercadolibre
             </a>
             <button className="block w-full text-center rounded-lg border border-[#2c2c2f] px-4 py-3 text-sm hover:border-lime-400 transition">
               Entrega

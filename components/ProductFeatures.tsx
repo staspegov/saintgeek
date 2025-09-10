@@ -12,25 +12,25 @@ export default function ProductFeatures() {
       <div className="flex md:grid gap-6 overflow-x-auto md:overflow-visible md:grid-cols-3 pb-4 scrollbar-hide">
         <div className="bg-[#111] rounded-2xl overflow-hidden min-w-[80%] md:min-w-0">
           <Image
-            src="/images/feature-legs.png"
+            src="/images/patitas.png"
             alt="Patas ajustables"
             width={500}
             height={300}
-            className="object-cover w-full h-48"
+            className="object-cover w-full h-52"
           />
         </div>
         <div className="bg-[#111] rounded-2xl overflow-hidden min-w-[80%] md:min-w-0">
           <Image
-            src="/images/feature-keys.png"
+            src="/images/clicks.png"
             alt="Registro de teclas"
             width={500}
             height={300}
-            className="object-cover w-full h-48"
+            className="object-cover w-full h-52"
           />
         </div>
         <div className="bg-[#111] rounded-2xl overflow-hidden min-w-[80%] md:min-w-0">
           <Image
-            src="/images/feature-fn.png"
+            src="/images/clicks.png"
             alt="Acceso rápido"
             width={500}
             height={300}
