@@ -45,7 +45,7 @@ export default function ProductSpecs({ product }: Props) {
       {/* Lado derecho: imagen */}
       <div className="relative h-72 md:h-full rounded-3xl overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.35)]">
         <Image
-          src={product.images[0].url}
+          src="/images/minimal.png"
           alt={`Vista del modelo ${product.model}`}
           fill
           className="object-cover scale-105 hover:scale-110 transition-transform duration-500"

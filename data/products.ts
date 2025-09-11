@@ -99,7 +99,7 @@ export const products: Product[] = [
   images: [
         { id: "ag61-negro",  label: "Negro",  url: "/images/tk61/black-keycaps.png" },
         { id: "ag61-azul",   label: "Azul",   url: "/images/tk61/blue-keycaps.png" },
-        
+         { id: "ag61-azul",   label: "Azul",   url: "/images/tk61/blue-keycaps-1.png" },
         { id: "",  label: "",  url: "/images/tk61/Untitled-2.png" },
         { id: "",  label: "",  url: "/images/blue-switch-1.webp" },
         

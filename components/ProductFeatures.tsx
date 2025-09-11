@@ -30,11 +30,11 @@ export default function ProductFeatures() {
         </div>
         <div className="bg-[#111] rounded-2xl overflow-hidden min-w-[80%] md:min-w-0">
           <Image
-            src="/images/clicks.png"
+            src="/images/fn.png"
             alt="Acceso rápido"
             width={500}
             height={300}
-            className="object-cover w-full h-48"
+            className="object-cover w-full h-52"
           />
         </div>
       </div>
