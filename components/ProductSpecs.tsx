@@ -12,8 +12,9 @@ export default function ProductSpecs({ product }: Props) {
       {/* Lado izquierdo: texto + tarjetas de especificaciones */}
       <div className="space-y-8">
         <div>
+          <h2>ミニマリズム</h2>
           <h2 className="text-3xl font-semibold text-white mb-4 tracking-tight">
-            Minimalismo
+            Minimalismo 
           </h2>
           <p className="text-[#c9c9c9] text-base leading-relaxed max-w-md">
             En el mundo moderno, donde cada centímetro de espacio en el escritorio

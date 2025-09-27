@@ -1,3 +1,4 @@
+// app/products/[slug]/page.tsx
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { products } from "@/data/products"
@@ -10,6 +11,8 @@ import ProductSpecs from "@/components/ProductSpecs"
 import VideoSection from "@/components/VideoSection"
 import ProductFeatures from "@/components/ProductFeatures"
 import SelectorKeycaps from "@/components/SelectorKeycaps"
+import TransferCheckoutButton from "@/components/TransferCheckoutButton"
+import CreditCalcButton from "@/components/CreditCalcButton"
 
 type Props = { params: { slug: string } }
 
@@ -40,6 +43,8 @@ export default function ProductPage({ params }: Props) {
   const p = products.find(x => x.slug === params.slug)
   if (!p) return notFound()
 
+  const productUrl = `${site.url}/products/${p.slug}`
+
   return (
     <div className="max-w-[1300px] mx-auto px-6 pb-20 pt-10 text-[#e9e9ea]">
       {/* Migas de pan */}
@@ -65,13 +70,16 @@ export default function ProductPage({ params }: Props) {
 
           {/* Precio + Crédito */}
           <div>
-            <div className="text-white font-extrabold text-[26px] mb-1">
-              Precio: {p.priceRub}
-            </div>
-            <button className="inline-block rounded-lg border border-lime-400 px-4 py-2 text-sm text-lime-400 hover:bg-lime-400 hover:text-black transition">
-              Calcular crédito
-            </button>
-          </div>
+  <div className="text-white font-extrabold text-[26px] mb-1">
+    Precio: {p.priceRub} CLP
+  </div>
+  <div className="text-white text-[13px] mb-2 mt-1">
+    Precio transferencia: {Number(p.priceRub) * 0.9} CLP
+  </div>
+
+  {/* Reemplaza el botón por el componente */}
+  <CreditCalcButton amount={p.priceRub} />
+</div>
 
           {/* Comprar + Entrega */}
           <div className="space-y-3">
@@ -82,20 +90,24 @@ export default function ProductPage({ params }: Props) {
             >
               Comprar en Mercadolibre
             </a>
-            <button className="block w-full text-center rounded-lg border border-[#2c2c2f] px-4 py-3 text-sm hover:border-lime-400 transition">
-              Entrega
-            </button>
+
+            <TransferCheckoutButton
+              productName={p.name}
+              productUrl={productUrl}
+              priceLabel={p.priceRub}
+            />
+
             <p className="text-sm text-[#9ea0a6]">En stock • Santiago</p>
           </div>
 
           {/* Métodos de envío */}
           <div className="border-t border-[#2c2c2f] pt-4 space-y-3">
             <h3 className="text-lg font-semibold text-white">
-              Métodos de envío
+              Métodos de entrega (Compras por transferencia)
             </h3>
             <div className="space-y-2 text-sm text-[#d4d4d8]">
               <div className="flex justify-between">
-                <span>Envío express en 2 horas (Starken/Chilexpress)</span>
+                <span>Envío express en 2 horas (Solo RM)</span>
                 <span className="text-white font-bold">desde $5.000</span>
               </div>
               <div className="flex justify-between">
@@ -112,7 +124,7 @@ export default function ProductPage({ params }: Props) {
       </div>
 
       <VideoSection videoId="UPpDrkN-otQ" />
-      <ProductSpecs product={p}/>
+      <ProductSpecs product={p} />
       <ProductFeatures />
       <SelectorKeycaps product={p} />
 

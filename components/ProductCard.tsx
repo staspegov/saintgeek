@@ -1,10 +1,13 @@
 "use client"
 import Image from "next/image"
 import Link from "next/link"
-import { useState } from "react"
+import { useMemo, useState } from "react"
 import type { Product } from "@/data/products"
 
 export default function ProductCard({ p }: { p: Product }) {
+  // EXCLUIR la segunda (1) y tercera (2) imagen
+  const images = useMemo(() => p.images.filter((_, i) => i !== 1 && i !== 2), [p.images])
+
   const [idx, setIdx] = useState(0)
   const [open, setOpen] = useState(false)
 
@@ -19,8 +22,8 @@ export default function ProductCard({ p }: { p: Product }) {
     grey: "rgba(200,200,200,.16)",
   }[p.color]
 
-  const next = () => setIdx((i) => (i + 1) % p.images.length)
-  const prev = () => setIdx((i) => (i - 1 + p.images.length) % p.images.length)
+  const next = () => setIdx((i) => (i + 1) % images.length)
+  const prev = () => setIdx((i) => (i - 1 + images.length) % images.length)
 
   return (
     <article
@@ -52,15 +55,16 @@ export default function ProductCard({ p }: { p: Product }) {
         onClick={() => setOpen(true)}
       >
         <Image
-          key={p.images[idx].id}
-          src={p.images[idx].url}
-          alt={p.images[idx].label}
+          key={images[idx]?.id ?? idx}
+          src={images[idx]?.url ?? ""}
+          alt={images[idx]?.label ?? p.name}
           width={400}
           height={200}
           className="object-contain w-full h-full transition-opacity duration-300"
         />
+
         {/* Prev / Next only visible on hover */}
-        {p.images.length > 1 && (
+        {images.length > 1 && (
           <>
             <button
               onClick={(e) => {
@@ -133,21 +137,25 @@ export default function ProductCard({ p }: { p: Product }) {
             >
               ×
             </button>
-            <button
-              onClick={prev}
-              className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/60 text-white rounded-full w-10 h-10 flex items-center justify-center"
-            >
-              ‹
-            </button>
-            <button
-              onClick={next}
-              className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/60 text-white rounded-full w-10 h-10 flex items-center justify-center"
-            >
-              ›
-            </button>
+            {images.length > 1 && (
+              <>
+                <button
+                  onClick={prev}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/60 text-white rounded-full w-10 h-10 flex items-center justify-center"
+                >
+                  ‹
+                </button>
+                <button
+                  onClick={next}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/60 text-white rounded-full w-10 h-10 flex items-center justify-center"
+                >
+                  ›
+                </button>
+              </>
+            )}
             <Image
-              src={p.images[idx].url}
-              alt={p.images[idx].label}
+              src={images[idx]?.url ?? ""}
+              alt={images[idx]?.label ?? p.name}
               width={1200}
               height={900}
               className="object-contain w-full h-auto"

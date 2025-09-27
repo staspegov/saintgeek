@@ -40,7 +40,7 @@ export const products: Product[] = [
   subtitle: "Teclado mecánico 60% RGB, Hot-Swap",
   status: "in_stock",
   priceRub: 31980,
-  monthlyRub: 4580,
+  monthlyRub: 5330,
   model: "AG61",
   color: "Azul",
   colors: ["Negro", "Azul"],
@@ -61,10 +61,11 @@ export const products: Product[] = [
   images: [
         { id: "ag61-azul",   label: "Azul",   url: "/images/tk61/blue-keycaps.png" },
         { id: "ag61-negro",  label: "Negro",  url: "/images/tk61/black-keycaps.png" },
+        { id: "ag61-azul",   label: "Azul",   url: "/images/tk61/blue-keycaps-1.png" },
         { id: "",  label: "",  url: "/images/tk61/Untitled-2.png" },
         { id: "",  label: "",  url: "/images/blue-switch-1.webp" },
-   { id: "",  label: "",  url: "/images/tk61/Untitled-2.png" },
-        { id: "",  label: "",  url: "/images/blue-switch-1.webp" },
+        
+        
         
   ],
   mercadoLibreUrl:
@@ -78,7 +79,7 @@ export const products: Product[] = [
   subtitle: "Teclado mecánico 60% RGB, Hot-Swap",
   status: "in_stock",
   priceRub: 35990,
-  monthlyRub: 4580,
+  monthlyRub: 5998,
   model: "AG61",
   color: "Negro",
   colors: ["Negro", "Azul"],
@@ -99,7 +100,7 @@ export const products: Product[] = [
   images: [
         { id: "ag61-negro",  label: "Negro",  url: "/images/tk61/black-keycaps.png" },
         { id: "ag61-azul",   label: "Azul",   url: "/images/tk61/blue-keycaps.png" },
-         { id: "ag61-azul",   label: "Azul",   url: "/images/tk61/blue-keycaps-1.png" },
+        { id: "ag61-black",   label: "Black",   url: "/images/tk61/black-ag61.png" },
         { id: "",  label: "",  url: "/images/tk61/Untitled-2.png" },
         { id: "",  label: "",  url: "/images/blue-switch-1.webp" },
         
