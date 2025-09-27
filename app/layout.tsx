@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   keywords: [
     // core
     "teclados mecánicos", "teclado mecánico", "teclados gamer",
-    "teclado gaming", "teclados para juegos",
+    "teclado gamer", "teclados para juegos",
     // tamaños / form factor
     "60%", "65%", "70%", "75%", "80%", "TKL", "full size",
     // layout / idioma

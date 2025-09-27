@@ -43,10 +43,10 @@ export default function Page() {
         {/* Hero */}
         <div className="pt-2 pb-6">
           <h1 className="m-0 mb-3 text-[46px] leading-[1.1] tracking-[.2px] text-[#f4f4f5]">
-            Teclados mecánicos para gaming
+            Teclados mecánicos gamer
           </h1>
           <p className="max-w-[860px] m-0 mb-4 text-[16px] leading-[1.6] text-[#b6b6b8]">
-            Los teclados mecánicos para gaming son periféricos diseñados
+            Los teclados mecánicos gamer son periféricos diseñados
             especialmente para los jugadores. A diferencia de los modelos
             estándar u de oficina, estos dispositivos ofrecen una experiencia
             más inmersiva gracias a su diseño atractivo, comodidad de uso y
@@ -105,13 +105,13 @@ export default function Page() {
       </button>
 
       <h2 id="modal-title" className="text-2xl font-bold mb-4">
-        Teclados mecánicos para gaming
+        Teclados mecánicos gamer
       </h2>
 
       <section id="modal-desc">
         <h3 className="text-xl font-semibold mb-2">¿Qué son y por qué elegirlos?</h3>
         <p className="mb-4">
-          Los teclados mecánicos para gaming son periféricos especiales, creados para quienes disfrutan de los videojuegos.
+          Los teclados mecánicos gamer son periféricos especiales, creados para quienes disfrutan de los videojuegos.
           A diferencia de los modelos estándar u de oficina, permiten obtener una experiencia más placentera gracias a su
           diseño atractivo, comodidad de uso y funciones adicionales.
         </p>

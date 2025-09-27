@@ -20,7 +20,7 @@ export default function Footer() {
           {/* Columna 1 */}
           <div>
             <h3 className="text-white font-bold mb-3">SaintGeek</h3>
-            <p>Teclados gamer y accesorios en Chile</p>
+            <p>Teclados mecánicos gamer y accesorios en Chile</p>
           </div>
 
           {/* Columna 2 */}
