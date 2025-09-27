@@ -36,7 +36,7 @@ export const products: Product[] = [
  {
   slug: "ag61-azul-rgb",
   name: "AG61 Azul Claro RGB Azul Switch",
-  brand: "Zifriend",
+  brand: "SaintGeek",
   subtitle: "Teclado mecánico 60% RGB, Hot-Swap",
   status: "in_stock",
   priceRub: 31980,
@@ -75,7 +75,7 @@ export const products: Product[] = [
  {
   slug: "ag61-black-rgb",
   name: "AG61 Negro RGB Azul Switch",
-  brand: "Zifriend",
+  brand: "SaintGeek",
   subtitle: "Teclado mecánico 60% RGB, Hot-Swap",
   status: "in_stock",
   priceRub: 35990,

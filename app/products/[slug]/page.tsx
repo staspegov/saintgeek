@@ -26,13 +26,13 @@ export function generateMetadata({ params }: Props): Metadata {
   const url = `${site.url}/products/${p.slug}`
   return {
     title: p.name,
-    description: `${p.brand} — ${p.name}`,
+    description: `${p.brand} — ${p.description}`,
     alternates: { canonical: url },
     openGraph: {
       type: "website",
       url,
       title: p.name,
-      description: `${p.brand} — ${p.name}`,
+      description: `${p.brand} — ${p.description}`,
       siteName: site.name,
       images: p.images?.length ? [{ url: p.images[0].url }] : undefined,
     },

@@ -14,57 +14,55 @@ export const metadata: Metadata = {
   publisher: site.name,
   category: "technology",
   keywords: [
-    "teclados mecánicos",
-    "teclado mecánico",
-    "teclado gaming",
-    "teclado para juegos",
-    "hot-swap",
-    "switches lineales",
-    "switches táctiles",
-    "switches clicky",
-    "RGB",
-    "N-Key Rollover",
-    "anti-ghosting",
-    "PBT",
-    "keycaps",
-    "layout ANSI",
-    "layout latinoamericano",
-    "60%",
-    "65%",
-    "TKL",
-    "full size",
-    "comparativas",
-    "vitrina de teclados"
+    // core
+    "teclados mecánicos", "teclado mecánico", "teclados gamer",
+    "teclado gaming", "teclados para juegos",
+    // tamaños / form factor
+    "60%", "65%", "70%", "75%", "80%", "TKL", "full size",
+    // layout / idioma
+    "layout en español", "layout latinoamericano", "layout ANSI", "ISO",
+    // features
+    "hot-swap", "RGB", "keycaps PBT", "N-Key Rollover", "anti-ghosting",
+    "switches lineales", "switches táctiles", "switches clicky",
+    // intención de compra / local
+    "tienda de teclados", "teclados en Chile", "envío rápido", "garantía"
   ],
   title: {
-    default: "Teclados mecánicos para gaming — Vitrina SaintGeek",
-    template: "%s — Teclados mecánicos para gaming"
+    default: "Teclados mecánicos gamer 60/70/80% — SaintGeek",
+    template: "%s — Teclados mecánicos gamer"
   },
   description:
-    "Vitrina de teclados mecánicos para gaming (60%, 65%, TKL y full size) con RGB, hot-swap y switches lineales, táctiles y clicky. Guías, comparativas y precios.",
+    "Catálogo en Chile de teclados mecánicos gamer 60/65/70/80% y TKL: layout en español, RGB, hot-swap y switches lineales, táctiles o clicky. Envío rápido y garantía.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
     type: "website",
     url: site.url,
-    title: "Teclados mecánicos para gaming — Vitrina SaintGeek",
+    title: "Teclados mecánicos gamer 60/70/80% — SaintGeek",
     description:
-      "Explora teclados mecánicos para juegos: 60%, 65%, TKL y full size, con RGB, hot-swap y keycaps PBT. Reseñas, especificaciones y mejores precios.",
+      "Explora teclados mecánicos en español: 60/65/70/80% y TKL, RGB, hot-swap, keycaps PBT y más. Especificaciones, reseñas y mejores precios en Chile.",
     siteName: site.name,
     locale: "es_CL",
+    images: [{ url: `${site.url}/og.jpg` }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Teclados mecánicos para gaming — Vitrina SaintGeek",
+    title: "Teclados mecánicos gamer 60/70/80% — SaintGeek",
     description:
-      "Catálogo de teclados mecánicos: RGB, hot-swap y switches lineales/táctiles/clicky. Encuentra el formato ideal (60%, 65%, TKL, full size).",
+      "Teclados mecánicos en español con RGB, hot-swap y switches lineales/táctiles/clicky. Formatos 60/65/70/80% y TKL. Compra online en Chile.",
+    images: [`${site.url}/og.jpg`],
   },
   robots: {
     index: true,
     follow: true,
+    // útil para vistas enriquecidas en Google Imágenes
+    // y evitar recortes pobres en previas
+    // (opcional, puedes quitar si no lo necesitas)
+    // 'max-image-preview': 'large'
   }
-};
+}
+
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
