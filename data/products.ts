@@ -35,12 +35,12 @@ export type Product = {
 export const products: Product[] = [ 
  {
   slug: "ag61-azul-rgb",
-  name: "AG61 Azul Claro RGB Azul Switch",
+  name: "Teclado mecánico gamer AG61 Azul Claro RGB - Azul Switch",
   brand: "SaintGeek",
-  subtitle: "Teclado mecánico 60% RGB, Hot-Swap",
+  subtitle: "Teclado mecánico gamer 60% RGB, Hot-Swap",
   status: "in_stock",
-  priceRub: 31980,
-  monthlyRub: 5330,
+  priceRub: 32990,
+  monthlyRub: 2749,
   model: "AG61",
   color: "Azul",
   colors: ["Negro", "Azul"],
@@ -48,7 +48,7 @@ export const products: Product[] = [
   switch: "Blue",
   switchType: "Mecánicos",
   description:
-    "Teclado mecánico 60% (61 teclas) con switches azules clicky (~50 g), hot-swap 3/5-pin, N-key rollover y anti-ghosting. Montaje con junta (gasket) con espuma de doble capa para menor ruido y mejor sensación; estabilizadores lubricados y calibrados en teclas grandes. Keycaps ABS de doble inyección resistentes al brillo. Retroiluminación RGB tipo arcoíris con 6 efectos dinámicos. Cable USB-C desmontable de 1,5 m. Carcasa ABS. Ideal para gaming y escritura.",
+    "Teclado mecánico gamer 60% (61 teclas) con switches azules clicky (~50 g), hot-swap 3/5-pin, N-key rollover y anti-ghosting. Montaje con junta (gasket) con espuma de doble capa para menor ruido y mejor sensación; estabilizadores lubricados y calibrados en teclas grandes. Keycaps ABS de doble inyección resistentes al brillo. Retroiluminación RGB tipo arcoíris con 6 efectos dinámicos. Cable USB-C desmontable de 1,5 m. Carcasa ABS. Ideal para gaming y escritura.",
   keys: 61,
   switchPrice: 5500,
   actuationForce: "50 g",
@@ -74,12 +74,12 @@ export const products: Product[] = [
 ,
  {
   slug: "ag61-black-rgb",
-  name: "AG61 Negro RGB Azul Switch",
+  name: "Teclado mecánico gamer AG61 Negro RGB - Azul Switch",
   brand: "SaintGeek",
-  subtitle: "Teclado mecánico 60% RGB, Hot-Swap",
+  subtitle: "Teclado mecánico gamer 60% RGB, Hot-Swap",
   status: "in_stock",
-  priceRub: 35990,
-  monthlyRub: 5998,
+  priceRub: 31990,
+  monthlyRub: 2665,
   model: "AG61",
   color: "Negro",
   colors: ["Negro", "Azul"],
@@ -87,7 +87,7 @@ export const products: Product[] = [
   switch: "Blue",
   switchType: "Mecánicos",
   description:
-    "Teclado mecánico 60% (61 teclas) con switches azules clicky (~50 g), hot-swap 3/5-pin, N-key rollover y anti-ghosting. Montaje con junta (gasket) con espuma de doble capa para menor ruido y mejor sensación; estabilizadores lubricados y calibrados en teclas grandes. Keycaps ABS de doble inyección resistentes al brillo. Retroiluminación RGB tipo arcoíris con 6 efectos dinámicos. Cable USB-C desmontable de 1,5 m. Carcasa ABS. Ideal para gaming y escritura.",
+    "Teclado mecánico gamer 60% (61 teclas) con switches azules clicky (~50 g), hot-swap 3/5-pin, N-key rollover y anti-ghosting. Montaje con junta (gasket) con espuma de doble capa para menor ruido y mejor sensación; estabilizadores lubricados y calibrados en teclas grandes. Keycaps ABS de doble inyección resistentes al brillo. Retroiluminación RGB tipo arcoíris con 6 efectos dinámicos. Cable USB-C desmontable de 1,5 m. Carcasa ABS. Ideal para gaming y escritura.",
   keys: 61,
   switchPrice: 5500,
   actuationForce: "50 g",
@@ -98,11 +98,15 @@ export const products: Product[] = [
   largo: "103 mm",
   weight: "800 g",
   images: [
+
         { id: "ag61-negro",  label: "Negro",  url: "/images/tk61/black-keycaps.png" },
         { id: "ag61-azul",   label: "Azul",   url: "/images/tk61/blue-keycaps.png" },
         { id: "ag61-black",   label: "Black",   url: "/images/tk61/black-ag61.png" },
+        { id: "ag61-black",   label: "",   url: "/images/blue-keycaps-ag61-4.webp" },
+        { id: "ag61-black",   label: "",   url: "/images/black-ag61-leyboard-2.webp" },
         { id: "",  label: "",  url: "/images/tk61/Untitled-2.png" },
         { id: "",  label: "",  url: "/images/blue-switch-1.webp" },
+        { id: "",  label: "",  url: "/images/blue-switch-2.webp" },
         
    
   ],
