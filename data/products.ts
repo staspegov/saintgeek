@@ -62,9 +62,16 @@ export const products: Product[] = [
         { id: "ag61-azul",   label: "Azul",   url: "/images/tk61/blue-keycaps.png" },
         { id: "ag61-negro",  label: "Negro",  url: "/images/tk61/black-keycaps.png" },
         { id: "ag61-azul",   label: "Azul",   url: "/images/tk61/blue-keycaps-1.png" },
-        { id: "",  label: "",  url: "/images/tk61/Untitled-2.png" },
-        { id: "",  label: "",  url: "/images/blue-switch-1.webp" },
+
+        { id: "",  label: "",  url: "/images/ag61/blue-keyboard-2.webp" },
+        { id: "",  label: "",  url: "/images/ag61/blue-keyboard-3.webp" },
+        { id: "",  label: "",  url: "/images/ag61/blue-keyboard-4.webp" },
+        { id: "",  label: "",  url: "/images/ag61/blue-keyboard-rgb-1.webp" },
+        { id: "",  label: "",  url: "/images/ag61/blue-keycaps-1.webp" },
         
+        { id: "",  label: "",  url: "/images/ag61/blue-keyclap-tool-1.webp" },
+        { id: "",  label: "",  url: "/images/blue-switch-1.webp" },
+        { id: "",  label: "",  url: "/images/blue-switch-2.webp" },
         
         
   ],
@@ -112,6 +119,78 @@ export const products: Product[] = [
   ],
   mercadoLibreUrl:
     "https://articulo.mercadolibre.cl/MLC-1679399583-teclado-mecanico-60-ag61-negro-espanol-gamer-rgbblueswitch-_JM"
+},
+
+{
+  slug: "tk68-blanco-rgb-red",
+  name: "Teclado mecánico gamer TK68 Blanco RGB - Red Switch",
+  brand: "Zifriend",
+  subtitle: "Teclado mecánico gamer 65% (68 teclas) RGB, con cable USB-C",
+  status: "in_stock",
+  priceRub: 34990,
+  monthlyRub: 2916,
+  model: "TK68",
+  color: "Blanco",
+  colors: ["Blanco", "Negro"],
+  numpad: "No",
+  switch: "Red",
+  switchType: "Mecánicos",
+  description:
+    "Teclado mecánico gamer 65% (68 teclas) con retroiluminación RGB, conexión por cable USB-C (USB 2.0), anti-ghosting y tecla Win-Lock. Layout Español (LatAm) con Ñ impresa. Atajos multimedia por combinación. Carcasa y keycaps en ABS, resistente a derrames. Plug & play. No programable por software.",
+  keys: 68,
+  switchPrice: 5500,
+  actuationForce: "45 g",
+  lighting: "RGB",
+  dimensions: "400 × 380 × 50 mm",  // tamaño del paquete
+  ancho: "400 mm",
+  alto: "50 mm",
+  largo: "380 mm",
+  weight: "800 g",
+  images: [
+    { id: "tk68-blanco-1", label: "Blanco", url: "/images/tk68/white-1.png" },
+    { id: "tk68-blanco-2", label: "Blanco", url: "/images/tk68/white-2.png" },
+    { id: "tk68-rgb-1",    label: "RGB",    url: "/images/tk68/rgb-1.png" },
+    { id: "tk68-keys-1",   label: "Teclas", url: "/images/tk68/keys-1.png" },
+    { id: "red-switch-1",  label: "Red",    url: "/images/switches/red-switch-1.webp" }
+  ],
+  mercadoLibreUrl:
+    "https://articulo.mercadolibre.cl/MLC-3089243272-teclado-gamer-mecanico-70-abs-red-switches-espanol-rgb-_JM?has_official_store=false&highlight=false&searchVariation=184950318186&pdp_filters=seller_id%3A1952815992&headerTopBrand=false#polycard_client=search-nordic&searchVariation=184950318186&search_layout=stack&position=6&type=item&tracking_id=5d7af681-5e2c-4b2c-8b63-73d54ac5dcbb"
+},
+{
+  slug: "tk68-negro-rgb-red",
+  name: "Teclado mecánico gamer TK68 Negro RGB - Red Switch",
+  brand: "Zifriend",
+  subtitle: "Teclado mecánico gamer 65% (68 teclas) RGB, con cable USB-C",
+  status: "out_of_stock",
+  priceRub: 34990,
+  monthlyRub: 2916,
+  model: "TK68",
+  color: "Negro",
+  colors: ["Blanco", "Negro"],
+  numpad: "No",
+  switch: "Red",
+  switchType: "Mecánicos",
+  description:
+    "Teclado mecánico gamer 65% (68 teclas) con retroiluminación RGB, conexión por cable USB-C (USB 2.0), anti-ghosting y tecla Win-Lock. Layout Español (LatAm) con Ñ impresa. Atajos multimedia por combinación. Carcasa y keycaps en ABS, resistente a derrames. Plug & play. No programable por software.",
+  keys: 68,
+  switchPrice: 5500,
+  actuationForce: "45 g",
+  lighting: "RGB",
+  dimensions: "400 × 380 × 50 mm",  // tamaño del paquete
+  ancho: "400 mm",
+  alto: "50 mm",
+  largo: "380 mm",
+  weight: "800 g",
+  images: [
+    { id: "tk68-negro-1", label: "Negro", url: "/images/tk68/black-1.png" },
+    { id: "tk68-negro-2", label: "Negro", url: "/images/tk68/black-2.png" },
+    { id: "tk68-rgb-1",   label: "RGB",   url: "/images/tk68/rgb-1.png" },
+    { id: "tk68-keys-1",  label: "Teclas", url: "/images/tk68/keys-1.png" },
+    { id: "red-switch-1", label: "Red",   url: "/images/switches/red-switch-1.webp" }
+  ],
+  mercadoLibreUrl:
+    "https://articulo.mercadolibre.cl/MLC-3089243272-teclado-gamer-mecanico-70-abs-red-switches-espanol-rgb-_JM?has_official_store=false&highlight=false&searchVariation=184950318186&pdp_filters=seller_id%3A1952815992&headerTopBrand=false#polycard_client=search-nordic&searchVariation=184950318186&search_layout=stack&position=6&type=item&tracking_id=5d7af681-5e2c-4b2c-8b63-73d54ac5dcbb"
 }
+
   
 ]
