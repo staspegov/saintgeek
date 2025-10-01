@@ -148,10 +148,20 @@ export const products: Product[] = [
   weight: "800 g",
   images: [
     { id: "tk68-blanco-1", label: "Blanco", url: "/images/tk68/white-1.png" },
-    { id: "tk68-blanco-2", label: "Blanco", url: "/images/tk68/white-2.png" },
-    { id: "tk68-rgb-1",    label: "RGB",    url: "/images/tk68/rgb-1.png" },
-    { id: "tk68-keys-1",   label: "Teclas", url: "/images/tk68/keys-1.png" },
-    { id: "red-switch-1",  label: "Red",    url: "/images/switches/red-switch-1.webp" }
+    { id: "tk68-negro-1", label: "Negro", url: "/images/tk68/black-1.png" },
+    
+
+    { id: "tk68-blanco-2", label: "Blanco", url: "/images/tk68/tk68-keyboard-1.webp" },
+    { id: "tk68-blanco-2", label: "Blanco", url: "/images/tk68/tk68-keyboard-2.webp" },
+    { id: "tk68-blanco-2", label: "Blanco", url: "/images/tk68/tk68-keyboard-usb-1.webp" },
+    { id: "tk68-blanco-2", label: "Blanco", url: "/images/tk68/tk68-keyboard-keycap-1.webp" },
+    { id: "tk68-blanco-2", label: "Blanco", url: "/images/tk68/tk68-keyboard-rgb-1.webp" },
+    { id: "tk68-blanco-2", label: "Blanco", url: "/images/tk68/tk68-keyboard-rgb-2.webp" },
+   
+    { id: "tk68-blanco-2", label: "Blanco", url: "/images/tk68/tk68-keyboard-switch-1.webp" },
+    { id: "tk68-blanco-2", label: "Blanco", url: "/images/tk68/tk68-keyboard-switch-2.webp" },
+    { id: "tk68-blanco-2", label: "Blanco", url: "/images/tk68/tk68-keyboard-tool-1.webp" },
+    
   ],
   mercadoLibreUrl:
     "https://articulo.mercadolibre.cl/MLC-3089243272-teclado-gamer-mecanico-70-abs-red-switches-espanol-rgb-_JM?has_official_store=false&highlight=false&searchVariation=184950318186&pdp_filters=seller_id%3A1952815992&headerTopBrand=false#polycard_client=search-nordic&searchVariation=184950318186&search_layout=stack&position=6&type=item&tracking_id=5d7af681-5e2c-4b2c-8b63-73d54ac5dcbb"

@@ -97,7 +97,7 @@ export default function ProductPage({ params }: Props) {
               priceLabel={p.priceRub}
             />
 
-            <p className="text-sm text-[#9ea0a6]">En stock • Santiago</p>
+            <p className="text-sm text-[#9ea0a6]">{p.priceRub} • Santiago</p>
           </div>
 
           {/* Métodos de envío */}
