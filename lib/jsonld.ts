@@ -32,25 +32,80 @@ export function faqJsonLd() {
     mainEntity: [
       {
         "@type": "Question",
-        name: "Чем игровые клавиатуры отличаются от офисных?",
+        name: "¿En qué se diferencia un teclado mecánico de uno de membrana?",
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Игровые клавиатуры имеют улучшенную эргономику, эффектную подсветку и функции для игр (например, Anti-Ghosting).",
+            "Los teclados mecánicos utilizan interruptores individuales bajo cada tecla, lo que ofrece una respuesta táctil más precisa, mayor durabilidad y una mejor experiencia al escribir o jugar.",
         },
       },
       {
         "@type": "Question",
-        name: "Есть ли гарантия?",
+        name: "¿Qué tipo de interruptores es mejor para jugar?",
         acceptedAnswer: {
           "@type": "Answer",
           text:
-            "Да, предоставляется гарантия производителя. Условия зависят от модели.",
+            "Depende de tus preferencias. Los interruptores lineales (como los rojos) son suaves y rápidos, ideales para juegos. Los táctiles (como los marrones) ofrecen una ligera resistencia, útiles para escribir y jugar.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "¿Los teclados mecánicos hacen mucho ruido?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text:
+            "Algunos modelos, especialmente los de interruptores azules, pueden ser más ruidosos. Si prefieres algo silencioso, elige interruptores rojos o silent red.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "¿Tienen retroiluminación RGB?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text:
+            "Sí, la mayoría de los teclados gamer modernos incluyen retroiluminación RGB personalizable, lo que permite ajustar colores y efectos de luz según tu estilo.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "¿Se puede usar un teclado mecánico en Mac o consolas?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text:
+            "Sí, la mayoría son compatibles con Windows, macOS y consolas como PS5 o Xbox mediante conexión USB o Bluetooth. Revisa siempre la ficha técnica antes de comprar.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "¿Los teclados mecánicos requieren mantenimiento?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text:
+            "Sí, se recomienda limpiar las teclas y la base de vez en cuando para evitar acumulación de polvo. También puedes reemplazar keycaps o lubricar los switches si lo deseas.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "¿Tienen garantía los teclados mecánicos?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text:
+            "Sí, todos nuestros teclados cuentan con garantía oficial del fabricante. La duración varía según el modelo, generalmente entre 12 y 24 meses.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "¿Qué es la función Anti-Ghosting?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text:
+            "Anti-Ghosting permite que el teclado detecte múltiples teclas presionadas al mismo tiempo sin errores, lo cual es esencial para juegos que requieren combinaciones rápidas.",
         },
       },
     ],
   }
 }
+
 
 export function breadcrumbJsonLd(items: { name: string; url: string }[]) {
   return {

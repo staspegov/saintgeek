@@ -8,7 +8,7 @@ export default function Topbar() {
   const [message, setMessage] = useState("")
 
   const handleSendWhatsApp = () => {
-    const phone = "56912345678" // 👈 aquí coloca tu WhatsApp en formato internacional (sin +)
+    const phone = "56963335579" // 👈 aquí coloca tu WhatsApp en formato internacional (sin +)
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`
     window.open(url, "_blank")
   }

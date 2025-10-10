@@ -103,7 +103,7 @@ export default function TransferCheckoutButton({ productName, productUrl, priceL
 
   const sendWhatsApp = () => {
     if (!isValid) return
-    const phone = "56975682588" // sin '+'
+    const phone = "56963335579" // sin '+'
     const text = encodeURIComponent(buildMessage())
     const wa = `https://wa.me/${phone}?text=${text}`
     window.open(wa, "_blank", "noopener,noreferrer")
@@ -166,14 +166,15 @@ export default function TransferCheckoutButton({ productName, productUrl, priceL
                   Nombre completo
                 </label>
                 <input
-                  id="fullName"
-                  type="text"
-                  placeholder="Tu nombre y apellido"
-                  value={fullName}
-                  onChange={(e) => setFullName(e.target.value)}
-                  className="w-full rounded-lg bg-[#121214] border border-[#26262a] focus:border-lime-400 outline-none px-3 py-2 text-sm text-white"
-                  required
-                />
+  id="fullName"
+  type="text"
+  placeholder="Tu nombre y apellido"
+  value={fullName}
+  onChange={(e) => setFullName(e.target.value)}
+  className="w-full rounded-lg bg-[#121214] border border-[#26262a] focus:border-lime-400 outline-none px-3 py-2 text-sm text-white font-[inherit]"
+  required
+/>
+
               </div>
 
               {/* Método de entrega */}

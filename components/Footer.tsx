@@ -41,7 +41,7 @@ export default function Footer() {
               onClick={() => setOpenPopup("contact")}
               className="hover:text-white"
             >
-              WhatsApp: +56 9 1234 5678
+              WhatsApp: +56 9 6333 5579
             </button>
           </div>
         </div>

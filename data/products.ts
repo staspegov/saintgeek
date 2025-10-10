@@ -7,7 +7,7 @@ export type Product = {
   status: "in_stock" | "out_of_stock" | "pre_order"
   priceRub: number
   monthlyRub: number
-  model: "AG61" | "TK68" | "TK61-1" | "TK61-2"
+  model: "AG61" | "TK68" | "TK61" | "TK61"
   color: string                 // color principal
   colors: string[]              // lista de colores disponibles
   numpad: "Sí" | "No"
@@ -39,8 +39,8 @@ export const products: Product[] = [
   brand: "SaintGeek",
   subtitle: "Teclado mecánico gamer 60% RGB, Hot-Swap",
   status: "in_stock",
-  priceRub: 32990,
-  monthlyRub: 2749,
+  priceRub: 31945,
+  monthlyRub: 2662,
   model: "AG61",
   color: "Azul",
   colors: ["Negro", "Azul"],
@@ -63,15 +63,15 @@ export const products: Product[] = [
         { id: "ag61-negro",  label: "Negro",  url: "/images/tk61/black-keycaps.png" },
         { id: "ag61-azul",   label: "Azul",   url: "/images/tk61/blue-keycaps-1.png" },
 
-        { id: "",  label: "",  url: "/images/ag61/blue-keyboard-2.webp" },
-        { id: "",  label: "",  url: "/images/ag61/blue-keyboard-3.webp" },
-        { id: "",  label: "",  url: "/images/ag61/blue-keyboard-4.webp" },
-        { id: "",  label: "",  url: "/images/ag61/blue-keyboard-rgb-1.webp" },
-        { id: "",  label: "",  url: "/images/ag61/blue-keycaps-1.webp" },
+        { id: "",  label: "Teclado mecánico gamer AG61 Azul Claro RGB - Azul Switch",  url: "/images/ag61/blue-keyboard-2.webp" },
+        { id: "",  label: "Teclado mecánico gamer AG61 Azul Claro RGB - Azul Switch",  url: "/images/ag61/blue-keyboard-3.webp" },
+        { id: "",  label: "Teclado mecánico gamer AG61 Azul Claro RGB - Azul Switch",  url: "/images/ag61/blue-keyboard-4.webp" },
+        { id: "",  label: "Teclado mecánico gamer AG61 Azul Claro RGB - Azul Switch",  url: "/images/ag61/blue-keyboard-rgb-1.webp" },
+        { id: "",  label: "Teclado mecánico gamer AG61 Azul Claro RGB - Azul Switch",  url: "/images/ag61/blue-keycaps-1.webp" },
         
-        { id: "",  label: "",  url: "/images/ag61/blue-keyclap-tool-1.webp" },
-        { id: "",  label: "",  url: "/images/blue-switch-1.webp" },
-        { id: "",  label: "",  url: "/images/blue-switch-2.webp" },
+        { id: "",  label: "Teclado mecánico gamer AG61 Azul Claro RGB - Azul Switch",  url: "/images/ag61/blue-keyclap-tool-1.webp" },
+        { id: "",  label: "Teclado mecánico gamer AG61 Azul Claro RGB - Azul Switch",  url: "/images/blue-switch-1.webp" },
+        { id: "",  label: "Teclado mecánico gamer AG61 Azul Claro RGB - Azul Switch",  url: "/images/blue-switch-2.webp" },
         
         
   ],
@@ -109,11 +109,11 @@ export const products: Product[] = [
         { id: "ag61-negro",  label: "Negro",  url: "/images/tk61/black-keycaps.png" },
         { id: "ag61-azul",   label: "Azul",   url: "/images/tk61/blue-keycaps.png" },
         { id: "ag61-black",   label: "Black",   url: "/images/tk61/black-ag61.png" },
-        { id: "ag61-black",   label: "",   url: "/images/blue-keycaps-ag61-4.webp" },
-        { id: "ag61-black",   label: "",   url: "/images/black-ag61-leyboard-2.webp" },
-        { id: "",  label: "",  url: "/images/tk61/Untitled-2.png" },
-        { id: "",  label: "",  url: "/images/blue-switch-1.webp" },
-        { id: "",  label: "",  url: "/images/blue-switch-2.webp" },
+        { id: "ag61-black",   label: "Teclado mecánico gamer AG61 Negro RGB - Azul Switch",   url: "/images/blue-keycaps-ag61-4.webp" },
+        { id: "ag61-black",   label: "Teclado mecánico gamer AG61 Negro RGB - Azul Switch",   url: "/images/black-ag61-leyboard-2.webp" },
+        { id: "",  label: "Teclado mecánico gamer AG61 Negro RGB - Azul Switch",  url: "/images/tk61/Untitled-2.png" },
+        { id: "",  label: "Teclado mecánico gamer AG61 Negro RGB - Azul Switch",  url: "/images/blue-switch-1.webp" },
+        { id: "",  label: "Teclado mecánico gamer AG61 Negro RGB - Azul Switch",  url: "/images/blue-switch-2.webp" },
         
    
   ],
@@ -151,16 +151,16 @@ export const products: Product[] = [
     { id: "tk68-negro-1", label: "Negro", url: "/images/tk68/black-1.png" },
     
 
-    { id: "tk68-blanco-2", label: "Blanco", url: "/images/tk68/tk68-keyboard-1.webp" },
-    { id: "tk68-blanco-2", label: "Blanco", url: "/images/tk68/tk68-keyboard-2.webp" },
-    { id: "tk68-blanco-2", label: "Blanco", url: "/images/tk68/tk68-keyboard-usb-1.webp" },
-    { id: "tk68-blanco-2", label: "Blanco", url: "/images/tk68/tk68-keyboard-keycap-1.webp" },
-    { id: "tk68-blanco-2", label: "Blanco", url: "/images/tk68/tk68-keyboard-rgb-1.webp" },
-    { id: "tk68-blanco-2", label: "Blanco", url: "/images/tk68/tk68-keyboard-rgb-2.webp" },
+    { id: "tk68-blanco-2", label: "Teclado mecánico gamer TK68 Blanco RGB - Red Switch", url: "/images/tk68/tk68-keyboard-1.webp" },
+    { id: "tk68-blanco-2", label: "Teclado mecánico gamer TK68 Blanco RGB - Red Switch", url: "/images/tk68/tk68-keyboard-2.webp" },
+    { id: "tk68-blanco-2", label: "Teclado mecánico gamer TK68 Blanco RGB - Red Switch", url: "/images/tk68/tk68-keyboard-usb-1.webp" },
+    { id: "tk68-blanco-2", label: "Teclado mecánico gamer TK68 Blanco RGB - Red Switch", url: "/images/tk68/tk68-keyboard-keycap-1.webp" },
+    { id: "tk68-blanco-2", label: "Teclado mecánico gamer TK68 Blanco RGB - Red Switch", url: "/images/tk68/tk68-keyboard-rgb-1.webp" },
+    { id: "tk68-blanco-2", label: "Teclado mecánico gamer TK68 Blanco RGB - Red Switch", url: "/images/tk68/tk68-keyboard-rgb-2.webp" },
    
-    { id: "tk68-blanco-2", label: "Blanco", url: "/images/tk68/tk68-keyboard-switch-1.webp" },
-    { id: "tk68-blanco-2", label: "Blanco", url: "/images/tk68/tk68-keyboard-switch-2.webp" },
-    { id: "tk68-blanco-2", label: "Blanco", url: "/images/tk68/tk68-keyboard-tool-1.webp" },
+    { id: "tk68-blanco-2", label: "Teclado mecánico gamer TK68 Blanco RGB - Red Switch", url: "/images/tk68/tk68-keyboard-switch-1.webp" },
+    { id: "tk68-blanco-2", label: "Teclado mecánico gamer TK68 Blanco RGB - Red Switch", url: "/images/tk68/tk68-keyboard-switch-2.webp" },
+    { id: "tk68-blanco-2", label: "Teclado mecánico gamer TK68 Blanco RGB - Red Switch", url: "/images/tk68/tk68-keyboard-tool-1.webp" },
     
   ],
   mercadoLibreUrl:
@@ -194,13 +194,94 @@ export const products: Product[] = [
   images: [
     { id: "tk68-negro-1", label: "Negro", url: "/images/tk68/black-1.png" },
     { id: "tk68-negro-2", label: "Negro", url: "/images/tk68/black-2.png" },
-    { id: "tk68-rgb-1",   label: "RGB",   url: "/images/tk68/rgb-1.png" },
-    { id: "tk68-keys-1",  label: "Teclas", url: "/images/tk68/keys-1.png" },
-    { id: "red-switch-1", label: "Red",   url: "/images/switches/red-switch-1.webp" }
+    { id: "tk68-rgb-1",   label: "Teclado mecánico gamer TK68 Negro RGB - Red Switch",   url: "/images/tk68/rgb-1.png" },
+    { id: "tk68-keys-1",  label: "Teclado mecánico gamer TK68 Negro RGB - Red Switch", url: "/images/tk68/keys-1.png" },
+    { id: "red-switch-1", label: "Teclado mecánico gamer TK68 Negro RGB - Red Switch",   url: "/images/switches/red-switch-1.webp" }
   ],
   mercadoLibreUrl:
     "https://articulo.mercadolibre.cl/MLC-3089243272-teclado-gamer-mecanico-70-abs-red-switches-espanol-rgb-_JM?has_official_store=false&highlight=false&searchVariation=184950318186&pdp_filters=seller_id%3A1952815992&headerTopBrand=false#polycard_client=search-nordic&searchVariation=184950318186&search_layout=stack&position=6&type=item&tracking_id=5d7af681-5e2c-4b2c-8b63-73d54ac5dcbb"
+},
+
+{
+  slug: "tk61-blanco-rgb-red",
+  name: "Teclado mecánico gamer TK61 Blanco RGB - Red Switch",
+  brand: "Zifriend",
+  subtitle: "Teclado mecánico 60% (61 teclas) RGB con cable USB-C desmontable",
+  status: "in_stock",
+  priceRub: 32990,
+  monthlyRub: 2749,
+  model: "TK61",
+  color: "Blanco",
+  colors: ["Blanco", "Negro"],
+  numpad: "No",
+  switch: "Red",
+  switchType: "Mecánicos",
+  description:
+    "Teclado mecánico compacto 60% (61 teclas) con retroiluminación RGB y cable USB-C desmontable. Ideal para gamers y oficina gracias a su tamaño reducido y switches mecánicos intercambiables en caliente (Hot-Swap). Carcasa de plástico ABS resistente, keycaps de doble inyección y funciones multimedia por combinación. Layout Español con Ñ impresa. Compatible con PC, Mac y tablet.",
+  keys: 61,
+  switchPrice: 5500,
+  actuationForce: "45 g",
+  lighting: "RGB",
+  dimensions: "400 × 200 × 70 mm",
+  ancho: "400 mm",
+  alto: "70 mm",
+  largo: "200 mm",
+  weight: "800 g",
+  images: [
+    { id: "tk61-blanco-1", label: "Blanco", url: "/images/tk61/tk-61-white.png" },
+    { id: "tk61-negro-1", label: "Negro", url: "/images/tk61/tk-61-black.png" },
+    { id: "tk61-blanco-2", label: "Blanco", url: "/images/tk61/tk-61-white-1.png" },
+    { id: "tk61-rgb-1", label: "Teclado mecánico gamer TK61 Blanco RGB - Red Switch", url: "/images/tk61/keyboatf-tk61-2.png" },
+    { id: "tk61-keys-1", label: "Teclado mecánico gamer TK61 Blanco RGB - Red Switch", url: "/images/tk61/keyboatf-tk61-3.png" },
+   { id: "tk61-keys-1", label: "Teclado mecánico gamer TK61 Blanco RGB - Red Switch", url: "/images/tk61/keyboatf-tk61-4.png" },
+   { id: "tk61-keys-1", label: "Teclado mecánico gamer TK61 Blanco RGB - Red Switch", url: "/images/tk61/rgb-tk61-keyboard.png" },
+  ],
+  mercadoLibreUrl:
+    "https://articulo.mercadolibre.cl/MLC-3108739144-teclado-mecanico-gamer-60-rgb-pcmac-blanconegro-espanol-_JM"
+,
+
+},
+
+{
+  slug: "tk61-negro-rgb-red",
+  name: "Teclado mecánico gamer TK61 Negro RGB - Red Switch",
+  brand: "Zifriend",
+  subtitle: "Teclado mecánico 60% (61 teclas) RGB con cable USB-C desmontable",
+  status: "in_stock",
+  priceRub: 32990,
+  monthlyRub: 2749,
+  model: "TK61",
+  color: "Negro",
+  colors: ["Blanco", "Negro"],
+  numpad: "No",
+  switch: "Red",
+  switchType: "Mecánicos",
+  description:
+    "Teclado mecánico gamer compacto 60% (61 teclas) con iluminación RGB y cable USB-C desmontable. Diseño minimalista, carcasa ABS resistente y switches mecánicos intercambiables en caliente (Hot-Swap). Soporta anti-ghosting, tecla Win-Lock y atajos multimedia. Layout Español (LatAm) con Ñ impresa. Ideal para gaming, oficina o trabajo diario.",
+  keys: 61,
+  switchPrice: 5500,
+  actuationForce: "45 g",
+  lighting: "RGB",
+  dimensions: "400 × 200 × 70 mm",
+  ancho: "400 mm",
+  alto: "70 mm",
+  largo: "200 mm",
+  weight: "800 g",
+  images: [
+    { id: "tk61-negro-1", label: "Negro", url: "/images/tk61/tk-61-black.png" },
+    { id: "tk61-blanco-1", label: "Blanco", url: "/images/tk61/tk-61-white.png" },
+    { id: "tk61-negro-1", label: "Negro", url: "/images/tk61/tk-61-black-1.png" },
+    { id: "tk61-rgb-1", label: "Teclado mecánico gamer TK61 Negro RGB - Red Switch", url: "/images/tk61/keyboatf-tk61-2.png" },
+    { id: "tk61-keys-1", label: "Teclado mecánico gamer TK61 Negro RGB - Red Switch", url: "/images/tk61/keyboatf-tk61-3.png" },
+    { id: "tk61-keys-1", label: "Teclado mecánico gamer TK61 Negro RGB - Red Switch", url: "/images/tk61/keyboatf-tk61-4.png" },
+    { id: "tk61-keys-1", label: "Teclado mecánico gamer TK61 Negro RGB - Red Switch", url: "/images/tk61/rgb-tk61-keyboard.png" },
+    
+  ],
+  mercadoLibreUrl:
+    "https://articulo.mercadolibre.cl/MLC-3108765400-teclado-mecanico-gamer-60-rgb-pcmac-negroblanco-espanol-_JM"
 }
+
+
 
   
 ]

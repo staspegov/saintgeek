@@ -97,7 +97,18 @@ export default function ProductPage({ params }: Props) {
               priceLabel={p.priceRub}
             />
 
-            <p className="text-sm text-[#9ea0a6]">{p.priceRub} • Santiago</p>
+            <div className="flex items-center gap-2 text-sm text-[#9ea0a6]">
+  <span
+    className="inline-block w-2 h-2 rounded-full"
+    style={{
+      backgroundColor: p.status === "in_stock" ? "#75ff00" : "#ffb02e",
+    }}
+  />
+  <span>
+    {p.status === "in_stock" ? "Disponible" : "Por pedido"} • Santiago
+  </span>
+</div>
+
           </div>
 
           {/* Métodos de envío */}
