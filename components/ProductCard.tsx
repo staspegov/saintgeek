@@ -5,7 +5,7 @@ import { useMemo, useState } from "react"
 import type { Product } from "@/data/products"
 
 export default function ProductCard({ p }: { p: Product }) {
-  // EXCLUIR la segunda (1) y tercera (2) imagen
+  // Excluir imágenes 1 y 2 (índices 1 y 2)
   const images = useMemo(() => p.images.filter((_, i) => i !== 1 && i !== 2), [p.images])
 
   const [idx, setIdx] = useState(0)
@@ -106,19 +106,37 @@ export default function ProductCard({ p }: { p: Product }) {
             desde {p.monthlyRub.toLocaleString("ru-RU")} clp/mes.
           </div>
         </div>
-        <Link
-          href={`/products/${p.slug}`}
-          className="inline-flex items-center gap-2 rounded-xl font-bold text-[13px] px-3.5 py-2 no-underline"
-          style={{ background: "#89ff00", color: "#121313" }}
-        >
-          <svg width="16" height="16" viewBox="0 0 24 24">
-            <path
-              fill="#121313"
-              d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2m10 0c-1.1 0-1.99.9-1.99 2S15.9 22 17 22s2-.9 2-2-.9-2-2-2M7.01 14l.94-2h8.44c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1 1 0 0 0 21 2H5.21L4.27 0H1v2h2l3.6 7.59-1.35 2.44C4.52 12.37 5.48 14 7.01 14Z"
-            />
-          </svg>
-          Comprar
-        </Link>
+
+        {/* Comprar / Disabled */}
+        {p.status === "in_stock" ? (
+          <Link
+            href={`/products/${p.slug}`}
+            className="inline-flex items-center gap-2 rounded-xl font-bold text-[13px] px-3.5 py-2 no-underline"
+            style={{ background: "#89ff00", color: "#121313" }}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24">
+              <path
+                fill="#121313"
+                d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2m10 0c-1.1 0-1.99.9-1.99 2S15.9 22 17 22s2-.9 2-2-.9-2-2-2M7.01 14l.94-2h8.44c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1 1 0 0 0 21 2H5.21L4.27 0H1v2h2l3.6 7.59-1.35 2.44C4.52 12.37 5.48 14 7.01 14Z"
+              />
+            </svg>
+            Comprar
+          </Link>
+        ) : (
+          <button
+            disabled
+            className="inline-flex items-center gap-2 rounded-xl font-bold text-[13px] px-3.5 py-2 cursor-not-allowed opacity-60"
+            style={{ background: "#2c2c2c", color: "#7a7a7a" }}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24">
+              <path
+                fill="#7a7a7a"
+                d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2m10 0c-1.1 0-1.99.9-1.99 2S15.9 22 17 22s2-.9 2-2-.9-2-2-2M7.01 14l.94-2h8.44c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1 1 0 0 0 21 2H5.21L4.27 0H1v2h2l3.6 7.59-1.35 2.44C4.52 12.37 5.48 14 7.01 14Z"
+              />
+            </svg>
+            No disponible
+          </button>
+        )}
       </div>
 
       {/* Modal fullscreen zoom */}
