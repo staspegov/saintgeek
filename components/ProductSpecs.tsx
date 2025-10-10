@@ -18,7 +18,7 @@ export default function ProductSpecs({ product }: Props) {
           </h2>
           <p className="text-[#c9c9c9] text-base leading-relaxed max-w-md">
             En el mundo moderno, donde cada centímetro de espacio en el escritorio
-            es importante, el teclado compacto HYPERPC en formato TKL combina
+            es importante, el teclado compacto SAINTGEEK en formato TKL combina
             funcionalidad y estética. El diseño está inspirado en la filosofía
             japonesa minimalista: pureza, equilibrio y comodidad sin compromisos.
           </p>
