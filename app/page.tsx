@@ -151,18 +151,23 @@ export default function Page() {
 
 
       {/* JSON-LD */}
-      <Script id="ld-org" type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd()) }} />
-        <Script id="ld-org" type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd()) }} />
-      <Script id="ld-website" type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd()) }} />
-      <Script id="ld-faq" type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd()) }} />
-      <Script id="ld-products" type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(products.map(p => productJsonLd(p))),
-        }} />
+    <Script id="ld-org" type="application/ld+json"
+  dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd()) }} />
+
+<Script id="ld-local-business" type="application/ld+json"
+  dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd()) }} />
+
+<Script id="ld-website" type="application/ld+json"
+  dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd()) }} />
+
+<Script id="ld-faq" type="application/ld+json"
+  dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd()) }} />
+
+<Script id="ld-products" type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify(products.map(p => productJsonLd(p))),
+  }} />
+
     </div>
   )
 }
