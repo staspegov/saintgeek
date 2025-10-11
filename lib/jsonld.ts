@@ -62,6 +62,23 @@ export function localBusinessJsonLd() {
     ]
   }
 }
+// lib/jsonld.ts
+export function relatedItemListJsonLd(
+  items: { name: string; url: string }[],
+  listName = "Productos relacionados"
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: listName,
+    itemListElement: items.map((it, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      url: it.url,
+      name: it.name
+    }))
+  }
+}
 
 export function faqJsonLd() {
   return {

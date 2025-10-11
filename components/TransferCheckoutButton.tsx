@@ -171,7 +171,7 @@ export default function TransferCheckoutButton({ productName, productUrl, priceL
   placeholder="Tu nombre y apellido"
   value={fullName}
   onChange={(e) => setFullName(e.target.value)}
-  className="w-full rounded-lg bg-[#121214] border border-[#26262a] focus:border-lime-400 outline-none px-3 py-2 text-sm text-white font-[inherit]"
+  className="w-full rounded-lg bg-[#121214] border border-[#26262a] focus:border-lime-400 outline-none px-3 py-2 text-sm text-white font-[inherit] sm:text-[inherit]"
   required
 />
 
