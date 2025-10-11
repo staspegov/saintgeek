@@ -62,18 +62,14 @@ export const products: Product[] = [
         { id: "ag61-azul",   label: "Azul",   url: "/images/tk61/blue-keycaps.png" },
         { id: "ag61-negro",  label: "Negro",  url: "/images/tk61/black-keycaps.png" },
         { id: "ag61-azul",   label: "Azul",   url: "/images/tk61/blue-keycaps-1.png" },
-
         { id: "",  label: "Teclado mecánico gamer AG61 Azul Claro RGB - Azul Switch",  url: "/images/ag61/blue-keyboard-2.webp" },
         { id: "",  label: "Teclado mecánico gamer AG61 Azul Claro RGB - Azul Switch",  url: "/images/ag61/blue-keyboard-3.webp" },
         { id: "",  label: "Teclado mecánico gamer AG61 Azul Claro RGB - Azul Switch",  url: "/images/ag61/blue-keyboard-4.webp" },
         { id: "",  label: "Teclado mecánico gamer AG61 Azul Claro RGB - Azul Switch",  url: "/images/ag61/blue-keyboard-rgb-1.webp" },
         { id: "",  label: "Teclado mecánico gamer AG61 Azul Claro RGB - Azul Switch",  url: "/images/ag61/blue-keycaps-1.webp" },
-        
         { id: "",  label: "Teclado mecánico gamer AG61 Azul Claro RGB - Azul Switch",  url: "/images/ag61/blue-keyclap-tool-1.webp" },
         { id: "",  label: "Teclado mecánico gamer AG61 Azul Claro RGB - Azul Switch",  url: "/images/blue-switch-1.webp" },
         { id: "",  label: "Teclado mecánico gamer AG61 Azul Claro RGB - Azul Switch",  url: "/images/blue-switch-2.webp" },
-        
-        
   ],
   mercadoLibreUrl:
     "https://articulo.mercadolibre.cl/MLC-3074094542-teclado-mecanico-60-ag61-azulclaro-espanol-gamer-rgbswitch-_JM"
@@ -106,9 +102,9 @@ export const products: Product[] = [
   weight: "800 g",
   images: [
 
-        { id: "ag61-negro",  label: "Negro",  url: "/images/tk61/black-keycaps.png" },
+        { id: "ag61-negro",  label: "Negro",  url: "/images/ag61/ag-61-black-1.png" },
         { id: "ag61-azul",   label: "Azul",   url: "/images/tk61/blue-keycaps.png" },
-        { id: "ag61-black",   label: "Black",   url: "/images/tk61/black-ag61.png" },
+        { id: "ag61-black",   label: "Black",   url: "/images/ag61/ag-61-black-2.png" },
         { id: "ag61-black",   label: "Teclado mecánico gamer AG61 Negro RGB - Azul Switch",   url: "/images/blue-keycaps-ag61-4.webp" },
         { id: "ag61-black",   label: "Teclado mecánico gamer AG61 Negro RGB - Azul Switch",   url: "/images/black-ag61-leyboard-2.webp" },
         { id: "",  label: "Teclado mecánico gamer AG61 Negro RGB - Azul Switch",  url: "/images/tk61/Untitled-2.png" },

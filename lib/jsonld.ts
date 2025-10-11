@@ -25,6 +25,44 @@ export function websiteJsonLd() {
   }
 }
 
+
+export function localBusinessJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": `${site.url}/#localbusiness`,
+    name: site.name,
+    url: site.url,
+    image: [`${site.url}/og.jpg`],
+    logo: `${site.url}/og.jpg`,
+    priceRange: "$$",
+    address: {
+      "@type": "PostalAddress",
+      addressCountry: "CL",
+      addressRegion: "RM",
+      addressLocality: "Santiago"
+    },
+    areaServed: "CL",
+    sameAs: [
+      "https://www.instagram.com/saintgeek.cl"
+    ],
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+        opens: "10:00",
+        closes: "19:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Saturday"],
+        opens: "10:00",
+        closes: "14:00"
+      }
+    ]
+  }
+}
+
 export function faqJsonLd() {
   return {
     "@context": "https://schema.org",

@@ -4,7 +4,7 @@ import { products } from '@/data/products'
 import ProductCard from '@/components/ProductCard'
 import SidebarFilters from '@/components/SidebarFilters'
 import Script from 'next/script'
-import { orgJsonLd, websiteJsonLd, faqJsonLd, productJsonLd } from '@/lib/jsonld'
+import { orgJsonLd, websiteJsonLd, faqJsonLd, productJsonLd, localBusinessJsonLd } from '@/lib/jsonld'
 import { useMemo, useState } from 'react'
 
 export default function Page() {
@@ -153,6 +153,8 @@ export default function Page() {
       {/* JSON-LD */}
       <Script id="ld-org" type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd()) }} />
+        <Script id="ld-org" type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd()) }} />
       <Script id="ld-website" type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd()) }} />
       <Script id="ld-faq" type="application/ld+json"
