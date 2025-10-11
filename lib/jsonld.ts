@@ -33,9 +33,9 @@ export function localBusinessJsonLd() {
     "@id": `${site.url}/#localbusiness`,
     name: site.name,
     url: site.url,
-    image: [`${site.url}/og.jpg`],
-    logo: `${site.url}/og.jpg`,
-    priceRange: "$$",
+    image: [`${site.url}/favicon.ico`],
+    logo: `${site.url}/favicon.ico`,
+    priceRange: "$30,000 - $35,000",
     address: {
       "@type": "PostalAddress",
       addressCountry: "CL",
