@@ -22,7 +22,7 @@ import {
   relatedItemListJsonLd,
 } from "@/lib/jsonld"
 import { site } from "@/lib/utils"
-import { MDXComponents as mdxComponents } from "@/components/mdx-components"
+import { mdxComponents as mdxComponents } from "@/components/mdx-components"
 import {
   getMarkovRelated,
   getMarkovRelatedPosts,
@@ -274,18 +274,21 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
       </header>
 
       {/* CONTENIDO */}
-      <div
-        className="prose prose-saint prose-invert md:prose-lg max-w-none
-                   leading-relaxed
-                   prose-headings:scroll-mt-28
-                   prose-a:text-[var(--brand,#89ff00)] hover:prose-a:text-lime-300
-                   prose-p:my-4 prose-li:my-2 prose-ul:my-4 prose-ol:my-4
-                   prose-img:rounded-xl prose-img:border prose-img:border-zinc-800
-                   prose-hr:my-10
-                   prose-pre:bg-zinc-950 prose-pre:border prose-pre:border-zinc-800"
-      >
-        {MDXContent}
-      </div>
+    <div
+  className="prose prose-saint prose-invert md:prose-lg max-w-none
+             leading-relaxed
+             prose-headings:scroll-mt-28
+             prose-a:text-[var(--brand,#89ff00)] hover:prose-a:text-lime-300
+             prose-p:my-4 prose-li:my-2 prose-ul:my-4 prose-ol:my-4
+             prose-code:break-words
+             prose-img:rounded-xl prose-img:border prose-img:border-zinc-800
+             prose-hr:my-10
+             prose-pre:max-w-full prose-pre:overflow-x-auto
+             prose-pre:bg-zinc-950 prose-pre:border prose-pre:border-zinc-800"
+>
+  {MDXContent}
+</div>
+
 
       {/* RELATED POSTS */}
       {!!relatedPostsFull.length && (
