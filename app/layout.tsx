@@ -67,6 +67,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es">
+      <head>
+        {/* ✅ Explicit favicon for Googlebot */}
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+      </head>
       <body className="flex flex-col min-h-screen bg-[#0C0D0E] text-[#e9e9ea] ">
       
         {/* Always at the top */}

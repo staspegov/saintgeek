@@ -1,5 +1,6 @@
 import { site } from "@/lib/utils"
-import type { Product } from "@/data/products"
+import type { Product, } from "@/data/products"
+import type { BlogPost, FAQItem } from "./blog"
 
 export function orgJsonLd() {
   return {
@@ -77,6 +78,45 @@ export function relatedItemListJsonLd(
       url: it.url,
       name: it.name
     }))
+  }
+}
+
+export function blogPostingJsonLd(p: BlogPost, imageAbs?: string[]) {
+  const img = imageAbs?.length ? imageAbs : [`${site.url}/og.jpg`]
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "@id": `${site.url}/blog/${p.slug}#post`,
+    mainEntityOfPage: `${site.url}/blog/${p.slug}`,
+    headline: p.title,
+    description: p.summary || undefined,
+    image: img,
+    author: { "@type": "Organization", name: p.author || "SaintGeek" },
+    publisher: {
+      "@type": "Organization",
+      name: site.name,
+      logo: { "@type": "ImageObject", url: `${site.url}/favicon.ico` },
+    },
+    datePublished: p.publishedAt,
+    dateModified: p.updatedAt || p.publishedAt,
+    isAccessibleForFree: true,
+    inLanguage: "es-CL",
+    keywords: (p.tags || []).join(", "),
+    articleSection: p.category || undefined,
+    url: `${site.url}/blog/${p.slug}`,
+  }
+}
+
+export function faqJsonLdFromItems(items: FAQItem[]) {
+  if (!items?.length) return null
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((qa) => ({
+      "@type": "Question",
+      name: qa.question,
+      acceptedAnswer: { "@type": "Answer", text: qa.answer },
+    })),
   }
 }
 
@@ -171,6 +211,26 @@ export function breadcrumbJsonLd(items: { name: string; url: string }[]) {
       position: idx + 1,
       name: it.name,
       item: it.url,
+    })),
+  }
+}
+
+
+export function blogCollectionJsonLd(posts: Pick<BlogPost, "title" | "slug">[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "@id": `${site.url}/blog/#blog`,
+    name: `Blog de ${site.name}`,
+    url: `${site.url}/blog`,
+    inLanguage: "es-CL",
+    isAccessibleForFree: true,
+    blogPost: posts.slice(0, 25).map((p) => ({
+      "@type": "BlogPosting",
+      "@id": `${site.url}/blog/${p.slug}#post`,
+      headline: p.title,
+      mainEntityOfPage: `${site.url}/blog/${p.slug}`,
+      url: `${site.url}/blog/${p.slug}`,
     })),
   }
 }

@@ -1,0 +1,163 @@
+---
+slug: "latencia-teclados-gamer-guia-2025"
+title: "La guía definitiva de latencia en teclados gamer (2025): cable, 2.4 GHz y Bluetooth, polling, debounce y switches"
+summary: "Todo lo que afecta tu input: desde el switch y el firmware hasta el transporte inalámbrico y la configuración del sistema. Metodología, rangos típicos de latencia y cómo optimizar tu setup para ranked."
+cover: "/images/blog/latencia-teclados-2025.jpg"
+tags:
+  [
+    "teclado gamer",
+    "latencia",
+    "2.4GHz",
+    "Bluetooth",
+    "cable",
+    "polling 1000Hz",
+    "8000Hz",
+    "debounce",
+    "switches rojos",
+    "60%",
+    "TKL",
+    "ANSI",
+    "hotswap",
+    "RGB"
+  ]
+category: "gamer"
+author: "SaintGeek"
+publishedAt: "2025-10-11"
+updatedAt: "2025-10-11"
+faq:
+  - question: "¿Qué conexión es mejor para FPS: cable, 2.4 GHz o Bluetooth?"
+    answer: "Cable y 2.4 GHz propietario suelen empatar o estar muy cerca. Bluetooth prioriza batería y compatibilidad, pero añade más latencia y jitter; no es la primera opción para competitivo."
+  - question: "¿Sirve 8000 Hz en teclado?"
+    answer: "Sube el techo teórico y reduce el tiempo de espera entre informes, pero los beneficios son marginales frente a 1000 Hz para la mayoría. En CPU viejas puede costar estabilidad."
+  - question: "¿Reducir el debounce a 0–1 ms da ventaja?"
+    answer: "Puede recortar unos milisegundos y mejorar la consistencia de activación, pero eleva el riesgo de falsos disparos si el switch rebota mucho. Empieza con 2–4 ms y baja gradual."
+  - question: "¿Los switches influyen en la latencia?"
+    answer: "Indirectamente: recorrido, punto de actuación y fricción influyen en la rapidez con que activas, pero el retardo electrónico lo define el escaneo/firmware/conexión."
+  - question: "¿Cómo mido mi latencia real?"
+    answer: "Usa una prueba end-to-end: filma a alta velocidad o emplea utilidades que registren el tiempo entre contacto físico y evento en el SO. Haz series de 100+ pulsaciones para obtener distribución (p50/p95)."
+---
+
+<Note>
+<strong>TL;DR</strong> Para ranked: <strong>cable</strong> o <strong>2.4 GHz propietario</strong> con <strong>1000 Hz</strong>, debounce en <strong>2–4 ms</strong>, plano de energía en Alto rendimiento y dongle a <strong>30–50 cm</strong> del teclado (extensor USB). Bluetooth se queda para oficina/portátil.
+</Note>
+
+## 1) Qué llamamos “latencia” en un teclado
+
+La latencia total no es un único número, sino la suma de etapas:
+
+- **T<sub>scan</sub>**: el teclado escanea la matriz y detecta el cierre del switch.  
+- **T<sub>debounce</sub>**: tiempo de estabilidad que el firmware espera para filtrar rebotes.  
+- **T<sub>tx</sub>**: transporte (cable/2.4 GHz/BT) hasta el receptor/host.  
+- **T<sub>poll</sub>**: intervalo entre informes USB/HID (p. ej., 1000 Hz → 1 ms).  
+- **T<sub>stack</sub>**: pila HID del sistema operativo y scheduler.  
+- **T<sub>app</sub>**: el juego procesa el evento y lo presenta en pantalla.
+
+> Fórmula simplificada:  
+> **L ≈ T<sub>scan</sub> + T<sub>debounce</sub> + T<sub>tx</sub> + T<sub>poll</sub> + T<sub>stack</sub>**  
+> (Dejamos T<sub>app</sub> fuera porque depende del juego/engine y tu render loop.)
+
+### Rangos típicos observados (orientativos)
+
+> No todos los modelos se comportan igual; usa esto como brújula, no como decreto.
+
+| Enlace / Ajustes                         | L típica (p50) | L alta (p95) | Comentarios clave |
+|---|---:|---:|---|
+| **Cable @1000 Hz** + debounce 3–5 ms     | 3–8 ms | 6–12 ms | Estable y predecible. |
+| **2.4 GHz @1000 Hz** + debounce 3–5 ms   | 4–9 ms | 7–14 ms | Muy cercano al cable; cuida interferencia. |
+| **Cable/2.4 GHz @2000–8000 Hz**          | 2–6 ms | 4–9 ms | Beneficio marginal para teclado; CPU/USB deben aguantar. |
+| **Bluetooth 5.x** (intervalos típicos)   | 10–30 ms | 15–45 ms | Excelente para móvil/office; no ideal para ranked. |
+
+## 2) Switches: ¿influyen en la “latencia”?
+
+No hay “ms mágicos” por color, pero sí **rapidez de activación humana**:
+
+- **Lineales rojos/silent red**: fricción baja → activación predecible.  
+- **Táctiles**: mini-bache ayuda a no “bottomear” al escribir, pero añade micro-resistencia.  
+- **Optical/Hall**: activación por luz/campo; permiten **punto de actuación ajustable** y **debounce virtual** muy bajo.
+
+<Note>
+<strong>Pro tip:</strong> si vienes de táctiles, prueba muelles de 45–50 g y keycaps PBT texturizado; ganarás velocidad sin perder control.
+</Note>
+
+## 3) Debounce y escaneo de matriz
+
+### Qué es el debounce
+Cuando presionas, el switch “rebota” los primeros milisegundos. El firmware espera un tiempo (**debounce**) antes de enviar el evento.
+
+- **Valores seguros**: 3–5 ms (default de muchas marcas).  
+- **Competitivo**: 2–3 ms.  
+- **Extremo**: 0–1 ms (riesgo de “ghost taps” si el switch es ruidoso).
+
+### Matriz y “scan rate”
+La mayoría de teclados escanean entre **1000–8000 Hz** de matriz interna. Un scan más rápido puede reducir T<sub>scan</sub>, pero el cuello suele ser **debounce** y **polling**.
+
+## 4) Polling rate: 1000 Hz vs 2000–8000 Hz
+
+- **1000 Hz (1 ms)** es ya excelente para teclado.  
+- **2000–8000 Hz** reduce el tiempo de espera entre informes, pero el **beneficio es marginal** respecto a 1000 Hz para pulsaciones discretas (no analógicas).  
+- A 8000 Hz sube la carga del bus/CPU; en equipos viejos puede introducir stutter.
+
+**Recomendación:** 1000 Hz estable. Sube si tu PC es potente y todo se mantiene suave.
+
+## 5) Transportes: cable, 2.4 GHz y Bluetooth
+
+### Cable
+- **Pros**: latencia mínima, jitter bajísimo, sin baterías.  
+- **Contras**: cable management.
+
+### 2.4 GHz propietario
+- **Pros**: latencia muy cercana al cable; libertad real.  
+- **Contras**: sensible a interferencias y posición del dongle.
+
+**Colocación óptima del dongle**
+- Usa **extensor USB** y deja el dongle a **30–50 cm** del teclado, **en línea de vista**.  
+- Evita puertos USB traseros encerrados o muy cerca de chasis Wi-Fi/BT.
+
+### Bluetooth (5.x+)
+- **Pros**: multi-dispositivo, batería duradera, compatibilidad total.  
+- **Contras**: **intervalos de conexión** más grandes → **latencias mayores** y **jitter**.
+
+**Conclusión práctica**: ranked = cable o 2.4 GHz.
+
+## 6) Sistema operativo y BIOS: qué tocar (Windows)
+
+- **Plan de energía**: *Alto rendimiento* o *Máximo rendimiento*.  
+- **USB Selective Suspend**: desactivar para el puerto del dongle.  
+- **Game Mode / GPU scheduling**: activo.  
+- **BIOS**: si persigue estabilidad extrema, reduce C-States agresivos (cada placa es un mundo).  
+- **Evita hubs saturados**: dedica un puerto al dongle.
+
+## 7) Perfil recomendado (VIA/QMK) para FPS
+
+```json
+{
+  "name": "SaintGeek-FPS",
+  "lighting": { "mode": "static", "color": "#1aff00", "brightness": 15 },
+  "layers": [
+    {
+      "layer": 0,
+      "keys": {
+        "W": "W", "A": "A", "S": "S", "D": "D",
+        "R": "Reload", "F": "Use",
+        "Q": "Ability1", "E": "Ability2",
+        "C": "Crouch", "LShift": "Walk",
+        "Space": "Jump", "LCtrl": "Ping",
+        "1": "Primary", "2": "Secondary", "3": "Melee"
+      }
+    },
+    {
+      "layer": 1,
+      "fn": "MO(1)",
+      "keys": {
+        "IJKL": "Arrows",
+        "F1-F4": "Media",
+        "F5": "Mic Mute",
+        "F6": "Discord PTT",
+        "F7": "SS-Down",
+        "F8": "SS-Up"
+      }
+    }
+  ],
+  "debounce_ms": 3,
+  "polling_hz": 1000
+}
