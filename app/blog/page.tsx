@@ -133,38 +133,43 @@ export default function BlogPage() {
         </p>
       </header>
 
-      {/* Top picks — compact grid */}
-      {!!topPicksFull.length && (
-        <section className="mb-10">
-          <h2 className="text-xl font-semibold mb-4">Top picks para gamers</h2>
-          <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-4">
-            {topPicksFull.map((p) => (
-              <Link
-                key={p.slug}
-                href={`/products/${p.slug}`}
-                className="group border border-zinc-800 rounded-lg overflow-hidden hover:border-lime-400 transition-colors"
-              >
-                <div className="relative h-28 w-full overflow-hidden">
-                  <Image
-                    src={firstImage(p)}
-                    alt={p.name}
-                    fill
-                    sizes="(min-width:1024px) 260px, 45vw"
-                    className="object-cover group-hover:scale-[1.03] transition-transform"
-                  />
-                </div>
-                <div className="p-3">
-                  <p className="text-xs font-medium line-clamp-2 group-hover:text-lime-400">{p.name}</p>
-                  <p className="text-[11px] text-zinc-400 mt-1">
-                    {p.status === "in_stock" ? "Disponible" : "Por pedido"} · $
-                    {Number(p.priceRub ?? 0).toLocaleString("es-CL")}
-                  </p>
-                </div>
-              </Link>
-            ))}
+      {/* Top picks — compact cards estilo vitrina */}
+{!!topPicksFull.length && (
+  <section className="mb-10">
+    <h2 className="text-2xl font-semibold mb-4">Top picks para gamers</h2>
+
+    <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+      {topPicksFull.map((p) => (
+        <Link
+          key={p.slug}
+          href={`/products/${p.slug}`}
+          className="group rounded-2xl border border-zinc-800 bg-gradient-to-b from-base-cardTop to-base-cardBottom hover:border-lime-400 transition-colors shadow-card overflow-hidden"
+        >
+          {/* Imagen compacta como en tu ejemplo */}
+          <div className="relative h-28 md:h-32 w-full flex items-center justify-center bg-zinc-900/40">
+            <Image
+              src={firstImage(p)}
+              alt={p.name}
+              fill
+              className="object-contain p-3"
+              sizes="(min-width:1280px) 220px, (min-width:1024px) 210px, (min-width:768px) 33vw, 80vw"
+            />
           </div>
-        </section>
-      )}
+
+          <div className="p-4">
+            <p className="text-[11px] text-zinc-500">{p.brand || site.name}</p>
+            <p className="mt-1 text-sm font-semibold leading-snug line-clamp-2 group-hover:text-lime-400">
+              {p.name}
+            </p>
+            <p className="mt-2 text-sm font-extrabold tracking-tight">
+              ${Number(p.priceRub ?? 0).toLocaleString("es-CL")} <span className="font-semibold text-zinc-400">CLP</span>
+            </p>
+          </div>
+        </Link>
+      ))}
+    </div>
+  </section>
+)}
 
       {/* Lista de artículos */}
       <section>

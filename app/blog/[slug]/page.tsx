@@ -330,38 +330,44 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
         </section>
       )}
 
-      {/* RELATED PRODUCTS */}
-      {!!relatedProductsFull.length && (
-        <section className="mt-12">
-          <h2 className="text-xl font-semibold mb-4">Productos recomendados para gamers</h2>
-          <div className="grid gap-4 sm:grid-cols-2">
-            {relatedProductsFull.map((p) => (
-              <Link
-                key={p.slug}
-                href={`/products/${p.slug}`}
-                className="group border border-zinc-800 rounded-xl overflow-hidden hover:border-[var(--brand,#89ff00)] transition-colors"
-              >
-                <div className="relative h-40 w-full overflow-hidden">
-                  <Image
-                    src={firstImage(p)}
-                    alt={p.name}
-                    fill
-                    sizes="(min-width:768px) 360px, 100vw"
-                    className="object-cover group-hover:scale-[1.03] transition-transform"
-                  />
-                </div>
-                <div className="p-4">
-                  <p className="text-sm font-medium line-clamp-2 group-hover:text-[var(--brand,#89ff00)]">{p.name}</p>
-                  <p className="text-xs text-zinc-400 mt-1">
-                    {p.status === "in_stock" ? "Disponible" : "Por pedido"} · $
-                    {Number(p.priceRub ?? 0).toLocaleString("es-CL")}
-                  </p>
-                </div>
-              </Link>
-            ))}
+   {/* RELATED PRODUCTS */}
+{!!relatedProductsFull.length && (
+  <section className="mt-12">
+    <h2 className="text-2xl font-semibold mb-4">También te puede interesar</h2>
+
+    <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+      {relatedProductsFull.map((p) => (
+        <Link
+          key={p.slug}
+          href={`/products/${p.slug}`}
+          className="group rounded-2xl border border-zinc-800 bg-gradient-to-b from-base-cardTop to-base-cardBottom hover:border-[var(--brand,#89ff00)] transition-colors shadow-card overflow-hidden"
+        >
+          {/* Imagen compacta, centrada y en object-contain */}
+          <div className="relative h-28 md:h-32 w-full flex items-center justify-center bg-zinc-900/40">
+            <Image
+              src={firstImage(p)}
+              alt={p.name}
+              fill
+              className="object-contain p-3"
+              sizes="(min-width:1280px) 220px, (min-width:1024px) 210px, (min-width:768px) 33vw, 80vw"
+            />
           </div>
-        </section>
-      )}
+
+          <div className="p-4">
+            <p className="text-[11px] text-zinc-500">{p.brand || site.name}</p>
+            <p className="mt-1 text-sm font-semibold leading-snug line-clamp-2 group-hover:text-[var(--brand,#89ff00)]">
+              {p.name}
+            </p>
+            <p className="mt-2 text-sm font-extrabold tracking-tight">
+              ${Number(p.priceRub ?? 0).toLocaleString("es-CL")} <span className="font-semibold text-zinc-400">CLP</span>
+            </p>
+          </div>
+        </Link>
+      ))}
+    </div>
+  </section>
+)}
+
 
       {/* SHARE */}
       <div className="mt-12 flex flex-wrap gap-2 text-sm">
