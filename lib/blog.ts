@@ -1,6 +1,6 @@
-// lib/blog.ts
-import fs from "fs"
-import path from "path"
+// /lib/blog.ts
+import fs from "node:fs"
+import path from "node:path"
 import matter from "gray-matter"
 import { tokenize, type MinimalPost } from "./blog_tokens"
 
@@ -22,28 +22,49 @@ export type BlogFrontmatter = {
 
 export type BlogPost = BlogFrontmatter & { content: string }
 
-const POSTS_DIR = path.join(process.cwd(), "content", "blog")
+const POSTS_DIR = path.resolve(process.cwd(), "content", "blog")
 
-function isMDX(name: string) {
-  return name.endsWith(".mdx") || name.endsWith(".md")
+function isMD(name: string) {
+  return /\.mdx?$/i.test(name)
+}
+
+function walk(dir: string): string[] {
+  if (!fs.existsSync(dir)) return []
+  return fs.readdirSync(dir, { withFileTypes: true }).flatMap((ent) => {
+    const p = path.join(dir, ent.name)
+    if (ent.isDirectory()) return walk(p)
+    return isMD(ent.name) ? [p] : []
+  })
 }
 
 export function getAllSlugs(): string[] {
-  if (!fs.existsSync(POSTS_DIR)) return []
-  return fs
-    .readdirSync(POSTS_DIR)
-    .filter(isMDX)
-    .map((f) => f.replace(/\.(mdx|md)$/i, ""))
+  return walk(POSTS_DIR)
+    .map((abs) => path.relative(POSTS_DIR, abs).replace(/\\/g, "/"))
+    .map((rel) => rel.replace(/\.mdx?$/i, ""))
+}
+
+function normDate(d?: any): string | undefined {
+  if (!d) return undefined
+  if (typeof d === "string") {
+    const t = new Date(d)
+    return isNaN(t.getTime()) ? undefined : t.toISOString()
+  }
+  return undefined
 }
 
 export function getPostBySlug(slug: string): BlogPost | null {
-  const filePath = path.join(POSTS_DIR, `${slug}.mdx`)
-  const altPath = path.join(POSTS_DIR, `${slug}.md`)
-  const resolved = fs.existsSync(filePath) ? filePath : fs.existsSync(altPath) ? altPath : null
-  if (!resolved) return null
+  const mdx = path.join(POSTS_DIR, `${slug}.mdx`)
+  const md = path.join(POSTS_DIR, `${slug}.md`)
+  const file = fs.existsSync(mdx) ? mdx : fs.existsSync(md) ? md : null
+  if (!file) return null
 
-  const raw = fs.readFileSync(resolved, "utf8")
+  const raw = fs.readFileSync(file, "utf8")
   const { data, content } = matter(raw)
+
+  const published =
+    normDate(data.publishedAt) ?? normDate(data.published) ?? normDate(data.date) ?? new Date().toISOString()
+  const updated =
+    normDate(data.updatedAt) ?? normDate(data.updated) ?? published
 
   const fm: BlogFrontmatter = {
     slug: (data.slug ?? slug) as string,
@@ -52,9 +73,9 @@ export function getPostBySlug(slug: string): BlogPost | null {
     cover: data.cover ?? "",
     tags: (data.tags ?? []) as string[],
     category: data.category ?? "",
-    author: data.author ?? "SaintGeek",
-    publishedAt: (data.publishedAt ?? new Date().toISOString()) as string,
-    updatedAt: (data.updatedAt ?? data.publishedAt ?? new Date().toISOString()) as string,
+    author: (data.author ?? "SaintGeek") as string,
+    publishedAt: published!,
+    updatedAt: updated,
     draft: Boolean(data.draft),
     faq: (data.faq ?? []) as FAQItem[],
   }
@@ -63,21 +84,26 @@ export function getPostBySlug(slug: string): BlogPost | null {
 }
 
 export function getAllPosts(): BlogPost[] {
-  return getAllSlugs()
-    .map((slug) => getPostBySlug(slug))
+  const posts = getAllSlugs()
+    .map((s) => getPostBySlug(s))
     .filter((p): p is BlogPost => Boolean(p) && !p!.draft)
-    .sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1))
+
+  posts.sort((a, b) => {
+    const ad = new Date(a.updatedAt ?? a.publishedAt).getTime()
+    const bd = new Date(b.updatedAt ?? b.publishedAt).getTime()
+    return bd - ad
+  })
+
+  return posts
 }
 
-// Lectura rápida
+// helpers existentes
 export function wordsCount(markdown: string) {
   return markdown.replace(/\s+/g, " ").trim().split(" ").length
 }
 export function readingMinutes(markdown: string, wpm = 220) {
   return Math.max(1, Math.round(wordsCount(markdown) / wpm))
 }
-
-// Export MinimalPost para Markov de posts
 export function toMinimalPost(p: BlogPost): MinimalPost {
   return {
     slug: p.slug,
@@ -85,6 +111,6 @@ export function toMinimalPost(p: BlogPost): MinimalPost {
     tags: p.tags ?? [],
     category: p.category,
     publishedAt: p.publishedAt,
-    tokens: tokenize(`${p.title} ${p.summary ?? ""} ${p.content.slice(0, 4000)}`), // tope para evitar exceso
+    tokens: tokenize(`${p.title} ${p.summary ?? ""} ${p.content.slice(0, 4000)}`),
   }
 }
