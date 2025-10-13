@@ -1,11 +1,10 @@
 import type { Config } from "tailwindcss"
-import type { PluginAPI } from "tailwindcss/types/config"
 
 const config: Config = {
   content: [
     "./app/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
-    "./content/**/*.{md,mdx}",
+    "./content/**/*.{md,mdx}",      // <-- necessary to style your blog content
   ],
   theme: {
     extend: {
@@ -19,6 +18,7 @@ const config: Config = {
           sub: "#b6b6b8",
           accent: "#89ff00",
         },
+        // handy alias used in components/classes
         brand: { DEFAULT: "#89ff00" },
       },
       boxShadow: {
@@ -26,7 +26,7 @@ const config: Config = {
         cta: "0 8px 24px rgba(137,255,0,.25)",
       },
       borderRadius: { xl2: "18px" },
-      typography: ({ theme }: { theme: PluginAPI["theme"] }) => ({
+      typography: ({ theme }) => ({
         invert: {
           css: {
             "--tw-prose-body": theme("colors.base.sub"),
@@ -56,7 +56,9 @@ const config: Config = {
       }),
     },
   },
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [
+    require("@tailwindcss/typography"),
+  ],
 }
 
 export default config
