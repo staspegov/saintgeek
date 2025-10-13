@@ -26,6 +26,7 @@ export default function Topbar() {
           <nav className="flex gap-6 text-sm text-[#d4d4d8]">
             <button onClick={() => setOpenPopup("about")} className="hover:text-white">Sobre nosotros</button>
             <button onClick={() => setOpenPopup("help")} className="hover:text-white">Ayuda</button>
+            <Link href="/blog" className="hover:text-white">Blog</Link>
           </nav>
 
           {/* CTA */}
@@ -65,14 +66,11 @@ export default function Topbar() {
               <>
                 <h2 className="text-xl font-bold mb-3">Ayuda / FAQ</h2>
                 <ul className="list-disc pl-4 space-y-2 text-sm text-[#b6b6b8]">
-                  <ul className="list-disc pl-4 space-y-2 text-sm text-[#b6b6b8]">
-  <li>¿Cómo comprar? → Las compras se realizan en MercadoLibre.</li>
-  <li>¿Envíos? → Si compras en MercadoLibre, enviamos a todo Chile vía Chilexpress.</li>
-  <li>¿Transferencia bancaria? → Aceptada; por ahora la entrega es solo en Santiago. Próximamente habilitaremos envíos a todo Chile para compras por transferencia.</li>
-  <li>¿Garantía? → 6 meses (no cubre daño físico).</li>
-  <li>¿Pruebas de calidad? → Todos los teclados se prueban antes del despacho.</li>
-</ul>
-
+                  <li>¿Cómo comprar? → Las compras se realizan en MercadoLibre.</li>
+                  <li>¿Envíos? → Si compras en MercadoLibre, enviamos a todo Chile vía Chilexpress.</li>
+                  <li>¿Transferencia bancaria? → Aceptada; por ahora la entrega es solo en Santiago. Próximamente habilitaremos envíos a todo Chile para compras por transferencia.</li>
+                  <li>¿Garantía? → 6 meses (no cubre daño físico).</li>
+                  <li>¿Pruebas de calidad? → Todos los teclados se prueban antes del despacho.</li>
                 </ul>
               </>
             )}
