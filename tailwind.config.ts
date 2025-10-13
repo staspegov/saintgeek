@@ -26,7 +26,7 @@ const config: Config = {
         cta: "0 8px 24px rgba(137,255,0,.25)",
       },
       borderRadius: { xl2: "18px" },
-      typography: ({ theme }) => ({
+     typography: ({ theme }: { theme: (path: string) => any }) => ({
         invert: {
           css: {
             "--tw-prose-body": theme("colors.base.sub"),
