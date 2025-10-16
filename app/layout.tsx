@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     template: "%s — Teclados mecánicos gamer"
   },
   description:
-    "Catálogo en Chile de teclados mecánicos gamer 60/65/70/80% y TKL: layout en español, RGB, hot-swap y switches lineales, táctiles o clicky. Envío rápido y garantía.",
+    "Teclados mecánicos gamer en Chile — SaintGeek: tamaños 60/65/80% y TKL, layout español, RGB y hot-swap. Switches lineales, táctiles o clicky. Envío rápido y garantía local.",
   alternates: {
     canonical: "/",
   },
