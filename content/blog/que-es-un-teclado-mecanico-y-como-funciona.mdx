@@ -1,0 +1,144 @@
+---
+title: "¿Qué es un teclado mecánico y cómo funciona?"
+slug: "que-es-un-teclado-mecanico-y-como-funciona"
+summary: "Guía clara para entender qué hace “mecánico” a un teclado: partes, tipos de switches (lineal, táctil, clicky), cómo se registra la pulsación y qué ventajas ofrece frente a membrana. Incluye consejos de compra para Chile."
+description: "Componentes de un teclado mecánico, funcionamiento del switch, diferencia con los de membrana, ventajas/desventajas, mantenimiento y cómo elegir el primero."
+publishedAt: 2025-10-17
+updatedAt: 2025-10-17
+author: "SaintGeek"
+locale: "es-CL"
+category: "guías"
+tags:
+  - teclados mecánicos
+  - switches
+  - lineal
+  - táctil
+  - clicky
+  - gaming
+  - Chile
+cover: "/images/blog/teclados/que-es-teclado-mecanico.jpg"
+draft: false
+readingTime: 8
+faq:
+  - question: "¿En qué se diferencia un teclado mecánico de uno de membrana?"
+    answer: "Cada tecla del mecánico usa un switch individual con resorte y contactos propios; en membrana, varias teclas comparten una lámina de goma. El mecánico ofrece mayor durabilidad, sensación más consistente y posibilidad de reparación/modding."
+  - question: "¿Qué tipo de switch me conviene para empezar?"
+    answer: "Si juegas FPS/MOBA, prueba lineales (rojo/“red”); si escribes mucho y quieres feedback sin ruido, táctiles (marrón/“brown”); si te gusta el clic sonoro, clicky (azul/“blue”)."
+  - question: "¿Hotswap vale la pena?"
+    answer: "Sí. Permite cambiar switches sin soldar, ideal para probar lineales/táctiles/clicky y reemplazar una tecla dañada en minutos."
+  - question: "¿Hace mucho ruido un mecánico?"
+    answer: "Depende del switch y del build. Clicky suena más; lineales/táctiles con buena amortiguación, keycaps PBT y estabilizadores lubricados pueden ser bastante discretos."
+  - question: "¿Puedo usar distribución en español (ñ) en Chile?"
+    answer: "Sí. Busca layout ISO Español–LatAm o remapea en ANSI US. Muchos modelos llegan en ANSI; verifica antes de comprar."
+---
+
+# ¿Qué es un teclado mecánico y cómo funciona?
+
+Un **teclado mecánico** utiliza un **switch independiente por tecla**. Cada switch tiene piezas mecánicas (resorte, vástago, carcasa) y un sistema de **contacto** que cierra el circuito cuando presionas. Esto se traduce en **mayor durabilidad**, **sensación más precisa** y la posibilidad de **personalizar** (cambiar switches, keycaps, lubricar, etc.).
+
+---
+
+## Anatomía de un teclado mecánico
+
+| Componente | Qué es | Por qué importa |
+|---|---|---|
+| **Switch** (mecánico) | Mecanismo bajo cada tecla (housing, stem, spring, contactos) | Define **sensación** (lineal/táctil/clicky), fuerza y sonido |
+| **Keycaps** | Las “tapitas” de las teclas (ABS o PBT) | Afectan textura, altura y **timbre** (más grave en PBT grueso) |
+| **Estabilizadores** | Mecanismos para teclas largas (espacio, enter, shift) | Evitan bamboleo y ruidos; conviene **lubricarlos** |
+| **PCB** | Placa de circuito donde van los switches | Puede ser **hotswap** (sin soldar) o para soldadura |
+| **Plate** | Placa que da rigidez (aluminio, acero, PC, FR4) | Influye en **sonoridad** y “feel” al teclear |
+| **Case** | Carcasa del teclado (plástico, aluminio, etc.) | Cambia la acústica y la solidez del conjunto |
+| **Firmware** | Software del microcontrolador | Gestiona el **escaneo** y las **capas/macros** (QMK/VIA o del fabricante) |
+
+<Note>
+**Hotswap** te deja cambiar switches sin soldar. Es la forma más sencilla de experimentar y reparar.
+</Note>
+
+---
+
+## ¿Cómo se registra una pulsación?
+
+1. **Recorrido**: al presionar, el **vástago** (stem) baja comprimiendo el **resorte**.  
+2. **Actuación**: a cierta distancia (p. ej., ~2.0 mm) el switch **cierra el circuito** y el PCB registra la tecla.  
+3. **Debounce**: el firmware filtra los rebotes eléctricos para no contar pulsaciones dobles.  
+4. **Scan & Polling**: el controlador recorre la matriz de teclas y envía eventos al PC (≥1000 Hz en teclados gaming modernos).  
+5. **Reset**: al soltar, el switch vuelve arriba y la tecla se “resetea”.
+
+> En **lineales** la fuerza aumenta de forma uniforme; en **táctiles** sientes un “bache”; en **clicky** además oyes un “clic” mecánico.
+
+---
+
+## Tipos de switches (sensación)
+
+- **Lineales (rojo/red)**: recorrido suave y silencioso (sin clic). Muy populares en **gaming** por su consistencia.  
+- **Táctiles (marrón/brown)**: tienen un **bache** a mitad de recorrido que avisa la actuación; ideales para **escritura** y uso mixto.  
+- **Clicky (azul/blue)**: añaden un **clic** sonoro y táctil; divertidos, pero ruidosos para oficina/stream.
+
+<Note>
+Los colores son **convenciones**. Cada marca puede cambiar pesos y sensaciones.
+</Note>
+
+---
+
+## Mecánico vs. membrana: pros y contras
+
+**Ventajas del mecánico**
+- **Durabilidad**: millones de pulsaciones por switch.  
+- **Sensación**: feedback claro y **consistente** tecla a tecla.  
+- **Service/modding**: cambias un switch, keycaps o estabilizadores sin reemplazar todo el teclado.  
+- **Rollover/N-Key**: reconoce múltiples teclas simultáneas sin “fantasmas”.
+
+**Posibles contras**
+- **Precio** mayor que membrana básico.  
+- **Ruido**: depende de switch y build (hay soluciones).  
+- **Curva** de personalización (para muchos es una ventaja 😉).
+
+---
+
+## ¿Cómo elegir tu primer mecánico?
+
+1. **Uso principal**:  
+   - **FPS/MOBA** → **lineales** suaves (p. ej., “red”).  
+   - **Escritura/mixto** → **táctiles** moderados (p. ej., “brown”).  
+   - **Clicky** si te encanta el sonido (ojo con oficinas).  
+2. **Formato**: **TKL** (equilibrio), **65%** (compacto con flechas) o **60%** (máximo espacio para el mouse).  
+3. **Hotswap**: muy recomendable para probar switches sin desmontar todo.  
+4. **Keycaps**: **PBT** dura más y suena más grave; **ABS** tiende a pulirse con el tiempo.  
+5. **Conectividad**: **cable/2.4 GHz** para baja latencia; **Bluetooth** para movilidad (no competitivo).  
+6. **Layout**: si usas “ñ”, busca **ISO Español–LatAm** o remapea en ANSI.
+
+---
+
+## Mantenimiento básico
+
+- **Limpieza**: aire comprimido y brocha suave; retira keycaps para una limpieza más profunda.  
+- **Estabilizadores**: lubrica rieles y alambres para eliminar traqueteos.  
+- **Switches**: en hotswap, puedes reemplazar unidades defectuosas o probar otras sensaciones.
+
+---
+
+## ¿Y los “ópticos” o Hall Effect?
+
+No son mecánicos tradicionales de **contacto**, pero hoy conviven en el mercado. Usan **luz** o **campo magnético** para detectar la pulsación, reducen el **debounce** y permiten ajustar **punto de actuación** y **Rapid Trigger**. Si compites, pueden darte **control extra**; si buscas catálogo y personalización clásica, el mecánico de contacto sigue siendo rey.
+
+---
+
+## Consejos de compra para Chile
+
+- Revisa **stock** y **garantía local**; muchas marcas llegan en **ANSI US**.  
+- Si necesitas **ñ**, busca **ISO Español–LatAm** o pregunta por versiones “ES/LatAm”.  
+- Considera tiendas con **devolución clara** y **despacho rastreable**.
+
+---
+
+## Conclusión
+
+Un teclado mecánico destaca por su **sensación**, **consistencia** y **larga vida útil**. Entender cómo funciona te ayuda a **elegir el switch correcto**, el **formato adecuado** y a **mantener** tu equipo para años de uso.
+
+---
+
+## CTA
+
+¿Quieres probar lineal vs táctil o cambiar a un layout más compacto? Te ayudamos a armar tu primer mecánico (hotswap, keycaps y estabilizadores afinados) **listo para Chile**.  
+- 👉 Explora teclados: **/products?categoria=teclados**  
+- 👉 Pack de prueba de switches: **/products?categoria=accesorios&filtro=switch-sampler**
