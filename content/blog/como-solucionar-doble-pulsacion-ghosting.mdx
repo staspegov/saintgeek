@@ -1,0 +1,146 @@
+---
+title: "Cómo solucionar doble pulsación (chatter) o ghosting en tu teclado"
+slug: "como-solucionar-doble-pulsacion-ghosting"
+summary: "Diagnóstico y soluciones para doble pulsación (chatter), ghosting y bloqueo de teclas: qué es cada problema, cómo probarlo, ajustes de debounce, limpieza, reemplazo de switches y recomendaciones de hardware."
+description: "Guía práctica para identificar y arreglar doble pulsación (chatter) y ghosting/bloqueo en teclados mecánicos: pruebas, firmware, limpieza, hot-swap, USB/2.4 GHz, y cuándo hacer RMA. Incluye checklist y tabla de causas/soluciones."
+publishedAt: 2025-10-17
+updatedAt: 2025-10-17
+author: "SaintGeek"
+locale: "es-CL"
+category: "guías"
+tags:
+  - chatter
+  - ghosting
+  - nkro
+  - debounce
+  - teclados mecánicos
+  - Chile
+cover: "/images/blog.webp"
+draft: false
+readingTime: 9
+faq:
+  - question: "¿Cómo diferencio chatter de ‘repetición por sistema’ (Key Repeat)?"
+    answer: "El chatter ocurre con un solo toque y produce caracteres duplicados instantáneos (p. ej., “ee”). La repetición del sistema aparece tras mantener la tecla presionada un tiempo (delay hasta repetir). Sube el ‘Delay until repeat’; si el doble sigue saliendo al primer toque, es chatter."
+  - question: "¿Ajustar el debounce a 0–1 ms ayuda o empeora?"
+    answer: "Puede empeorar el chatter. Para teclas problemáticas sube el debounce (p. ej., 6–10 ms) y evalúa. Si eres competitivo, intenta 4–6 ms como equilibrio; si persiste, cambia el switch."
+  - question: "¿Rocío lubricante arregla un switch con chatter?"
+    answer: "No es lo ideal. Si usas algo, que sea limpiador de contactos apto para plásticos y en microcantidad; puede mejorar temporalmente, pero la solución duradera es reemplazar el switch (mejor si tu PCB es hot-swap)."
+  - question: "¿Los teclados ópticos o magnéticos tienen chatter?"
+    answer: "Rara vez, porque no hay contacto eléctrico que rebote. Si notas doble registro, suele ser firmware, software o interferencias (en wireless), no el switch."
+  - question: "¿Qué es ghosting y qué es bloqueo de teclas (key blocking)?"
+    answer: "Ghosting: aparece una tecla ‘fantasma’ que no presionaste al combinar otras. Bloqueo: ciertas combinaciones no registran. Se resuelve con matrices NKRO/6KRO bien diseñadas o cambiando de puerto/hub/KVM; no es lo mismo que chatter."
+---
+
+# Cómo solucionar doble pulsación (**chatter**) o **ghosting**
+
+Que el teclado escriba doble con un solo toque o que ciertas combinaciones no registren es frustrante. La buena noticia: la mayoría de casos se arregla con **firmware**, **limpieza** o **cambio de switch** (si tienes **hot-swap**). Veamos cómo **diagnosticar** y **resolver** paso a paso.
+
+<Note>
+**Resumen rápido**  
+- **Chatter** = doble registro con un toque → ajusta **debounce**, limpia o **reemplaza el switch**.  
+- **Ghosting/bloqueo** = combinaciones que fallan → activa **NKRO/6KRO** correcto, prueba **otro puerto** o **hardware** con mejor matriz.
+</Note>
+
+---
+
+## 1) Identifica el problema
+
+| Síntoma | Probable causa | Prueba rápida |
+|---|---|---|
+| Se repite una letra al primer toque (p. ej., “lletra”) | **Chatter** (rebote de contacto) o debounce muy bajo | Escribe en un **keyboard tester** online y mira si aparece doble al instante |
+| Al mantener pulsada una tecla repite demasiado pronto | Ajuste de **Key Repeat** del sistema | Sube el **Delay until repeat** en el SO y prueba de nuevo |
+| Ciertas combinaciones (p. ej., **W + Shift + Space**) no registran | **Bloqueo/limitación de matriz** (no NKRO real), hub/KVM | Prueba otro puerto **USB directo**, sin hub/KVM; activa **NKRO** si el teclado lo permite |
+| Aparecen teclas que no presionaste al combinar otras | **Ghosting** | Test en otra app/PC; si persiste, la **matriz** es la causa |
+
+> Usa un **tester de teclado** (cualquiera en la web o el del fabricante). Si solo falla **1–2 teclas**, apunta a **hardware de esas teclas** (switch/estabilizador). Si falla en **muchas combinaciones**, apunta a **matriz/puerto**.
+
+---
+
+## 2) Soluciones para **doble pulsación (chatter)**
+
+### A) Ajusta **debounce** (firmware/software)
+- En software del fabricante o **QMK/VIA**, sube el **debounce** de 2–4 ms a **6–10 ms** para la tecla problemática.  
+- Si compites, intenta un punto intermedio **4–6 ms**. **Cambia por tecla** si tu firmware lo permite.
+
+### B) Limpieza rápida (temporal)
+1. **Desconecta** el teclado.  
+2. Retira la **keycap** y sopla con **aire comprimido**.  
+3. Una **microgota** de limpiador de contactos **apto para plásticos** en el switch, acciona varias veces y **deja secar**.  
+4. Vuelve a probar.  
+> Esto puede **aliviar** el problema, pero si regresa, cambia el **switch**.
+
+### C) **Reemplaza el switch** (ideal si es **hot-swap**)
+- Extrae el switch con el extractor y **revisa pines** (endereza si están doblados).  
+- Instala un **switch nuevo** del mismo tipo (o prueba otro).  
+- En PCBs **soldadas**, la solución es **desoldar** y reemplazar (o RMA si está en garantía).
+
+### D) Revisa **cable/puerto** y **wifi 2.4 GHz**
+- Cambia a **cable** y otro **puerto USB** directo a la placa (evita hubs/USB 3.0 cercanos).  
+- En **2.4 GHz**, usa un **extensor USB** y acerca el dongle al teclado; aléjalo de chasis metálicos/routers.
+
+---
+
+## 3) Soluciones para **ghosting/bloqueo de teclas**
+
+### A) Activa el modo correcto (**NKRO/6KRO**)
+- Muchos teclados alternan **NKRO ↔ 6KRO** con una combinación (revisa manual).  
+- **NKRO** permite más teclas simultáneas; **6KRO** es compatible con BIOS/pantalla de login de Windows.
+
+### B) Cambia **puerto** y evita **hubs/KVM**
+- Conecta en **USB trasero** de la placa madre.  
+- Algunos **KVM** o hubs limitan señales de varios teclados a **6KRO** o menos.
+
+### C) Prueba en otro **PC/SO**
+- Si el problema desaparece, el **driver**, **software** o **hub** era el culpable.  
+- Si persiste, la **matriz** del teclado no soporta esa combinación → **hardware**.
+
+### D) Elige hardware con **matriz mejor diseñada**
+- Si tu juego exige combinaciones “raras”, considera un teclado con **verdadero NKRO** y buena reputación en esports.
+
+---
+
+## 4) Checklist rápido
+
+- [ ] Probar en **tester** (web/app).  
+- [ ] Subir **debounce** (6–10 ms si hay chatter).  
+- [ ] **Limpiar** switch → si vuelve, **reemplazar**.  
+- [ ] Cambiar a **cable** y a **otro USB** (sin hub/KVM).  
+- [ ] En 2.4 GHz, **extensor** y alejar de **USB 3.0**/chasis.  
+- [ ] Activar **NKRO/6KRO** correcto.  
+- [ ] Probar en otra **PC/SO**.  
+- [ ] **RMA** si es nuevo y fallan varias teclas.
+
+---
+
+## 5) Tabla de causas y soluciones
+
+| Problema | Causa raíz | Solución |
+|---|---|---|
+| Doble al primer toque | Rebote de contacto / debounce muy bajo | Subir **debounce**, limpiar o **cambiar switch** |
+| Repite rápido al mantener | Key Repeat del SO | Aumentar **Delay until repeat** |
+| Combo no registra | Limitación de **matriz** / hub/KVM | **NKRO**, puerto directo, evitar hubs/KVM |
+| Tecla fantasma | **Ghosting** | NKRO real; si persiste, cambiar de **teclado** |
+| Cortes en wireless | Interferencias 2.4 GHz | **Extensor USB**, reubicar dongle, probar cable |
+
+---
+
+## ¿Cuándo pedir **RMA**?
+
+- Teclado **nuevo** con chatter en varias teclas.  
+- Problemas que **persisten** tras cambiar puerto, subir debounce y probar en otro PC.  
+- Defectos de **matriz** (ghosting/bloqueo) que el fabricante no declara como limitación.
+
+---
+
+## Conclusión
+
+**Chatter** casi siempre se resuelve con **debounce** + **reemplazo de switch** (si vuelve).  
+**Ghosting/bloqueo** es tema de **matriz/puertos**: activa **NKRO**, evita **hubs/KVM** y, si el hardware limita, cambia a un **teclado** con mejor diseño.
+
+---
+
+## CTA
+
+¿Necesitas **switches de reemplazo** o un teclado con **NKRO real** para jugar sin límites? Te asesoramos y lo dejamos listo para tu setup en Chile.
+
+👉 **Explorar teclados:** https://saintgeek.cl/
