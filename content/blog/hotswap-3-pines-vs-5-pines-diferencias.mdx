@@ -1,0 +1,135 @@
+---
+title: "Hot-swap 3 pines vs 5 pines: diferencias y compatibilidad real"
+slug: "hotswap-3-pines-vs-5-pines-diferencias"
+summary: "¿Qué cambia entre switches MX de 3 y 5 pines en teclados hot-swap? Te explico estabilidad, compatibilidad, cuándo recortar guías, riesgos y qué elegir según tu plate/PCB."
+description: "Guía práctica para entender la diferencia entre switches MX de 3 pines y 5 pines en teclados hot-swap: estabilidad en PCB, papel del plate, recorte de guías, sockets Kailh/Outemu, orientación del LED y recomendaciones de compra para Chile."
+publishedAt: 2025-10-17
+updatedAt: 2025-10-17
+author: "SaintGeek"
+locale: "es-CL"
+category: "guías"
+tags:
+  - hot-swap
+  - switches
+  - 3 pines
+  - 5 pines
+  - PCB
+  - plate
+  - Chile
+cover: "/images/blog.webp"
+draft: false
+readingTime: 7
+faq:
+  - question: "¿Un switch de 5 pines funciona en una PCB que solo tiene 3 agujeros?"
+    answer: "Sí, recortando SOLO las dos guías plásticas laterales del switch de 5 pines (no los pines metálicos). Así se convierte en ‘3 pines’ y entra sin problemas."
+  - question: "¿Hay diferencia eléctrica entre 3 y 5 pines?"
+    answer: "No: el contacto eléctrico siempre son 2 pines metálicos. Los ‘pines extra’ de 5 pines son guías plásticas para estabilidad mecánica en la PCB."
+  - question: "¿Cuándo necesito realmente 5 pines?"
+    answer: "Si tu montaje depende más de la PCB (menos sujeción del plate) o si notas que un 3 pines gira o queda torcido. En builds bien sujetas por el plate, 3 pines suele ser suficiente."
+  - question: "¿Puedo mezclar 3 y 5 pines en el mismo teclado?"
+    answer: "Sí, mientras todos sean compatibles con sockets MX. En PCBs con 3 agujeros, los 5 pines deben ‘clipearse’ (solo guías plásticas)."
+  - question: "¿Recortar las guías afecta garantía o durabilidad?"
+    answer: "Recortar guías plásticas no afecta el circuito del switch. Aun así, algunas tiendas podrían no aceptar devoluciones tras modificarlo. Decide antes de abrir el blíster."
+---
+
+# Hot-swap **3 pines vs 5 pines**: lo que de verdad cambia
+
+En switches tipo **Cherry MX** (y clones), “3 pines” y “5 pines” se refiere a la **cantidad de patas que entran en la PCB**.  
+- **3 pines**: **2 pines metálicos** (señal) + **1 guía plástica central**.  
+- **5 pines**: los mismos **2 pines metálicos** + **3 guías plásticas** (central + 2 laterales) para **estabilidad**.
+
+<Note>
+La **conductividad** no cambia: siempre son **2 pines metálicos** los que hacen el contacto eléctrico. Los demás “pines” son **guías plásticas**.
+</Note>
+
+---
+
+## ¿Por qué existen 5 pines?
+
+Para evitar que el switch **rote** o quede **torcido** sobre la PCB, especialmente en diseños donde la **placa (plate)** no fija con fuerza el cuerpo del switch. Las **guías laterales** encajan en la PCB y mejoran el alineado.
+
+---
+
+## Papel del **plate** en un teclado hot-swap
+
+En la mayoría de hot-swap, el plate **abraza** el switch por la carcasa superior.  
+- Con **plate firme** (aluminio/FR4/PC bien ajustado), un **3 pines** suele quedar **recto y estable**.  
+- Si el plate tiene **tolerancias amplias** o buscas un montaje más “PCB-mount”, un **5 pines** añade seguridad contra el giro.
+
+---
+
+## Compatibilidad rápida
+
+| Caso | ¿Funciona 3 pines? | ¿Funciona 5 pines? | Nota |
+|---|---|---|---|
+| PCB con **3 agujeros** | Sí | **Sí, recortando** 2 guías plásticas laterales | No cortes pines metálicos |
+| PCB con **5 agujeros** | Sí | Sí | 5 pines entra directo; 3 pines también |
+| Socket **MX hot-swap** (Kailh/Outemu) | Sí | Sí (con 5 agujeros o recorte) | Verifica orientación del LED |
+| Switches **ópticos/Hall** | No (no MX de contacto) | No | Requieren PCB específica |
+
+---
+
+## ¿Cómo “convertir” un 5 pines a 3 pines?
+
+1. **Identifica** las **dos guías plásticas laterales** (no toques el pin metálico).  
+2. **Córtalas** al ras con alicate de corte fino.  
+3. **Lima** suavemente si quedó reborde.  
+4. **Inserta recto** en el socket; nunca fuerces en ángulo.
+
+> **Nunca** cortes los **pines metálicos**: son los contactos eléctricos.
+
+---
+
+## ¿Se nota en el uso?
+
+- En un teclado con **plate firme**, la diferencia **mecánica** entre 3 y 5 pines es **menor**.  
+- En PCBs más “flex” o montajes que apoyan más el switch en la **PCB**, 5 pines ayuda a que **no gire** al escribir o al poner/quitar keycaps ajustadas.
+
+---
+
+## Estabilidad, sonido y feel
+
+- **Estabilidad**: 5 pines gana en PCB-mount; con plate sólido, empate técnico.  
+- **Sonido**: la cantidad de pines **no** determina el timbre; pesan mucho más **case/plate**, espumas, **stabs** y el propio **switch**.  
+- **Feel**: igual en ambos; lo que cambia es tu **confianza** al instalar (5 pines alinea mejor).
+
+---
+
+## Orientación del LED (north/south-facing)
+
+Independiente de 3/5 pines, revisa la **orientación del LED** de tu PCB:  
+- Con **perfil Cherry**, los **north-facing** pueden rozar en la fila superior y sonar más “brillantes”.  
+- **South-facing** suele preferirse para evitar ese roce.  
+Esto no afecta la compatibilidad 3 vs 5 pines, pero sí tu **sonido** y **clearance** con ciertos keycaps.
+
+---
+
+## Checklist de compra (Chile)
+
+- ¿Tu PCB es **MX hot-swap**? (Kailh/Outemu sockets).  
+- ¿Trae **3** o **5** agujeros? Si solo 3, ¿estás dispuesto a **recortar guías** en switches 5 pines?  
+- ¿Plate** firme**? Si sí, 3 pines suele bastar; si no, 5 pines da mejor **alineado**.  
+- **Layout**: si necesitas “ñ”, busca **ISO Español–LatAm**; muchos llegan **ANSI US**.  
+- **Garantía**: pregunta si la tienda acepta devoluciones tras **recortar** guías.
+
+---
+
+## Recomendaciones rápidas
+
+- **Build con plate sólido (gasket/top bien apretado)** → compra sin miedo **3 pines** (mejor disponibilidad).  
+- **PCB con poco soporte del plate / quieres instalación 100% recta** → **5 pines**; y si no calzan, recorta guías.  
+- **No MX** (ópticos/Hall) → no sirven en sockets MX hot-swap estándar.
+
+---
+
+## Conclusión
+
+La diferencia **eléctrica** no existe: en ambos casos solo **dos pines metálicos** llevan la señal. Lo que cambia es la **estabilidad mecánica**: **5 pines** alinea mejor el switch en la **PCB**, útil cuando el **plate** no sujeta fuerte. Si tu teclado hot-swap tiene **plate firme**, **3 pines** suele rendir **igual** en la práctica.
+
+---
+
+## CTA
+
+¿Buscas un teclado **hot-swap** compatible y un set de switches 3 o 5 pines que suenen y se sientan como quieres? Te asesoramos y enviamos a todo Chile.
+
+👉 **Explorar teclados y switches:** https://saintgeek.cl/
