@@ -1,0 +1,132 @@
+---
+title: "Cómo cambiar los switches en un teclado hot-swap"
+slug: "como-cambiar-switches-teclado-hot-swap"
+summary: "Guía paso a paso para reemplazar switches en un teclado hot-swap: herramientas, compatibilidad (3-pines vs 5-pines), errores comunes y pruebas. Incluye consejos para Chile y FAQ específico."
+description: "Aprende a identificar si tu teclado es hot-swap, retirar keycaps y switches con seguridad, instalar nuevos (alineación de pines, orientación del LED), probar cada tecla y evitar dañar los sockets. Compatibilidad con 3/5 pines, Outemu/Kailh, y consideraciones de garantía."
+publishedAt: 2025-10-17
+updatedAt: 2025-10-17
+author: "SaintGeek"
+locale: "es-CL"
+category: "guías"
+tags:
+  - hot-swap
+  - switches
+  - teclados mecánicos
+  - mantenimiento
+  - Chile
+cover: "/images/blog.webp"
+draft: false
+readingTime: 9
+faq:
+  - question: "¿Cómo sé si mi teclado es hot-swap?"
+    answer: "Retira una keycap y mira el switch: si puede extraerse con herramienta sin desoldar y ves sockets metálicos en la PCB (Kailh/Outemu), es hot-swap. Si el switch está soldado a la placa, no lo es."
+  - question: "¿Puedo usar switches de 5 pines en una PCB de 3 pines?"
+    answer: "Sí, si tu PCB solo tiene 3 agujeros puedes ‘clipear’ las dos guías plásticas laterales del switch (no los pines metálicos). Al revés no se puede: una PCB de 5 pines acepta ambos sin recorte."
+  - question: "¿Se pueden mezclar marcas/modelos distintos en el mismo teclado?"
+    answer: "Sí. Muchos combinan lineales en WASD y táctiles en el resto. Asegúrate de que todos sean compatibles con el socket (MX-style) y la orientación del LED."
+  - question: "Doblé un pin al instalar, ¿se arruinó el switch?"
+    answer: "No necesariamente. Retíralo, endereza suavemente el pin con pinzas o una tarjeta metálica fina y vuelve a insertarlo recto. Si el pin se quiebra, reemplaza el switch."
+  - question: "¿Ópticos o magnéticos funcionan en hot-swap MX?"
+    answer: "No. Requieren PCBs y sockets específicos. Los hot-swap MX aceptan switches de contacto tipo Cherry-clon (Gateron, Kailh, Akko, etc.). Verifica siempre compatibilidad antes de comprar."
+---
+
+# Cómo cambiar los switches en un teclado **hot-swap**
+
+Los teclados **hot-swap** permiten cambiar switches **sin soldar**. Es ideal para probar sensaciones (lineal/táctil/clicky), reparar una tecla defectuosa o silenciar el teclado con lineales más suaves. Aquí tienes el **paso a paso** con trucos para no dañar los **sockets**.
+
+<Note>
+Antes de empezar: **apaga y desconecta** el teclado. Si es inalámbrico, pon el switch en **OFF** y retira el dongle/USB.
+</Note>
+
+---
+
+## Lo que necesitas
+
+- **Extractor de keycaps** (wire/keycap puller).  
+- **Extractor de switches** (switch puller).  
+- **Pinzas finas** (por si hay que enderezar pines).  
+- **Brocha suave** + **aire comprimido** (limpieza).  
+- **Alcohol isopropílico** (opcional, para limpiar suciedad visible).  
+
+> Si tu teclado trae herramientas en la caja, úsalas: suelen calzar mejor con su plate.
+
+---
+
+## Compatibilidad rápida
+
+| Elemento | Qué mirar | Nota |
+|---|---|---|
+| **Socket** | Kailh/Outemu hot-swap (MX-style) | La mayoría acepta **3-pines y 5-pines**. Algunas placas antiguas solo 3-pines. |
+| **Switch** | 3-pines (2 pines metálicos + guía central) o 5-pines (2 guías laterales extra) | Si la PCB es 3-pines, puedes **recortar** las 2 guías plásticas de un switch 5-pines. |
+| **LED** | Norte/sur-facing del LED en la PCB | Afecta compatibilidad con ciertos keycaps (perfil Cherry puede rozar en north-facing). |
+| **Ópticos/Hall** | No MX de contacto | **No compatibles** con sockets MX estándar. |
+
+---
+
+## Paso a paso
+
+### 1) Preparación
+1. **Desconecta** el teclado y colócalo sobre una superficie firme.  
+2. Saca una **foto** del teclado por si necesitas recordar ubicaciones.  
+3. Identifica **orientación** de los switches (la muesca y los pines metálicos deben coincidir con los del socket).
+
+### 2) Retira las keycaps
+1. Inserta el **keycap puller** y tira **recto hacia arriba**.  
+2. Para teclas largas (barra, Enter, Shift), suelta con cuidado para no forzar **estabilizadores**.
+
+### 3) Retira los switches
+1. Con el **switch puller**, presiona las **pestañas** del switch (superior e inferior) y tira **vertical**.  
+2. Si **no sale**, no lo tuerzas: revisa que las patas estén bien presionadas y vuelve a intentar recto.  
+3. Aprovecha de **limpiar** polvo del plate/PCB.
+
+### 4) Revisa y endereza pines
+- Observa los **2 pines metálicos** del switch. Si están doblados, **endereza** suavemente con pinzas.  
+- En switches **5-pines**, decide si necesitas **recortar** las dos guías plásticas para usar en una PCB de 3-pines.
+
+### 5) Instala los nuevos switches
+1. **Alinea** el switch con el socket (pines metálicos con los agujeros, guía central con el hueco).  
+2. Presiona **recto hacia abajo** hasta oír/ sentir el **clic**. No deberías necesitar fuerza excesiva.  
+3. Si no entra, retira, revisa pines y vuelve a alinear. **Nunca** fuerces torcido: podrías dañar el socket.
+
+### 6) Coloca las keycaps
+- Asegúrate de que la **cruz** del stem encaje. Para teclas largas, verifica que los **estabilizadores** quedaron en sus clips.
+
+### 7) Prueba todas las teclas
+- Conecta el teclado y abre un **tester de teclado** (cualquier “keyboard tester” en la web o la app del fabricante).  
+- Verifica cada tecla; si alguna no registra:  
+  - quita ese switch, **endereza pines**, reinstala y prueba de nuevo.
+
+---
+
+## Errores comunes (y cómo evitarlos)
+
+- **Forzar en ángulo** → puede **romper el socket**. Solución: inserta **perfectamente vertical**.  
+- **Pines doblados** → la tecla no registra. Solución: enderezar con pinzas **antes** de volver a insertar.  
+- **Recortar lo que no corresponde** → solo recorta **las guías plásticas** de 5-pines si tu PCB es 3-pines; **nunca** cortes pines metálicos.  
+- **LED/iluminación invertida** → revisa **orientación** para que el difusor no choque con el keycap.  
+- **Mezclar ópticos/Hall** con MX** → no son compatibles con sockets MX-hot-swap.
+
+---
+
+## Consejos de “calidad de vida”
+
+- **Hotswap + lube**: si tus switches no vienen pre-lubricados, lubricarlos (cuando corresponda) mejora suavidad y sonido.  
+- **Estabilizadores**: un toque de lubre en rieles y alambres reduce el traqueteo en barra, Enter y Shift.  
+- **Keycaps PBT** gruesos: ayudan a un **timbre más grave** y menos brillo con el uso.  
+- **Perfiles por juego**: si tu software lo permite, crea perfiles (FPS/MMO/oficina) para remapeos y efectos.
+
+---
+
+## Notas de compra (Chile)
+
+- **Layout**: si necesitas “ñ”, busca **ISO Español–LatAm**; muchos modelos llegan **ANSI US**.  
+- **Compatibilidad**: confirma que tu teclado es **MX-hot-swap** (Kailh/Outemu).  
+- **Soporte y garantía**: prioriza tiendas con **devolución clara** y **despacho rastreable**.
+
+---
+
+## CTA
+
+¿Buscas un teclado **hot-swap** o un set de **switches** para mejorar tu experiencia? Revisa las opciones y recibe ayuda para elegir la sensación adecuada:
+
+👉 **Explorar teclados y switches:** https://saintgeek.cl/
