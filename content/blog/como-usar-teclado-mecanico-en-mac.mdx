@@ -1,0 +1,145 @@
+---
+title: "Cómo usar tu teclado mecánico en Mac"
+slug: "como-usar-teclado-mecanico-en-mac"
+summary: "Guía práctica para dejar tu teclado mecánico perfecto en macOS: mapeo de ⌘/⌥, tildes y ñ en ANSI, funciones F1–F12/medios, capas VIA/QMK, atajos esenciales y trucos para productividad."
+description: "Paso a paso para configurar un teclado mecánico en Mac: intercambiar Command/Option, escribir acentos y ñ con ANSI o ISO, activar F1–F12 como teclas estándar, mapear multimedia/brillo, usar VIA/QMK y Karabiner-Elements, y resolver problemas comunes."
+publishedAt: 2025-10-17
+updatedAt: 2025-10-17
+author: "SaintGeek"
+locale: "es-CL"
+category: "guías"
+tags:
+  - macOS
+  - teclados mecánicos
+  - QMK
+  - VIA
+  - Karabiner
+  - ANSI
+  - ISO
+cover: "/images/blog.webp"
+draft: false
+readingTime: 9
+faq:
+  - question: "¿Cómo intercambio ⌘ Command y ⌥ Option en un teclado ‘Windows’?"
+    answer: "Ajustes del sistema → Teclado → Teclas modificadoras… (elige tu teclado en la lista) → asigna la tecla Alt como ⌥ Opción y la tecla Windows como ⌘ Comando. Guarda y prueba en Spotlight (⌘+Espacio)."
+  - question: "¿Cómo escribo tildes y la ñ en un teclado ANSI US?"
+    answer: "Añade la fuente de entrada ‘U.S. International – PC’ o ‘ABC – Extendida’. Para acentos: ⌥+e y luego vocal (é), ⌥+u luego u (ü), ⌥+n luego n (ñ). También puedes añadir ‘Español – ISO’ si tu físico es ISO."
+  - question: "Mis teclas F1–F12 controlan brillo/volumen y no funciones del IDE"
+    answer: "Ajustes del sistema → Teclado → ‘Usar teclas F1, F2, etc. como teclas de función estándar’. Con esa opción, tendrás que mantener ‘Fn’ para usar brillo/volumen."
+  - question: "¿Cómo mapear brillo/volumen en un teclado sin teclas de Apple?"
+    answer: "Usa Karabiner-Elements para asignar F-keys o combinaciones a brillo/volumen, y MonitorControl para manejar el brillo de monitores externos (DDC)."
+  - question: "¿Puedo usar VIA/QMK para capas Mac/Win?"
+    answer: "Sí. La mayoría de PCBs QMK/VIA permiten una capa ‘Mac’ donde pones ⌘/⌥ en su sitio, flechas/medios y macros. Recuerda ‘Save to device’ para persistir."
+---
+
+# Cómo usar tu teclado mecánico en **Mac**
+
+Los teclados mecánicos “de PC” funcionan perfecto en **macOS**, solo necesitan un par de ajustes: **intercambiar ⌘/⌥**, configurar **tildes/ñ** si tu teclado es **ANSI**, decidir qué harán **F1–F12**, y si quieres, crear **capas** con **VIA/QMK** o remapes avanzados con **Karabiner-Elements**. Aquí tienes el **paso a paso**.
+
+---
+
+## 1) Intercambiar ⌘ Command y ⌥ Option
+
+En muchos teclados “Windows”, la tecla **Windows** queda donde Mac espera **⌘**, y **Alt** donde espera **⌥**. Cámbialas así:
+
+1. **Ajustes del sistema → Teclado → Teclas modificadoras…**  
+2. Elige tu teclado en el selector superior.  
+3. Asigna **‘Tecla Opción’** a **Alt** y **‘Tecla Comando’** a **Windows**.  
+4. Acepta y prueba: **⌘ + Espacio** debe abrir Spotlight.
+
+<Note>
+Algunas marcas (Keychron, Akko, etc.) traen un **interruptor físico** Mac/Win o incluso **keycaps de ⌘/⌥**. Si lo tienes, úsalo y luego afina en macOS.
+</Note>
+
+---
+
+## 2) Tildes y **ñ** en ANSI vs ISO
+
+- **Si tu teclado es ISO Español** (trae la **ñ** física): añade **Español – ISO** en *Ajustes del sistema → Teclado → Fuentes de entrada* y úsala.
+- **Si es ANSI US** (sin ñ): añade **‘U.S. International – PC’** o **‘ABC – Extendida’**.  
+  - **Acentos:** `⌥ + e` y luego vocal → *á, é, í, ó, ú*  
+  - **Tilde ~:** `⌥ + n`, luego `espacio`  
+  - **Ñ:** `⌥ + n`, luego `n` → *ñ* / `⇧ + ⌥ + n`, luego `n` → *Ñ*  
+  - **Diéresis:** `⌥ + u` y luego `u` → *ü*
+
+<Note>
+Para cambiar rápido entre layouts, activa **Mostrar menú de entrada** en la barra de menús (mismo panel).
+</Note>
+
+---
+
+## 3) F1–F12: ¿multimedia o funciones?
+
+- **Opción A (recomendada para IDEs):**  
+  *Ajustes del sistema → Teclado* → activa **“Usar teclas F1, F2, etc. como teclas de función estándar”**.  
+  Así F5 será F5 real, y para brillo/volumen usarás **Fn + F-keys**.
+- **Opción B (multimedia por defecto):**  
+  Déjalo desactivado y usa **Fn** para obtener F1–F12 “clásicas”.
+
+---
+
+## 4) Brillo, volumen y teclas especiales
+
+En teclados no-Apple, las teclas de brillo pueden no existir. Soluciones:
+
+- **Volumen, mute, reproducción:** mapea en **VIA/QMK** una capa `Fn` con **F10/F11/F12** (mute/vol–/vol+ por ejemplo) o usa **Karabiner** para convertir combinaciones en controles de sistema.
+- **Brillo de monitores externos:** usa **MonitorControl** (control por DDC). En portátiles Mac, el brillo de la pantalla interna se gestiona igual con las F-keys o el Centro de Control.
+
+---
+
+## 5) Capas y remapeo: VIA/QMK vs Karabiner
+
+- **VIA/QMK (firmware del teclado)**  
+  - Crea una **capa Mac** persistente: mueve ⌘/⌥, añade **flechas** donde quieras, media keys y macros.  
+  - Ventaja: funciona en cualquier Mac o PC una vez grabado.  
+- **Karabiner-Elements (software en macOS)**  
+  - Remapes dependientes del **Mac**: per-app, por dispositivo, combinaciones complejas.  
+  - Útil para teclas “raras” (PrintScreen, Menu, etc.) o **mod-taps** sin tocar el firmware.
+
+> **Tip:** combina ambos: base en **VIA**, ajustes especiales por app en **Karabiner**.
+
+---
+
+## 6) Atajos esenciales (equivalentes PC → Mac)
+
+| Acción | En Mac | Nota |
+|---|---|---|
+| Copiar / Pegar / Cortar | `⌘ + C / ⌘ + V / ⌘ + X` | En Windows eran con **Ctrl** |
+| Deshacer / Rehacer | `⌘ + Z / ⌘ + ⇧ + Z` | Algunos apps usan `⌘ + Y` |
+| Búsqueda | `⌘ + F` | |
+| Spotlight | `⌘ + Espacio` | |
+| Pantallazo | `⌘ + ⇧ + 3` / `⌘ + ⇧ + 4` | Selección con arrastre |
+| Emoji | `⌃ + ⌘ + Espacio` | Muy útil en chat |
+| Inicio/Fin de línea | `⌘ + ← / ⌘ + →` | `⌥ + ←/→` mueve por palabra |
+| Suprimir hacia delante | `Fn + ⌫` | En teclados sin tecla Delete física |
+
+---
+
+## 7) Bluetooth y 2.4 GHz
+
+- **Bluetooth**: cómodo, pero no ideal para competitivo (latencia/jitter).  
+- **2.4 GHz** propietario o **cable**: mejor para juegos/edición sensible.  
+- Si tu teclado tiene selector **Win/Mac** y **BT/2.4G**, configúralo en **Mac + 2.4G** para lag mínimo inalámbrico.
+
+---
+
+## 8) Problemas comunes (y solución)
+
+- **Se invierten ⌘ y ⌥**: revisa **Teclas modificadoras…** y la capa VIA.  
+- **No puedo escribir ñ/acentos**: agrega **U.S. International – PC** o **ABC – Extendida**, o usa **Español – ISO** si tu físico es ISO.  
+- **F-keys no funcionan como espero**: activa/desactiva el modo **“teclas de función estándar”** en Teclado.  
+- **Brillo de monitor externo**: usa **MonitorControl** y asigna atajos en Karabiner si tu teclado no trae las teclas.
+
+---
+
+## Conclusión
+
+Con **dos ajustes** (⌘/⌥ y layout de entrada) y una decisión sobre **F1–F12**, tu mecánico queda perfecto en macOS. Si además defines una **capa Mac** en VIA/QMK y remapes detallitos en Karabiner, tendrás un teclado que rinde **igual o mejor** que uno “nativo” de Apple, pero con la **sensación** y **sonido** que te gustan.
+
+---
+
+## CTA
+
+¿Buscas un teclado mecánico que vaya fino en **Mac** (cable, 2.4 GHz o BT) y que puedas ajustar a tu gusto? Revisa opciones y te asesoramos:
+
+👉 **Explorar teclados:** https://saintgeek.cl/
