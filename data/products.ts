@@ -122,7 +122,7 @@ export const products: Product[] = [
   name: "Teclado mecánico gamer TK68 Blanco RGB - Red Switch",
   brand: "Zifriend",
   subtitle: "Teclado mecánico gamer 65% (68 teclas) RGB, con cable USB-C",
-  status: "in_stock",
+  status: "out_of_stock",
   priceRub: 32990,
   monthlyRub: 2749,
   model: "TK68",
