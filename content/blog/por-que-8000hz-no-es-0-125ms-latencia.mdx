@@ -1,0 +1,112 @@
+---
+title: "¿Por qué 8000 Hz ≠ 0,125 ms de latencia?"
+slug: "por-que-8000hz-no-es-0-125ms-latencia"
+summary: "8000 Hz (0,125 ms por informe) NO significa que tu pulsación llegue al juego en 0,125 ms. Te explico el pipeline real: escaneo de matriz, debounce, USB, SO, motor del juego y pantalla."
+description: "Diferencia entre tasa de sondeo (polling/report rate) y latencia end-to-end. Desglose de cada componente que añade retraso y jitter: escaneo de matriz, debounce, firmware, scheduling USB, pila HID del sistema, sampling del juego y render. Consejos prácticos para reducir la latencia efectiva en teclados."
+publishedAt: 2025-10-24
+updatedAt: 2025-10-24
+author: "SaintGeek"
+locale: "es-CL"
+category: "latencia"
+tags:
+  - polling rate
+  - 8000 Hz
+  - latencia
+  - teclados
+  - gaming
+  - Chile
+cover: "/images/blog.webp"
+draft: false
+readingTime: 8
+faq:
+  - question: "Si configuro 8000 Hz, ¿mi latencia baja a 0,125 ms?"
+    answer: "No. 0,125 ms es el **intervalo entre informes** USB (T = 1/8000 s). La latencia real incluye escaneo de matriz, debounce, firmware/cola, scheduling USB, pila del SO, sampling del juego y la pantalla."
+  - question: "¿Bajar el debounce a 0–1 ms arregla la latencia?"
+    answer: "Reduce una parte del retraso pero **sube el riesgo de chatter** (dobles pulsaciones). En teclados de contacto, 2–6 ms suele ser un equilibrio; prueba por tecla si tu firmware lo permite."
+  - question: "¿Wireless 2.4 GHz a 8K rinde como cable?"
+    answer: "Puede acercarse, pero añade **radio, colas y posibles retransmisiones**. Ubica el dongle en un **extensor USB** cerca del teclado y evita puertos USB 3.0 ruidosos."
+  - question: "¿8000 Hz en teclado vale tanto como en mouse?"
+    answer: "En teclado el beneficio marginal es menor: los juegos suelen muestrear inputs por frame y tu pulsación no es continua como el tracking del mouse. Aun así, puede bajar **jitter** de entrega."
+  - question: "¿Hace falta soporte del sistema?"
+    answer: "Sí. 8000 Hz requiere **USB de alta velocidad** y soporte del SO/driver. Si el sistema limita a 1000 Hz, no verás 8K aunque lo selecciones en el software del teclado."
+---
+
+# 8000 Hz ≠ 0,125 ms: entiende el **pipeline** de una pulsación
+
+Subir la tasa de sondeo a **8000 Hz** significa que el dispositivo **puede** emitir un informe cada **0,125 ms**. Pero la latencia que notas (desde que tocas la tecla hasta que el juego reacciona y lo ves en pantalla) es la suma de **muchas etapas**. Por eso **0,125 ms** no es tu latencia real.
+
+<Note>
+**Polling rate** = cada cuánto *se reporta* el estado.  
+**Latencia end-to-end** = tiempo total desde **dedo → pantalla**.
+</Note>
+
+---
+
+## De la tecla a la pantalla: qué añade retraso
+
+1. **Escaneo de matriz** del teclado  
+   El microcontrolador recorre filas/columnas para ver qué cambió. Frecuencias típicas ~500–2000 Hz → **0,5–1,0 ms** (promedio ~T/2).
+
+2. **Debounce** (antirrebote)  
+   Filtra el “ruido” del contacto mecánico. Ajustable (p. ej., **2–6 ms** habituales). Menos debounce = menos latencia… y **más riesgo de chatter**.
+
+3. **Firmware y empaquetado**  
+   El teclado decide cuándo formar un **informe HID**. Puede **agrupar** cambios y esperar el próximo slot.
+
+4. **USB (o radio) scheduling**  
+   - **USB**: la transferencia ocurre en el próximo microframe disponible (**125 μs** en alta velocidad).  
+   - **2.4 GHz**: añade **cola, canal, interferencias** y posibles **retransmisiones**.
+
+5. **Pila HID del sistema operativo**  
+   El informe entra a drivers y colas del SO (HID → OS input). Añade **overhead** y **variabilidad** (carga de CPU, energía).
+
+6. **Motor del juego**  
+   Muchos motores **muestrean inputs por frame** (al inicio de cada fotograma). A 240 FPS, cada frame son **4,17 ms**; a 144 FPS, **6,94 ms**. Si tu tecla llega justo después del muestreo, espera al siguiente.
+
+7. **Render + Present + Pantalla**  
+   El frame se renderiza, se presenta (posible **vsync/latencia**), y la pantalla hace **scan-out** (por ejemplo, 240 Hz → **~4 ms** de barrido de arriba a abajo).
+
+**Conclusión:** el **0,125 ms** del polling es solo *una* pieza. El resto puede sumar **varios milisegundos**.
+
+---
+
+## Un número ilustrativo
+
+Supón: escaneo **1 kHz** (~**0,5 ms** promedio) + debounce **4 ms** + polling **8 kHz** (~**0,0625 ms** promedio de espera) + SO/driver **0,2–0,8 ms** + motor a **240 FPS** (espera media **~2 ms**).  
+Tu latencia “tecla → juego” ya ronda **~6,5–7,5 ms** *antes* de contar la pantalla.
+
+Si comparas **1000 Hz** vs **8000 Hz**, la diferencia en el componente “espera de USB” pasa de ~**0,5 ms** a ~**0,0625 ms**: **~0,44 ms** de mejora **teórica**. Útil, sí; **no** transforma mágicamente en 0,125 ms.
+
+---
+
+## ¿Cuándo 8000 Hz ayuda más?
+
+- **Reducir jitter** de entrega (informes más frecuentes → menos “granularidad”).  
+- **Mouse tracking** continuo se beneficia más que el **tecleo** discreto.  
+- **Setups muy afinados** (debounce bajo pero estable, 240–360 FPS, cable/2.4 sólido) exprimen mejor esa ganancia sub-milisegundo.
+
+---
+
+## Consejos para bajar la **latencia efectiva**
+
+- **Cable o 2.4 GHz** de buena marca; si usas 2.4, **extensor USB** y alejar de **USB 3.0**/metal.  
+- Ajusta **debounce** con cabeza (p. ej., **4–6 ms** global; menor solo en teclas críticas si tu firmware lo permite).  
+- Mantén **firmware** al día; evita software que inyecte delay (macros/overlays pesados).  
+- En el juego: busca **alta tasa de FPS**, **input sampling** temprano, modos de **baja latencia** y cuida la **cola de render**.  
+- Pantalla: **alto Hz**, desactiva sin necesidad el **vsync** clásico o usa alternativas de baja latencia.
+
+---
+
+## Resumen
+
+- **8000 Hz = 0,125 ms por informe**, no **0,125 ms de dedo a pantalla**.  
+- El pipeline real incluye **escaneo, debounce, USB/radio, SO, motor del juego y panel**.  
+- En teclado, pasar de 1000 → 8000 Hz típicamente ahorra **~0,4–0,5 ms** en la parte de USB, que puede perderse si el resto no está afinado.
+
+---
+
+## CTA
+
+¿Quieres un teclado **baja latencia** bien configurado (cable/2.4, debounce por tecla, perfiles de juego) y listo para Chile? Te ayudamos a ajustarlo a tu setup.
+
+👉 **Explorar teclados y asesoría:** https://saintgeek.cl/

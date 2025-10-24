@@ -1,0 +1,145 @@
+---
+title: "Tasa de sondeo del teclado: de 125 Hz a 8000 Hz — ¿Cuál es mejor?"
+slug: "tasa-sondeo-teclado-125-8000-hz-cual-es-mejor"
+summary: "Qué cambia realmente entre 125, 250, 500, 1000, 2000, 4000 y 8000 Hz. Diferencia entre polling y latencia end-to-end, requisitos de hardware/OS, consumo de CPU y recomendaciones por tipo de uso."
+description: "Guía completa sobre la tasa de sondeo (polling rate) en teclados: intervalos de informe, USB vs 2.4 GHz vs Bluetooth, cuándo se notan las mejoras, dónde hay rendimientos decrecientes y cómo configurarlo sin romper la estabilidad."
+publishedAt: 2025-10-24
+updatedAt: 2025-10-24
+author: "SaintGeek"
+locale: "es-CL"
+category: "latencia"
+tags:
+  - polling rate
+  - 8000 Hz
+  - latencia
+  - teclados
+  - gaming
+  - Chile
+cover: "/images/blog.webp"
+draft: false
+readingTime: 10
+faq:
+  - question: "¿Subir a 8000 Hz hace que mi latencia sea 0,125 ms?"
+    answer: "No. 0,125 ms es el intervalo entre informes USB. La latencia real incluye escaneo de matriz, debounce, radio/USB, sistema operativo, motor del juego y pantalla."
+  - question: "¿Hay diferencia visible entre 1000 Hz y 8000 Hz en teclado?"
+    answer: "En teclado, el salto reduce un poco el ‘jitter’ de entrega, pero el beneficio es menor que en mouse. En juegos que muestrean inputs por frame, la mejora puede quedar oculta."
+  - question: "¿Bluetooth soporta 1000–8000 Hz?"
+    answer: "No en el uso típico de teclados. Bluetooth prioriza bajo consumo y estabilidad; cable o 2.4 GHz son las opciones para polling alto y menor latencia."
+  - question: "¿8000 Hz exige algo especial de mi PC?"
+    answer: "Sí: controlador y sistema con soporte para alta velocidad USB y drivers del fabricante. Si el SO limita a 1000 Hz, no verás 8K aunque lo actives en el software."
+  - question: "¿Bajar el debounce a 0–1 ms es buena idea?"
+    answer: "Puede reducir latencia, pero aumenta el riesgo de ‘chatter’ (dobles pulsaciones) en switches de contacto. Lo sensato suele ser 2–6 ms, o por tecla si tu firmware lo permite."
+---
+
+# Keyboard Polling Rate: de **125 Hz** a **8000 Hz** — ¿Cuál es mejor?
+
+Aumentar la tasa de sondeo significa que el teclado **informa su estado más seguido**. A 1000 Hz, puede mandar un informe cada **1 ms**; a 8000 Hz, cada **0,125 ms**.  
+Pero **polling ≠ latencia total**: la respuesta que sientes depende de **toda la cadena** (tecla → firmware → USB/radio → sistema → juego → pantalla).
+
+<Note>
+Si vienes por la versión corta: **1000 Hz** es un **estándar sólido**. **2000–8000 Hz** puede aportar **ligero** beneficio (menor jitter) en setups muy afinados; no esperes milagros si el resto del pipeline no acompaña.
+</Note>
+
+---
+
+## 1) Cuánto tiempo hay entre informes
+
+| Polling | Intervalo (teórico) | Comentario práctico |
+|---:|---:|---|
+| **125 Hz** | 8,00 ms | Suficiente para oficina; en juegos introduce granularidad visible. |
+| **250 Hz** | 4,00 ms | Mejor, pero hoy raro en teclados gaming. |
+| **500 Hz** | 2,00 ms | Aceptable para jugar; ya no es tope actual. |
+| **1000 Hz** | 1,00 ms | **Base recomendada** en 2025 para teclado gaming. |
+| **2000 Hz** | 0,50 ms | Beneficio marginal respecto a 1K si el juego muestrea por frame. |
+| **4000 Hz** | 0,25 ms | Exige buen firmware y stack USB estable. |
+| **8000 Hz** | 0,125 ms | Requiere soporte de alta velocidad/driver; mejora principalmente el **jitter**. |
+
+> La **mejora teórica** de 1000 → 8000 Hz en la **espera de USB** es ~**0,875 ms** en el peor caso (~**0,44 ms** de media). El resto de etapas puede sumar varios ms.
+
+---
+
+## 2) ¿Por qué 8000 Hz no te da 0,125 ms de latencia?
+
+Porque tu pulsación atraviesa más etapas:
+
+1. **Escaneo de matriz** (el microcontrolador revisa filas/columnas).  
+2. **Debounce** (antirrebote para evitar dobles).  
+3. **Empaquetado** en informe HID.  
+4. **Transporte** (USB o **2.4 GHz** con posibles retransmisiones).  
+5. **Pila del sistema** (drivers/colas del SO).  
+6. **Muestreo del juego** (normalmente **por frame**).  
+7. **Render + present + panel** (el monitor “barre” la imagen).
+
+Subir el polling reduce **una** parte. Si juegas a 144–240 FPS, el **muestreo por frame** ya mete **4–7 ms** de ventana.
+
+---
+
+## 3) Cable, 2.4 GHz o Bluetooth
+
+- **Cable (USB)**: referencia de **estabilidad**. Soporta 1000–8000 Hz si hardware/driver lo permiten.  
+- **2.4 GHz propietario**: puede acercarse a cable; cuida **interferencias** (usa **extensor USB**, aléjalo de puertos **USB 3.0** y chasis metálicos).  
+- **Bluetooth**: prioriza **bajo consumo y compatibilidad**. No es la vía para 1–8K en teclado ni para competitivo.
+
+---
+
+## 4) ¿Se nota de verdad?
+
+- En teclado, la **ganancia de 1K→8K** es **sutil**: menos **jitter** en el momento exacto de entrega.  
+- Si tu **debounce** es alto, o el juego **lee por frame**, el beneficio puede perderse.  
+- En **mouse**, 8K impacta más (movimiento continuo). En **teclado**, es un input **discreto**.
+
+---
+
+## 5) Requisitos y estabilidad
+
+- **Soporte del sistema/driver** para >1K.  
+- Firmware **maduro** (sin colas extra, ni agregación excesiva).  
+- **CPU**: 8K genera más interrupciones; en PCs antiguos puede afectar estabilidad/temperatura **sin** ganancia perceptible.
+
+---
+
+## 6) Recomendaciones por perfil
+
+**FPS competitivo / tryhard**  
+- **1000 Hz** como base.  
+- Prueba **2000–8000 Hz** **solo** si tu stack (teclado/driver/OS/juego) es estable y a **altos FPS**.  
+- Ajusta **debounce** con cabeza (p. ej., 4–6 ms; menos en teclas críticas si no aparece chatter).
+
+**MOBA/ARPG/mixto**  
+- **1000 Hz** suficiente. 2–4–8K es nice-to-have, no imprescindible.
+
+**Oficina / portátil / batería**  
+- **500–1000 Hz** equilibran consumo y sensación. Bluetooth a 125–250 Hz está bien para escribir.
+
+---
+
+## 7) Guía de ajuste (paso a paso)
+
+1. **Actualiza firmware** y software del teclado.  
+2. Fija **1000 Hz** y verifica estabilidad (tester de teclado + tu juego).  
+3. Sube a **2000/4000/8000 Hz** y comprueba **microcortes** o entradas perdidas.  
+4. Si usas **2.4 GHz**, coloca el **dongle en un extensor** a 20–30 cm del teclado.  
+5. Ajusta **debounce**: empieza en **4–6 ms**; baja en teclas críticas **solo** si no hay dobles.  
+6. En juego, busca **alta tasa de FPS** y modos de **baja latencia**.
+
+---
+
+## 8) Mitos rápidos
+
+- **“8K = 0,125 ms de dedo a pantalla”** → ❌ No. Es solo el **intervalo de informe**.  
+- **“Bluetooth a 8K es igual que cable”** → ❌ No es el objetivo de BT en teclados.  
+- **“Si no pones 8K pierdes”** → ❌ 1000 Hz ya es excelente; enfócate primero en **técnica**, **estabilidad** y **FPS**.
+
+---
+
+## Conclusión
+
+La tasa de sondeo alta **ayuda**, pero no **resuelve sola** la latencia. Para teclado, **1000 Hz** es el sweet spot moderno; **2000–8000 Hz** pulen la entrega en setups de gama alta y bien afinados. Prioriza **firmware estable**, **conectividad limpia** y **FPS altos** antes de perseguir números.
+
+---
+
+## CTA
+
+¿Quieres un teclado **baja latencia** ya ajustado (cable/2.4, debounce por tecla, perfiles de juego) y compatible con Chile? Te asesoramos para dejarlo perfecto en tu setup.
+
+👉 **Explorar teclados y asesoría:** https://saintgeek.cl/

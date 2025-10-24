@@ -67,10 +67,19 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es">
-      <head>
+       <head>
         {/* ✅ Explicit favicon for Googlebot */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+
+        {/* ✅ Comprehensive favicon set */}
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png" />
+        <link rel="icon" type="image/png" sizes="192x192" href="/favicon_io/android-chrome-192x192.png" />
+        <link rel="icon" type="image/png" sizes="512x512" href="/favicon_io/android-chrome-512x512.png" />
+        <link rel="manifest" href="/favicon_io/site.webmanifest" />
+        <meta name="theme-color" content="#0C0D0E" />
       </head>
       <body className="flex flex-col min-h-screen bg-[#0C0D0E] text-[#e9e9ea] ">
       

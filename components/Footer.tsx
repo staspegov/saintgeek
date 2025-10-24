@@ -8,7 +8,7 @@ export default function Footer() {
   const [message, setMessage] = useState("")
 
   const handleSendWhatsApp = () => {
-    const phone = "56912345678" // 👈 aquí tu WhatsApp real
+    const phone = "56963335579" // 👈 aquí tu WhatsApp real
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`
     window.open(url, "_blank")
   }
@@ -36,7 +36,7 @@ export default function Footer() {
           {/* Columna 3 */}
           <div>
             <h3 className="text-white font-bold mb-3">Contacto</h3>
-            <p>Email: <a href="mailto:info@saintgeek.cl" className="hover:text-white">info@saintgeek.cl</a></p>
+            <p>Email: <a href="mailto:saintgeekventas@gmail.com" className="hover:text-white">info@saintgeek.cl</a></p>
             <button
               onClick={() => setOpenPopup("contact")}
               className="hover:text-white"
