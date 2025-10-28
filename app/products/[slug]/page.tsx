@@ -16,6 +16,7 @@ import ProductFeatures from "@/components/ProductFeatures"
 import SelectorKeycaps from "@/components/SelectorKeycaps"
 import TransferCheckoutButton from "@/components/TransferCheckoutButton"
 import CreditCalcButton from "@/components/CreditCalcButton"
+import Diagram from "@/components/Diagram"
 
 type Props = { params: { slug: string } }
 
@@ -230,6 +231,7 @@ export default function ProductPage({ params }: Props) {
       <VideoSection videoId="UPpDrkN-otQ" />
       <ProductSpecs product={p} />
       <ProductFeatures />
+       <Diagram />
       <SelectorKeycaps product={p} />
 
       {/* Características */}
