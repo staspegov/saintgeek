@@ -1,0 +1,157 @@
+---
+title: "Cómo reparar una tecla que no responde"
+slug: "como-reparar-una-tecla-que-no-responde"
+summary: "Diagnóstico paso a paso cuando una tecla no funciona: pruebas rápidas de software/OS, cable o 2.4 GHz, capas y firmware, limpieza, estabilizadores y reemplazo de switch en PCB hot-swap."
+description: "Guía práctica para recuperar una tecla ‘muerta’ en teclados mecánicos: identificar si es problema de software, conexión, keymap o hardware (switch/estabilizador/socket). Instrucciones para hot-swap, soldado y cuándo solicitar RMA."
+publishedAt: 2025-10-29
+updatedAt: 2025-10-29
+author: "SaintGeek"
+locale: "es-CL"
+category: "mantenimiento"
+tags:
+  - reparación
+  - teclados mecánicos
+  - hot-swap
+  - estabilizadores
+  - firmware
+  - Chile
+cover: "/images/blog.webp"
+draft: false
+readingTime: 9
+faq:
+  - question: "La tecla ‘Win’ o ‘Fn’ no responde, ¿está rota?"
+    answer: "Probablemente no. Muchos teclados traen ‘Game Mode’ que bloquea la tecla Windows y la fila F puede depender de ‘Fn Lock’. Revisa si hay un indicador o combinación para alternarlos y prueba de nuevo."
+  - question: "¿Cómo sé si el problema es el switch o el socket hot-swap?"
+    answer: "Intercambia el switch con otra posición que sí funcione. Si la tecla ‘muerta’ revive con el switch bueno, era el switch. Si el switch bueno tampoco funciona en ese hueco, sospecha del socket/PCB."
+  - question: "¿Sirve limpiar sin desmontar para una tecla muerta?"
+    answer: "Si hay suciedad que impide la carrera del stem, una limpieza superficial puede ayudar. Si el contacto interno falló, solo cambiar o resoldar el switch lo arregla."
+  - question: "¿Resetear el firmware borra mis macros?"
+    answer: "Depende del modelo. En QMK/VIA, re-flashear puede resetear el keymap al default. Exporta tu layout antes de resetear."
+  - question: "Derramé líquido y una tecla murió, ¿qué hago?"
+    answer: "Desconecta, voltea y deja secar 24–48 h. Si el líquido era azucarado, la solución real es limpieza interna. Si la tecla sigue muerta, requiere servicio (reemplazo de switch/PCB) o RMA."
+---
+
+# Cómo reparar una tecla que **no responde**
+
+Antes de asumir que el switch murió, conviene descartar **software, conexión y keymap**. Con este flujo rápido podrás saber **qué falla** y **cómo arreglarlo** con el menor esfuerzo.
+
+<Note>
+**Orden recomendado**: 1) pruebas de **software/OS**, 2) **conexión** (cable/2.4), 3) **keymap/firmware**, 4) **limpieza**, 5) **switch/estabilizador**, 6) **socket/PCB**.
+</Note>
+
+---
+
+## 1) Pruebas rápidas de software/OS
+
+- **Comprueba en otro programa** y en un **tester de teclado** (web).  
+- Revisa que no esté activo **Game Mode** (bloquea Windows) ni **Fn Lock** (cambia F1–F12).  
+- En el sistema:
+  - Windows: desactiva **Sticky/Filter Keys** (Accesibilidad).
+  - macOS: mira **Entrada** (layout correcto) y **Teclado → Teclas modificadoras**.
+- **Cambia de layout** temporalmente (ES-LatAm ↔ US) para descartar mapeo raro.  
+- Si la tecla funciona en otro PC/OS, el problema era **software** local.
+
+---
+
+## 2) Conexión: cable, 2.4 GHz y puertos
+
+- **USB directo** a la placa madre (evita hubs/KVM).  
+- Prueba **otro cable USB-C**.  
+- En **2.4 GHz**: usa **extensor USB** para acercar el dongle al teclado y aléjalo de puertos **USB 3.0**/chasis metálicos.  
+- **Batería** baja en wireless puede provocar fallos intermitentes.
+
+---
+
+## 3) Keymap y firmware
+
+- Si usas **VIA/QMK** o software del fabricante, verifica que esa tecla no esté **remapeada** a `Transp/None`.  
+- **Cambia de perfil** o carga el **default** del teclado.  
+- Actualiza **firmware** oficial; si nada cambia, prueba **reset de fábrica** (respalda tus macros).
+
+---
+
+## 4) Limpieza segura (sin abrirlo)
+
+- Retira la **keycap**.  
+- Sopletea con **aire comprimido** a 45°, usa **brocha antiestática**.  
+- Si hay grasa o residuos alrededor del switch, microfibra **apenas humedecida** con **IPA 70–90%** (no satures).  
+- Vuelve a probar.  
+> Si la tecla sigue muerta, avanza a hardware.
+
+---
+
+## 5) Estabilizadores (si es tecla larga)
+
+Para **Espacio / Enter / Shift**:
+- A veces un **stab** mal asentado impide el recorrido.  
+- Presiona **cerca del centro**. Si responde ahí pero no en los extremos, re-asienta el estabilizador (requiere abrir o, si es plate-mount, retirarlo y montarlo de nuevo).  
+- Lubrica y elimina “tick” cuando lo reinstales.
+
+---
+
+## 6) Switch (hot-swap)
+
+Si tu PCB es **hot-swap** (Kailh/Outemu sockets):
+
+1. **Apaga y desconecta**.  
+2. Quita la **keycap** y extrae el **switch** con el extractor.  
+3. **Inspecciona pines**: endereza con cuidado los metálicos si están doblados.  
+4. **Limpia el hueco** (aire/brocha).  
+5. **Recoloca** el switch recto hasta escuchar/sentir que encaja.  
+6. **Prueba**.  
+7. **A/B test**: intercambia por un switch que funcione.  
+   - Si el **switch bueno** tampoco funciona en ese hueco → sospecha **socket/PCB**.  
+   - Si la tecla revive con el switch bueno → cambia ese **switch**.
+
+> Si tu switch es **5 pines** y tu PCB solo admite **3**, recorta **solo** las **dos guías plásticas** laterales (no los pines metálicos).
+
+---
+
+## 7) Switch (PCB **soldada**)
+
+- Requiere **desoldar** el switch y soldar uno nuevo.  
+- Si no tienes experiencia/herramientas, es mejor **servicio técnico** o **RMA** (si está en garantía).
+
+---
+
+## 8) Socket/PCB (cuando ni un switch bueno funciona ahí)
+
+- **Socket flojo/dañado**: puede haberse levantado o roto el contacto interno.  
+- **Fría** o pista dañada (en soldada): necesita **reparación electrónica**.  
+- Solución: **RMA** si es nuevo; de lo contrario, técnico que **reemplace socket** o repare la pista.
+
+---
+
+## Tabla rápida: síntoma → causa → solución
+
+| Síntoma | Causa probable | Solución |
+|---|---|---|
+| Solo falla en un programa | Config/atajo de ese software | Reasigna atajo o prueba en otra app |
+| Tecla Win/F no va | Game Mode / Fn Lock | Desactiva modo o alterna Fn Lock |
+| Intermitente en wireless | Interferencias / batería | Extensor USB, alejar de USB 3.0, recargar |
+| Tecla larga funciona solo al centro | Estabilizador mal asentado | Reasentar/lubricar stab |
+| Tecla muerta tras cambiar keycaps | Switch torcido/pines doblados | Reseat, enderezar pines |
+| Cambié switch y sigue muerta | Socket/PCB | Servicio técnico / RMA |
+| No funciona en ningún PC | Hardware del teclado | RMA/servicio |
+
+---
+
+## Notas para Chile
+
+- Verifica **layout** si necesitas “ñ” (**ISO Español–LatAm**).  
+- Prefiere tiendas con **devolución clara** y repuestos (switches/stabs).  
+- Si el teclado es nuevo y fallan 1–2 teclas, **no lo sigas manipulando**: tramita **garantía legal**.
+
+---
+
+## Conclusión
+
+La mayoría de teclas “muertas” se resuelven con **revisión de keymap**, **conexión**, un **reseat de switch** o un ajuste del **estabilizador**. Si incluso un **switch conocido** no funciona en ese hueco, es tema de **socket/PCB** y conviene **RMA** o reparación.
+
+---
+
+## CTA
+
+¿Necesitas un **kit hot-swap** para probar switches o un servicio de afinación/reparación? Te ayudamos a dejar tu teclado **impecable** y listo para Chile.
+
+👉 **Explorar teclados y servicio:** https://saintgeek.cl/
