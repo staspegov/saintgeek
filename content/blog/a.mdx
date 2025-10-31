@@ -1,0 +1,153 @@
+---
+title: "Tiempo de rebote en teclados mecánicos: cómo afecta"
+slug: "tiempo-de-rebote-debounce-teclados-mecanicos"
+summary: "El ‘rebote’ de los contactos añade milisegundos y puede provocar dobles pulsaciones si no se filtra. Te explico qué es el debounce, cuánto poner (gaming/oficina), cómo interactúa con el polling y cómo medirlo."
+description: "Guía clara sobre el tiempo de rebote (debounce) en teclados mecánicos: fundamentos, valores recomendados, diferencia entre switches de contacto vs ópticos/Hall, relación con 1000–8000 Hz y pasos para ajustarlo en QMK/VIA o software de marca."
+publishedAt: 2025-10-31
+updatedAt: 2025-10-31
+author: "SaintGeek"
+locale: "es-CL"
+category: "latencia"
+tags:
+  - debounce
+  - latencia
+  - teclados mecánicos
+  - QMK
+  - gaming
+  - Chile
+cover: "/images/blog.webp"
+draft: false
+readingTime: 9
+faq:
+  - question: "¿Qué valor de debounce es ‘seguro’ para la mayoría?"
+    answer: "Entre 4 y 6 ms funciona bien para la mayoría de teclados de contacto. Es un equilibrio: baja probabilidad de chatter sin sumar demasiada latencia."
+  - question: "¿Puedo poner 0–1 ms para reducir la latencia?"
+    answer: "Solo si tu hardware lo tolera. Con 0–1 ms aumentan mucho los falsos dobles (chatter). Pruébalo en unas pocas teclas críticas y valida con tests largos."
+  - question: "¿Los switches ópticos o de efecto Hall necesitan debounce?"
+    answer: "No por ‘rebote mecánico’ del contacto (no hay contacto físico), pero el firmware suele aplicar filtros/suavizado. La latencia no es cero: aún hay escaneo, colas y SO/juego."
+  - question: "¿Debounce alto afecta mi velocidad al escribir?"
+    answer: "Afecta poco la WPM, pero suma milisegundos a cada transición. Si escribes rápido y haces pulsaciones muy cortas, un debounce excesivo puede ‘comerse’ alguna repetición intencional."
+  - question: "¿Cómo sé si mi chatter es por debounce o por hardware?"
+    answer: "Si subes el debounce y desaparece, era rebote/ruido. Si persiste, revisa lubricación/ensamble de estabilizadores, cambia el switch o prueba otro socket para aislar la causa."
+---
+
+# Tiempo de **rebote** (debounce) en teclados mecánicos
+
+Cuando presionas una tecla con switch **de contacto** (tipo Cherry MX y clones), los contactos **no** cambian de estado una sola vez: “**rebotan**” durante unos milisegundos, generando una serie de ON/OFF muy rápidos.  
+El **debounce** es un filtro de **firmware** que ignora ese ruido y decide **cuándo** aceptar el cambio como válido.
+
+<Note>
+**Idea clave**: menos debounce = **menos latencia** pero **más riesgo** de dobles pulsaciones (*chatter*). Más debounce = **más estable** pero añade **ms** al tiempo de activación.
+</Note>
+
+---
+
+## ¿Cuánto agrega a la latencia?
+
+El debounce suele ser una **ventana fija**. Si pones **5 ms**, el firmware esperará hasta 5 ms para confirmar una transición estable.  
+En la práctica, la latencia añadida se aproxima a ese valor (a veces algo menos según implementación).
+
+**Pipeline simplificado (presionar → juego):**
+
+- Escaneo de matriz (0,5–1 ms típico)
+- **Debounce** (p. ej., 2–6 ms)
+- Empaquetado y reporte (USB/2.4 GHz)
+- Pila HID del SO
+- Muestreo del motor del juego (por frame)
+- Render/pantalla
+
+Reducir debounce **reduce una parte** del total, pero no mágicamente todo el camino.
+
+---
+
+## Valores recomendados (puntos de partida)
+
+| Uso / Hardware | Debounce sugerido | Comentario |
+|---|---:|---|
+| **Gaming competitivo (contacto)** | **2–4 ms** | Valida chatter. Si aparece, sube 1 ms. Puedes bajar solo en teclas críticas. |
+| **Mixto (juego + trabajo)** | **4–6 ms** | Buen equilibrio general; raro ver chatter aquí. |
+| **Oficina / escritura intensiva** | **4–8 ms** | Consistencia y baja tasa de falsos; la WPM no sufre. |
+| **Ópticos / Hall (sin contacto)** | **0–2 ms** (o filtro mínimo) | No hay rebote mecánico, pero el firmware puede suavizar/umbralizar. |
+
+> **Consejo**: ajusta, luego ejecuta **tests largos** (1000–2000 pulsaciones por tecla) para detectar chatter real y no casos aislados.
+
+---
+
+## Debounce vs **polling rate** (1000–8000 Hz)
+
+- Subir a **8000 Hz** baja el **intervalo de informe USB** (0,125 ms), pero **no** toca el rebote del switch.  
+- Si sigues con **6 ms** de debounce, el ahorro de USB puede quedar escondido.  
+- Los mejores resultados vienen de **todo** el pipeline alineado: **debounce razonable**, firmware estable, buena conexión y FPS altos.
+
+---
+
+## ¿Y los switches **ópticos** o **Hall**?
+
+- **Ópticos**: interrumpen un haz de luz; no hay contacto mecánico → **sin rebote** clásico.  
+- **Hall**: miden campo magnético; también **sin rebote** de contacto.  
+- Aun así, el firmware suele aplicar **suavizados/umbrales** para evitar falsos positivos y dar consistencia.  
+- Son excelentes si buscas **latencia baja consistente** y toleras su sensación (diferente a MX de contacto).
+
+---
+
+## Cómo **ajustarlo** en la práctica
+
+### Teclados con software de marca
+- Busca “**debounce**” o “**chatter control**”.  
+- Empieza en **4–6 ms** y prueba.  
+- Si permite por-tecla, ajusta **menor** en las que usas para disparar/saltar y **mayor** en modifiers.
+
+### QMK/VIA (ejemplo)
+- Muchos builds dejan `DEBOUNCE` en **5 ms** por defecto.  
+- Si compilas QMK, puedes cambiar `DEBOUNCE` en `config.h`.  
+- Haz pruebas largas y revisa **eventos duplicados** en un tester antes de usarlo en ranked.
+
+> Si tu firmware ofrece **“debounce por tecla”**, es ideal: deja **2–3 ms** en 1–2 teclas críticas y **4–6 ms** en el resto.
+
+---
+
+## Cómo **detectar** chatter y latencia real
+
+- **Tester de teclado** en web/desktop: busca **pares de eventos** muy juntos cuando solo pulsaste una vez.  
+- **Grabación a alta velocidad** (240–960 fps) + contador en pantalla: mide del contacto visible a la acción.  
+- Corre **series largas** (1000+ eventos) y mira **p50/p95**: la media engaña; busca colas largas (jitter).
+
+---
+
+## Checklist de diagnóstico
+
+- [ ] Actualiza **firmware** del teclado (y del dongle 2.4 GHz si aplica).  
+- [ ] Verifica **cable/puertos** o usa **extensor USB** en 2.4 GHz para evitar interferencias.  
+- [ ] Empieza con **4–6 ms**; baja solo si no hay chatter.  
+- [ ] Valida por **tecla** (algunas son más propensas a rebotar).  
+- [ ] Si notas chatter con valores sensatos, revisa **switch** (cámbialo de posición), **socket** y **estabilizadores**.
+
+---
+
+## Mitos rápidos
+
+- **“1 ms siempre es mejor”** → ❌ Solo si tu hardware lo tolera. Muchos switches de contacto **rebotan** más de 1 ms.  
+- **“Con 8K ya no importa el debounce”** → ❌ El polling no arregla rebote mecánico.  
+- **“Óptico = 0 ms real”** → ❌ Sin rebote, sí; pero aún existe escaneo, colas, SO y muestreo del juego.
+
+---
+
+## Notas para Chile
+
+- Si compites en cafés/arenas, lleva tu **cable** y, si usas 2.4, un **extensor USB**.  
+- Verifica **garantía** antes de flashear firmwares no oficiales.  
+- En oficina, prioriza **consistencia** (4–6 ms) y silencio por sobre el último ms.
+
+---
+
+## Conclusión
+
+El **debounce** es un **trade-off** controlable: baja latencia vs estabilidad. Para la mayoría, **4–6 ms** es el punto dulce; bajar más exige **validación rigurosa** y buen hardware. Si quieres latencia muy baja con menos riesgo de chatter, considera **ópticos/Hall**, pero recuerda que el pipeline completo manda.
+
+---
+
+## CTA
+
+¿Quieres dejar tu teclado **afinadísimo** (debounce por tecla, perfiles de juego, 2.4 GHz/cable estable) o cambiar a switches ópticos/Hall?
+
+👉 **Explorar teclados y asesoría:** https://saintgeek.cl/

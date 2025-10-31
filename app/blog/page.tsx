@@ -201,6 +201,7 @@ export default function BlogPage() {
                     </span>
                   )}
                   <span>{new Date(p.publishedAt).toLocaleDateString("es-CL")}</span>
+                  
                 </div>
                 <h3 className="text-lg font-semibold group-hover:text-lime-400">
                   {p.title}
