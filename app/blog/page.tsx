@@ -200,11 +200,7 @@ export default function BlogPage() {
                       {p.category}
                     </span>
                   )}
-                  <span>
-  {new Date(p.publishedAt).toLocaleDateString("es-CL", {
-    timeZone: "America/Santiago",
-  })}
-</span>
+         <span>{new Date(p.publishedAt).toLocaleDateString("es-CL")}</span>
 
                   
                 </div>
