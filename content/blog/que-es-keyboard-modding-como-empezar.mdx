@@ -1,0 +1,166 @@
+---
+title: "Qué es el “keyboard modding” y cómo empezar"
+slug: "que-es-keyboard-modding-como-empezar"
+summary: "El ‘keyboard modding’ es el arte de ajustar sonido, sensación y estética de tu teclado: desde lubricar switches y estabilizadores hasta cambiar plate, espumas y firmware. Te explico qué necesitas y cómo dar tus primeros pasos en 60–90 minutos."
+description: "Guía para principiantes sobre modding de teclados mecánicos: objetivos acústicos, mods esenciales sin soldar (stabilizers, switches, espumas, tape/force break), herramientas básicas, riesgos y checklist paso a paso. Incluye notas para Chile."
+publishedAt: 2025-11-03
+updatedAt: 2025-11-03
+author: "SaintGeek"
+locale: "es-CL"
+category: "guías"
+tags:
+  - keyboard modding
+  - teclados mecánicos
+  - lubricación
+  - estabilizadores
+  - espumas
+  - hot-swap
+  - Chile
+cover: "/images/blog.webp"
+draft: false
+readingTime: 10
+faq:
+  - question: "¿Puedo empezar a ‘modear’ sin soldar?"
+    answer: "Sí. Si tu PCB es hot-swap, puedes cambiar switches, lubricar estabilizadores, añadir espumas y hacer mods como tape/force break sin tocar soldadura."
+  - question: "¿Qué lubricante usar para lineales y estabilizadores?"
+    answer: "Para lineales, una grasa ligera de PTFE (tipo 205g0 o equivalente). En estabilizadores, la misma grasa en rieles/housing y una gota de lubricante más denso en el alambre donde encaja."
+  - question: "¿El ‘tape mod’ sirve siempre?"
+    answer: "Da un timbre más ‘clacky/pop’ y refuerza graves, pero puede aumentar resonancias si te pasas. Empieza con 1 capa y evalúa antes de seguir."
+  - question: "¿Cuánto reduce el ruido poner espumas?"
+    answer: "Case foam quita reverberación interna. Plate foam homogeneiza tecla a tecla. No silencia ‘clics’ de switches clicky: para silencio real, usa switches silent + stabs bien afinados."
+  - question: "¿Pierdo garantía al abrirlo?"
+    answer: "Algunas marcas lo consideran manipulación. Si es nuevo, revisa la política antes de abrir. Evita marcas, golpes en PCB y conserva tornillos para rearmar como venía."
+---
+
+# Keyboard **modding**: personaliza sonido, sensación y estética
+
+“Modding” es ajustar un teclado para que **suene** y **sienta** exactamente como quieres. No necesitas soldar: con **herramientas básicas** puedes mejorar estabilizadores, switches y acústica en una tarde.
+
+<Note>
+Empieza **de menos a más**: 1) estabilizadores, 2) espumas y “force break”, 3) switches (lub/films), 4) plate/case si quieres otro carácter. Cambia **una variable por vez** y prueba.
+</Note>
+
+---
+
+## Objetivos típicos (elige el tuyo)
+
+- **Silencioso/office**: minimizar traqueteos y “ping”, bajar agudos.  
+- **“Thock”** (grave, lleno): graves controlados, sin caja hueca.  
+- **“Clack”** limpio: ataque claro y nítido, sin ruidos metálicos.  
+- **Feel suave**: recorrido estable, estabilizadores sin scratch, teclas largas sólidas.  
+- **Estética**: keycaps, iluminación, cable, case.
+
+---
+
+## Kit mínimo (principiante)
+
+- Extractor de **keycaps** y de **switches** (si es hot-swap).  
+- **Brocha** suave + **aire** para limpieza.  
+- **Lubricante** de PTFE/silicona para switches lineales y estabilizadores.  
+- **Pincel fino** (n° 0–2) y/o aplicador.  
+- **Espuma** fina (poron/EVA) para interior del case y, opcional, plate foam.  
+- **Cinta** (tape mod; de papel o vinílica fina).  
+- **Alcohol isopropílico** 70–99% y microfibra.
+
+*(Avanzado: estación de soldadura, si cambiarás sockets/LEDs/PCB.)*
+
+---
+
+## Mods esenciales (sin soldar)
+
+### 1) Estabilizadores (stabs)
+- **Qué**: afinarlos elimina traqueteo en **Espacio, Enter, Shift**.  
+- **Cómo**: quita keycaps, retira stabs si son plate/PCB-mount, **lubrica rieles** y **punto de alambre**; re-asienta hasta que no haya “tick”.  
+- **Impacto**: mayor mejora **percibida** por tiempo invertido.
+
+### 2) Espumas y “force break”
+- **Case foam** (fondo del case): reduce eco interno.  
+- **Plate foam** (entre plate y PCB): homogeniza tecla a tecla.  
+- **Force break**: tiras finas de poron en las superficies donde tapa/base hacen contacto → menos vibración transmitida.
+
+### 3) Tape mod (opc.)
+- 1–2 capas de cinta en la **cara trasera** de la PCB. **Realza** graves y el “pop”. Evita si buscas **silencio** absoluto.
+
+### 4) Switches: lub y films
+- **Lineales**: una capa **ligera y uniforme** en sliders/laterales; evita inundar el muelle.  
+- **Táctiles**: lubrica con moderación para no matar el **bache**.  
+- **Films** (si hay holgura entre housings): estabilizan sonido y reducen vibraciones.
+
+---
+
+## Cambios de piezas (cuando quieras subir de nivel)
+
+- **Plate**:  
+  - **PC/FR4** → más **suave** y grave.  
+  - **Aluminio/latón** → más **rigidez** y ataque.  
+- **Case**: materiales rígidos (aluminio) = claridad; plásticos/PC = timbre más redondo.  
+- **Keycaps**: **PBT** (mate, más grave) vs **ABS** (más brillante con el tiempo).  
+- **PCB**: **hot-swap** facilita vida; soldada es robusta pero menos flexible.
+
+---
+
+## ¿Qué mod para cada objetivo?
+
+| Objetivo | Haz esto primero | Evita |
+|---|---|---|
+| **Silencioso** | Stabs bien afinados + **lineales silent** + **case foam** | Clicky, PE foam si no quieres “pop” |
+| **Thock (grave)** | Case/plate foam + **force break** + PBT | Mucha rigidez sin amortiguación |
+| **Clack nítido** | Plate aluminio/latón + lub leve + PE (si te gusta el pop) | Espumas excesivas que ahogan ataque |
+| **Feel suave** | Lub lineales + films (si bailan) | Lub pesado en táctiles que mata el bache |
+
+---
+
+## Tu primer mod en **60–90 min** (paso a paso)
+
+1. **Desconecta** el teclado y retira **keycaps**.  
+2. **Limpia** polvo (brocha + aire).  
+3. **Estabilizadores**: retira, **lubrica** rieles y punto del alambre; reinstala.  
+4. Abre el **case** (si es sencillo) → coloca **case foam** recortado.  
+5. Si quieres más uniformidad, añade **plate foam** fina.  
+6. (Opc.) **Tape mod**: 1 capa en la cara trasera de la PCB.  
+7. **Reseata** todo, monta **keycaps** y prueba.  
+8. Si es **hot-swap**, lubrica 3–4 **switches** de muestra y compara antes de hacer todo el teclado.
+
+---
+
+## Errores comunes (y cómo evitarlos)
+
+- **Lub en exceso** → switches gomosos o bache táctil desaparece. *Menos es más*.  
+- **Perder tornillos/gomas** → usa bandeja y fotos del desarme.  
+- **Cinta tapando orificios** → no cubras zonas de tornillos o flex cables.  
+- **Cambiar demasiadas cosas a la vez** → haz **A/B** y documenta.  
+- **Romper clips de stabs** → extrae con calma y en el **ángulo correcto**.
+
+---
+
+## Troubleshooting rápido
+
+| Síntoma | Causa | Solución |
+|---|---|---|
+| “Ping” metálico | Case hueco / muelle seco | Case foam + lub ligero de muelle |
+| Tecla larga con “tick” | Stab mal asentado | Reasentar y lubricar alambre/rieles |
+| Sonido apagado y sin vida | Espumas en exceso | Quita plate foam o reduce capas |
+| Tecla no vuelve bien | Lub en exceso | Limpia y relubrica más ligero |
+| Doble pulsación | Debounce bajo / switch sucio | Sube debounce o cambia/limpia switch |
+
+---
+
+## Notas para Chile
+
+- **Alcohol isopropílico** (70–99%) se consigue en ferreterías/farmacias.  
+- Pide kits con **espumas precortadas** y estabilizadores **PCB-mount** de buena tolerancia.  
+- Si necesitas “**ñ**”, confirma **ISO Español–LatAm** o remapea en ANSI.
+
+---
+
+## Conclusión
+
+El modding es **iterativo**: pequeñas mejoras suman un teclado que **suena** y **se siente** a tu gusto. Empieza por **estabilizadores** y **acústica** del case; luego afina **switches**. Documenta cambios y disfruta el proceso.
+
+---
+
+## CTA
+
+¿Quieres un **kit de inicio** (espumas, lubricante, herramientas) o un teclado **hot-swap** listo para modear? Te asesoramos y despachamos en Chile.
+
+👉 **Explorar teclados y accesorios:** https://saintgeek.cl/
