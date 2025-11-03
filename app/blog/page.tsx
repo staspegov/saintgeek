@@ -200,7 +200,12 @@ export default function BlogPage() {
                       {p.category}
                     </span>
                   )}
-                  <span>{new Date(p.publishedAt).toLocaleDateString("es-CL")}</span>
+                  <span>
+  {new Date(p.publishedAt).toLocaleDateString("es-CL", {
+    timeZone: "America/Santiago",
+  })}
+</span>
+
                   
                 </div>
                 <h3 className="text-lg font-semibold group-hover:text-lime-400">
