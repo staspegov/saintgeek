@@ -1,0 +1,140 @@
+---
+title: "Guía rápida para reemplazar switches en teclados hot-swap"
+slug: "guia-rapida-reemplazar-switches-hot-swap"
+summary: "Cambia un switch en 5–10 minutos sin soldar: qué herramientas necesitas, cómo extraer y asentar correctamente, diferencias 3 vs 5 pines y cómo evitar doblar patas o dañar el socket."
+description: "Paso a paso para reemplazar switches en teclados hot-swap: seguridad, extracción, enderezado de pines, instalación correcta, pruebas y troubleshooting. Incluye tabla de errores comunes y notas para Chile."
+publishedAt: 2025-11-03
+updatedAt: 2025-11-03
+author: "SaintGeek"
+locale: "es-CL"
+category: "mantenimiento"
+tags:
+  - hot-swap
+  - switches
+  - teclado mecánico
+  - mantenimiento
+  - Chile
+cover: "/images/blog.webp"
+draft: false
+readingTime: 6
+faq:
+  - question: "¿Mi teclado hot-swap acepta cualquier switch MX?"
+    answer: "Si usa sockets estilo MX (Kailh/Outemu/propietarios), la mayoría de switches MX-compatibles sirven. Revisa si admite 3 o 5 pines; los ópticos/Hall solo sirven si la PCB fue diseñada para ellos."
+  - question: "¿Puedo cortar un switch de 5 pines para usarlo en PCB de 3 pines?"
+    answer: "Sí: recorta SOLO las dos guías plásticas laterales. No cortes ni dobles las dos patas metálicas centrales (son los contactos eléctricos)."
+  - question: "Duele mucho al insertar y no entra recto, ¿fuerzo más?"
+    answer: "No. Saca el switch, endereza pines con pinza y verifica la alineación con el socket. Forzar puede romper el socket hot-swap o doblar los pines dentro."
+  - question: "Tras cambiar el switch, la tecla sigue muerta, ¿qué hago?"
+    answer: "Intercambia por un switch que funcione en otra posición. Si tampoco funciona en ese hueco, sospecha del socket/PCB y considera garantía o servicio técnico."
+  - question: "¿Debo desconectar el teclado para cambiar switches?"
+    answer: "Sí. Apaga y desconecta (o quita el dongle 2.4 GHz). Evitas cortos, eventos fantasma y daños al socket."
+---
+
+# Reemplaza un switch hot-swap en **5–10 minutos**
+
+Con una PCB **hot-swap** puedes cambiar switches **sin soldar**. Solo necesitas el extractor correcto y algo de paciencia para no doblar pines ni maltratar el socket.
+
+<Note>
+Regla de oro: **desconecta** el teclado, trabaja con luz, alinea los pines, **no fuerces**. Si algo no entra suave, retira, revisa y vuelve a intentar.
+</Note>
+
+---
+
+## Lo que necesitas
+
+- **Extractor de keycaps** (alambre).
+- **Extractor de switches** (el metálico de dos “uñas”).
+- **Pinza fina** (para enderezar patas).
+- (Opcional) **Brocha/aire** para limpiar polvo.
+- (Opcional) **Extensor USB** si vas a probar en 2.4 GHz y quieres evitar interferencias.
+
+---
+
+## Antes de empezar (seguridad y compatibilidad)
+
+1. **Apaga y desconecta** el teclado (o retira el dongle).
+2. Verifica el **tipo de socket**:
+   - PCB para **3 pines** (dos metálicos + sin guías) o **5 pines** (dos metálicos + **dos guías plásticas** + guía central del housing).
+   - Si tu PCB es de **3 pines** y el switch es **5 pines**, **recorta** las **dos guías plásticas** laterales.  
+3. **Ópticos/Hall**: solo sirven si tu PCB lo soporta (no son MX de contacto).
+
+---
+
+## Paso a paso
+
+### 1) Retira la keycap
+Tira **recto hacia arriba** con el extractor de alambre. Evita palancas que puedan torcer el switch.
+
+### 2) Extrae el switch
+Con el extractor de switches:
+- Engancha las dos “uñas” por **arriba y abajo** del housing.
+- Presiona para **desenganchar** las pestañas del plate.
+- Tira **verticalmente**. Si se resiste, vuelve a enganchar y asegúrate de estar centrado.
+
+### 3) Revisa y endereza pines
+- Observa las **dos patas metálicas**. Si están torcidas, **endereza** suavemente con la pinza.
+- Sopla el hueco para quitar polvo. Revisa que el **socket** no tenga plástico suelto o daños.
+
+### 4) Inserta el switch nuevo (o el mismo rectificado)
+- Alinea pines con el socket y guías del plate.
+- Presiona **recto** hasta escuchar/sentir el encaje. No debe quedar holgura.
+- Si notas resistencia anormal, **retira**, revisa pines y vuelve a alinear.
+
+### 5) Coloca la keycap
+- Asegúrate de que el **stem** (cruz) quede orientado correctamente.
+- Presiona recto. Evita torcer para no aflojar el switch recién asentado.
+
+### 6) Prueba
+- Conecta el teclado y usa un **tester** (web/app) para verificar que la tecla registra.
+- En 2.4 GHz, prueba con el **dongle en un extensor** cerca del teclado para evitar pérdidas al testear.
+
+---
+
+## 3 pines vs 5 pines (rápido)
+
+| Tipo | Ventaja | Consideración |
+|---|---|---|
+| **3 pines** | Compatibilidad amplia | Menos estabilidad lateral en algunos plates |
+| **5 pines** | Switch más firme/alineado | Si tu PCB es 3 pines, recorta **solo** guías plásticas |
+
+---
+
+## Troubleshooting (síntoma → causa → solución)
+
+| Síntoma | Causa probable | Qué hacer |
+|---|---|---|
+| La tecla no registra | Pin **metálico doblado** o switch mal asentado | Retira, **endereza** y vuelve a asentar recto |
+| Tecla funciona a ratos | Switch flojo o **socket** sucio | Reseat firme; limpia el hueco; prueba otro switch |
+| Varias teclas no prenden RGB | LED en cadena o control | No es del switch; prueba perfil estático o revisa hardware/RMA |
+| Tecla larga suena/roza | Estabilizador mal asentado | Reasentar/lubricar stab; verifica que la keycap no toque el case |
+| Switch no entra completo | Guías plásticas chocan / mala alineación | Recorta guías (si PCB 3 pines) y alinea mejor |
+
+---
+
+## Consejos pro (para hacerlo perfecto)
+
+- Cambia **una tecla** primero: si suena/funciona distinto, ajusta antes de hacer todas.
+- Si vas a **lubricar** switches, haz un **lote pequeño** y compara A/B.
+- **Keycaps PBT** dan timbre más grave; **ABS** suena más brillante: úsalas a tu favor.
+- Guarda 2–3 switches **de repuesto** por si una tecla muere en el futuro.
+
+---
+
+## Notas para Chile
+
+- Busca sets de switches **MX-compatibles** y verificadores de 3/5 pines en tiendas locales.
+- Si tu teclado es nuevo y el socket parece suelto/defectuoso, prioriza **garantía legal/RMA** antes de manipular en exceso.
+
+---
+
+## Conclusión
+
+Reemplazar un switch hot-swap es simple si respetas **alineación**, **pines rectos** y **cero fuerza bruta**. En minutos puedes revivir una tecla muerta o cambiar la sensación de tu teclado completo.
+
+---
+
+## CTA
+
+¿Necesitas un **kit hot-swap**, switches lineales/táctiles o asesoría para elegirlos según tu uso en Chile?
+
+👉 **Explorar switches y accesorios:** https://saintgeek.cl/
