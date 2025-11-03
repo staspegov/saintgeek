@@ -43,10 +43,14 @@ export function getAllSlugs(): string[] {
     .map((rel) => rel.replace(/\.mdx?$/i, ""))
 }
 
+// ✅ Nueva versión corregida con timezone -03:00 (Chile)
 function normDate(d?: any): string | undefined {
   if (!d) return undefined
   if (typeof d === "string") {
-    const t = new Date(d)
+    // Si la fecha no contiene hora, le agregamos T00:00:00-03:00 (hora local)
+    const hasTime = /\d{2}:\d{2}/.test(d)
+    const iso = hasTime ? d : `${d}T00:00:00-03:00`
+    const t = new Date(iso)
     return isNaN(t.getTime()) ? undefined : t.toISOString()
   }
   return undefined
@@ -62,7 +66,11 @@ export function getPostBySlug(slug: string): BlogPost | null {
   const { data, content } = matter(raw)
 
   const published =
-    normDate(data.publishedAt) ?? normDate(data.published) ?? normDate(data.date) ?? new Date().toISOString()
+    normDate(data.publishedAt) ??
+    normDate(data.published) ??
+    normDate(data.date) ??
+    new Date().toISOString()
+
   const updated =
     normDate(data.updatedAt) ?? normDate(data.updated) ?? published
 
@@ -101,9 +109,11 @@ export function getAllPosts(): BlogPost[] {
 export function wordsCount(markdown: string) {
   return markdown.replace(/\s+/g, " ").trim().split(" ").length
 }
+
 export function readingMinutes(markdown: string, wpm = 220) {
   return Math.max(1, Math.round(wordsCount(markdown) / wpm))
 }
+
 export function toMinimalPost(p: BlogPost): MinimalPost {
   return {
     slug: p.slug,
