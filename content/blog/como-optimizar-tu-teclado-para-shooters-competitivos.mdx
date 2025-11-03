@@ -1,0 +1,168 @@
+---
+title: "Cómo optimizar tu teclado para shooters competitivos"
+slug: "como-optimizar-tu-teclado-para-shooters-competitivos"
+summary: "Ajustes de hardware y software para reducir latencia, mejorar consistencia y ganar precisión en FPS: formato del teclado, switches, debounce, polling, conectividad, capas y bindings."
+description: "Guía práctica para FPS (CS2, Valorant, Apex, etc.): elección de formato (TKL/60–65%), switches adecuados, configuración de debounce y polling, cable vs 2.4 GHz, bloqueo de Windows, capas sin fricción y mantenimiento. Incluye recetas por perfil y checklist de pruebas."
+publishedAt: 2025-11-03
+updatedAt: 2025-11-03
+author: "SaintGeek"
+locale: "es-CL"
+category: "latencia"
+tags:
+  - FPS
+  - teclados mecánicos
+  - latencia
+  - polling rate
+  - debounce
+  - Chile
+cover: "/images/blog.webp"
+draft: false
+readingTime: 10
+faq:
+  - question: "¿Es obligatorio usar 8000 Hz en teclado para competir?"
+    answer: "No. 1000 Hz ya es una base excelente. 2000–8000 Hz puede reducir un poco el jitter de entrega si tu firmware/PC/juego son estables y con altos FPS, pero no convierte la latencia total en 0,125 ms."
+  - question: "¿Qué debounce pongo para FPS?"
+    answer: "Empieza en 4–6 ms para estabilidad. Si tu hardware lo tolera sin chatter, baja a 2–4 ms en teclas críticas (WASD, salto, agacharse) y deja 4–6 ms en el resto."
+  - question: "¿Cable o 2.4 GHz?"
+    answer: "Cable es referencia de estabilidad. 2.4 GHz propietario puede igualarlo si ubicas el dongle en un extensor USB cerca del teclado y lejos de interferencias. Bluetooth no es ideal para competitivo."
+  - question: "¿Lineales, táctiles o ópticos/Hall?"
+    answer: "Lineales ligeros y suaves son comunes por consistencia. Si quieres reactivación ultra rápida, ópticos/Hall con ‘rapid trigger’ y punto de actuación ajustable son una buena opción."
+  - question: "¿El tamaño 60–65% me limita en FPS?"
+    answer: "No para la mayoría. Ganas espacio para el mouse y puedes mapear F-keys o macros a una capa. Si usas funciones dedicadas a menudo (F-keys, flechas), un 65%/TKL es más práctico."
+---
+
+# Objetivo: **consistencia** y **baja latencia**, sin perder control
+
+En shooters competitivos importa más la **repetibilidad** de tus entradas que perseguir números extremos. Este plan te deja un teclado **predecible**, con **latencia baja** y **bindings** cómodos para ejecutar siempre igual.
+
+<Note>
+**Regla 80/20:** 1) formato correcto (espacio para el mouse), 2) switches/estabilizadores bien afinados, 3) conexión estable (cable o 2.4 con extensor), 4) debounce razonable, 5) 1000 Hz como base.
+</Note>
+
+---
+
+## 1) Formato del teclado: deja espacio al mouse
+
+- **60–65%**: máximo espacio para mouse, layers para F-keys/flechas.  
+- **TKL (80%)**: equilibrio; F-keys y flechas dedicadas sin ocupar tanto escritorio.  
+- **Full-size**: útil si necesitas numpad fuera del juego; puede estorbar al mouse.
+
+**Altura/ergonomía**  
+- Usa patitas **bajas** o reposamuñecas fino para reducir extensión de muñeca.  
+- Keycaps **PBT** con textura dan mejor grip si sudas.
+
+---
+
+## 2) Switches y estabilizadores
+
+- **Lineales** de fuerza media (≈ 45–55 g) → pulsación suave, sin bache que altere timing.  
+- **Lubricados** con moderación para evitar scratch, sin “engomado”.  
+- **Ópticos/Hall** si quieres configuraciones avanzadas:
+  - **Punto de actuación** bajo (0,8–1,2 mm) en **WASD**.  
+  - **Rapid Trigger** para strafing más reactivo (soltar/volver a actuar sin recorrer todo el switch).  
+  - Teclas de confirmación (comprar/usar) con actuación **más profunda** para evitar misinputs.
+- **Estabilizadores** (barra espaciadora/Shift/Enter): sin “tick”. Un stab mal afinado genera **ruido** y **micro-retardos** al bottom-out.
+
+---
+
+## 3) Debounce y polling rate
+
+- **Debounce**: empieza **4–6 ms**; baja a **2–4 ms** en teclas críticas **solo** si no aparece chatter.  
+- **Polling**:
+  - **1000 Hz** es estándar competitivo y estable.  
+  - **2000–8000 Hz** aporta **margen** (menor jitter de entrega) si tu **firmware/driver/OS** lo soportan sin microcortes.  
+  - Comprueba estabilidad con un **tester de teclado** y jugando 20–30 min: busca entradas perdidas.
+
+> Recuerda: el juego **muestrea por frame**; sube FPS y usa modos de **baja latencia** para que el beneficio del polling no se pierda.
+
+---
+
+## 4) Conectividad: que nunca falle
+
+- **Cable (USB)**: conéctalo a **puertos traseros** de la placa, evita hubs pasivos.  
+- **2.4 GHz**: pon el **dongle en un extensor USB** a 20–30 cm del teclado, **alejado** de USB 3.0/chasis metálicos; mantén batería alta.  
+- **Bluetooth**: no recomendando para ranked por mayor jitter/ahorro de energía.
+
+**Windows (energía USB)**  
+- Desactiva **suspensión selectiva** y “Permitir que el equipo apague este dispositivo” en hubs raíz USB.
+
+---
+
+## 5) Capas y bindings sin fricción
+
+- Bloquea la tecla **Windows** (Game Mode o switch físico).  
+- Evita combos que requieran **acorde largo** (ej. Fn+otra) para funciones usadas en combate.  
+- Mapea utilidades a teclas **cercanas** a WASD (E/F/Q/R, Z/X/C, 1–5).  
+- Si usas **60–65%**, pon **F-keys** en una capa **muy accesible** (p. ej., Caps o una tecla lateral como modificador) **fuera del combate**.
+
+---
+
+## 6) Perfiles por juego
+
+- Crea un perfil por juego con:  
+  - **Polling/debounce** preferidos.  
+  - **Win Lock** activado.  
+  - Iluminación **estática** (menos distracción y carga).  
+- Guarda perfil en **hardware** si tu teclado lo permite para evitar depender de la app.
+
+---
+
+## 7) Mantenimiento y consistencia
+
+- Limpieza **ligera semanal** (aire + brocha).  
+- Revisa que **keycaps** estén bien asentadas; una tecla floja cambia la sensación.  
+- Actualiza **firmware** cuando el fabricante corrija bugs (no cada semana sin motivo).
+
+---
+
+## 8) Recetas rápidas según estilo
+
+### Movimiento agresivo (strafing/jiggle)
+- Switch **lineal** 45–50 g; si es Hall/óptico, **actuación 1,0 mm** y **rapid trigger** ON.  
+- Debounce **2–4 ms** en WASD si no hay chatter.  
+- Polling **1000–2000 Hz** estable.
+
+### Entry-fragger con saltos frecuentes
+- Barra espaciadora “sólida” (stab ajustado).  
+- Considera asignar **rueda del mouse** a saltar (fuera del teclado) y deja **espacio** como backup.  
+- Evita macros; prioriza **fiabilidad**.
+
+### Control y utilidades
+- Mapas claros y cercanos (granadas, habilidades).  
+- Iluminación estática por zonas para reconocimiento periférico.
+
+---
+
+## 9) Checklist de verificación
+
+- [ ] **Formato**: 60–65%/TKL; espacio suficiente para el mouse.  
+- [ ] **Switches**: lineales suaves o Hall/ópticos con ajustes.  
+- [ ] **Stabs** sin “tick”; barra espaciadora confiable.  
+- [ ] **Debounce**: 4–6 ms global; 2–4 ms en críticas si no hay chatter.  
+- [ ] **Polling**: 1000 Hz estable (prueba 2–8K solo si tu stack lo soporta).  
+- [ ] **Conexión**: cable directo o 2.4 con **extensor**; energía USB sin suspender.  
+- [ ] **Win Lock** activo, **capas** útiles sin acordes incómodos.  
+- [ ] **Perfil** por juego (en hardware si es posible).  
+- [ ] **Prueba en partida**: 3–5 juegos seguidos buscando consistencia (no solo aim range).
+
+---
+
+## Notas para Chile
+
+- Si necesitas “**ñ**”, prefiere layout **ISO Español–LatAm** o remapea si usas ANSI.  
+- Prioriza tiendas con **RMA claro** y disponibilidad de **switches/estabs** de repuesto.  
+- En arenas/cibers, lleva tu **cable** y un **extensor USB** para reducir interferencias.
+
+---
+
+## Conclusión
+
+Optimizar tu teclado para FPS es ajustar **lo esencial**: formato que te deje mover el mouse, switches predecibles, estabilizadores silenciosos, conexión limpia y parámetros sensatos (debounce/polling). Con ese baseline, tu ejecución será **más consistente** y tus decisiones mecánicas contarán más que la suerte.
+
+---
+
+## CTA
+
+¿Buscas un teclado **baja latencia** listo para competir (cable/2.4, stabs afinados, perfiles por juego) y despacho en Chile?
+
+👉 **Explorar teclados competitivos:** https://saintgeek.cl/
