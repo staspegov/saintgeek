@@ -2,7 +2,8 @@
 import { NextResponse } from "next/server"
 import { site } from "@/lib/utils"
 import { getAllPosts } from "@/lib/blog"
-import { products } from "@/data/products"   // 👈 add this
+import { products } from "@/data/products"
+import { getAllTagSlugs } from "@/lib/tags" // 👈 NEW
 
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"
@@ -23,27 +24,40 @@ export async function GET() {
     .filter((p: any) => p?.slug)
     .map((p: any) => ({
       loc: `${base}/products/${p.slug}`,
-      // if you have updatedAt on products, prefer it; else omit/keep today
       // lastmod: (p.updatedAt ?? new Date().toISOString()).slice(0, 10),
       changefreq: "weekly",
       priority: "0.8",
     }))
 
+  // 👇 NEW: tag landing pages /teclado/[keyword]
+  const tagUrls = getAllTagSlugs().map((tag) => ({
+    loc: `${base}/teclado/${tag}`,
+    // lastmod: new Date().toISOString().slice(0, 10),
+    changefreq: "weekly",
+    priority: "0.85",
+  }))
+
   const urls = [
     { loc: `${base}/`, changefreq: "weekly", priority: "1.0" },
     { loc: `${base}/blog`, changefreq: "daily", priority: "0.9" },
+    
     ...postUrls,
-    ...productUrls,                    // 👈 include products
+    ...tagUrls,        // 👈 include tags
+    ...productUrls,    // 👈 include products
   ]
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls.map(u => `<url>
+${urls
+  .map(
+    (u) => `<url>
   <loc>${u.loc}</loc>
   ${"lastmod" in u ? `<lastmod>${(u as any).lastmod ?? ""}</lastmod>` : ""}
   <changefreq>${u.changefreq}</changefreq>
   <priority>${u.priority}</priority>
-</url>`).join("\n")}
+</url>`
+  )
+  .join("\n")}
 </urlset>`
 
   return new NextResponse(xml, {

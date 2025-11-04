@@ -19,6 +19,7 @@ export type Product = {
   actuationForce: string
   lighting: string
   dimensions: string
+  
   ancho: string
   alto: string
   largo: string
@@ -29,6 +30,7 @@ export type Product = {
     url: string
   }[]
   mercadoLibreUrl: string
+  tags: string[]
 }
 
 // Lista de productos
@@ -72,7 +74,21 @@ export const products: Product[] = [
         { id: "",  label: "Teclado mecánico gamer AG61 Azul Claro RGB - Azul Switch",  url: "/images/blue-switch-2.webp" },
   ],
   mercadoLibreUrl:
-    "https://articulo.mercadolibre.cl/MLC-3074094542-teclado-mecanico-60-ag61-azulclaro-espanol-gamer-rgbswitch-_JM"
+    "https://articulo.mercadolibre.cl/MLC-3074094542-teclado-mecanico-60-ag61-azulclaro-espanol-gamer-rgbswitch-_JM",
+    tags: [
+  "mecanico-gamer-60","teclado-gamer-60","60-porciento","61-teclas","compacto","ultra-compacto",
+  "sin-numpad","layout-es","layout-espanol","layout-latam","con-n","teclado-espanol",
+  "rgb","rgb-dinamico","retroiluminado",
+  "hot-swap","hot-swap-3-pin","hot-swap-5-pin","compatible-3-5-pin",
+  "switch-blue","switch-azul-clicky","switch-clicky","fuerza-50g",
+  "con-cable","usb-c","cable-usb-c-desmontable",
+  "anti-ghosting","n-key-rollover",
+  "gasket","espuma-doble","estabilizadores-lubricados",
+  "keycaps-abs","doble-inyeccion","carcasa-abs",
+  "gaming","shooters","moba","mmorpg","oficina","teletrabajo","escritura",
+  "azul","azul-claro","tema-azul",
+  "ag61","saintgeek","mejor-relacion-precio"
+],
 }
 ,
  {
@@ -114,7 +130,21 @@ export const products: Product[] = [
    
   ],
   mercadoLibreUrl:
-    "https://articulo.mercadolibre.cl/MLC-1679399583-teclado-mecanico-60-ag61-negro-espanol-gamer-rgbblueswitch-_JM"
+    "https://articulo.mercadolibre.cl/MLC-1679399583-teclado-mecanico-60-ag61-negro-espanol-gamer-rgbblueswitch-_JM",
+    tags: [
+  "mecanico-gamer-60","teclado-gamer-60","60-porciento","61-teclas","compacto",
+  "sin-numpad","layout-es","layout-espanol","layout-latam","con-n","teclado-espanol",
+  "rgb","rgb-dinamico","retroiluminado",
+  "hot-swap","hot-swap-3-pin","hot-swap-5-pin","compatible-3-5-pin",
+  "switch-blue","switch-azul-clicky","switch-clicky","fuerza-50g",
+  "con-cable","usb-c","cable-usb-c-desmontable",
+  "anti-ghosting","n-key-rollover",
+  "gasket","espuma-doble","estabilizadores-lubricados",
+  "keycaps-abs","doble-inyeccion","carcasa-abs",
+  "gaming","shooters","moba","mmorpg","oficina","teletrabajo","escritura",
+  "negro","setup-negro-minimal",
+  "ag61","saintgeek","mejor-relacion-precio"
+],
 },
 
 {
@@ -160,7 +190,20 @@ export const products: Product[] = [
     
   ],
   mercadoLibreUrl:
-    "https://articulo.mercadolibre.cl/MLC-3089243272-teclado-gamer-mecanico-70-abs-red-switches-espanol-rgb-_JM?has_official_store=false&highlight=false&searchVariation=184950318186&pdp_filters=seller_id%3A1952815992&headerTopBrand=false#polycard_client=search-nordic&searchVariation=184950318186&search_layout=stack&position=6&type=item&tracking_id=5d7af681-5e2c-4b2c-8b63-73d54ac5dcbb"
+    "https://articulo.mercadolibre.cl/MLC-3089243272-teclado-gamer-mecanico-70-abs-red-switches-espanol-rgb-_JM?has_official_store=false&highlight=false&searchVariation=184950318186&pdp_filters=seller_id%3A1952815992&headerTopBrand=false#polycard_client=search-nordic&searchVariation=184950318186&search_layout=stack&position=6&type=item&tracking_id=5d7af681-5e2c-4b2c-8b63-73d54ac5dcbb",
+    tags: [
+  "mecanico-gamer-65","teclado-gamer-65","65-porciento","68-teclas",
+  "sin-numpad","layout-es","layout-espanol","layout-latam","con-n","teclado-espanol",
+  "rgb","retroiluminado",
+  "con-cable","usb-c","usb-2-0","plug-and-play","sin-software","programable-por-fn",
+  "anti-ghosting","win-lock","atajos-multimedia","teclas-fn",
+  "keycaps-abs","carcasa-abs","resistencia-derrame",
+  "gaming","moba","mmorpg","oficina","teletrabajo","escritura",
+  "switch-red","switch-linear","fuerza-45g",
+  "tk68","zifriend",
+  "blanco","setup-blanco-clean",
+  "mejor-calidad-precio"
+],
 },
 {
   slug: "tk68-negro-rgb-red",
@@ -195,7 +238,20 @@ export const products: Product[] = [
     { id: "red-switch-1", label: "Teclado mecánico gamer TK68 Negro RGB - Red Switch",   url: "/images/switches/red-switch-1.webp" }
   ],
   mercadoLibreUrl:
-    "https://articulo.mercadolibre.cl/MLC-3089243272-teclado-gamer-mecanico-70-abs-red-switches-espanol-rgb-_JM?has_official_store=false&highlight=false&searchVariation=184950318186&pdp_filters=seller_id%3A1952815992&headerTopBrand=false#polycard_client=search-nordic&searchVariation=184950318186&search_layout=stack&position=6&type=item&tracking_id=5d7af681-5e2c-4b2c-8b63-73d54ac5dcbb"
+    "https://articulo.mercadolibre.cl/MLC-3089243272-teclado-gamer-mecanico-70-abs-red-switches-espanol-rgb-_JM?has_official_store=false&highlight=false&searchVariation=184950318186&pdp_filters=seller_id%3A1952815992&headerTopBrand=false#polycard_client=search-nordic&searchVariation=184950318186&search_layout=stack&position=6&type=item&tracking_id=5d7af681-5e2c-4b2c-8b63-73d54ac5dcbb",
+    tags: [
+  "mecanico-gamer-65","teclado-gamer-65","65-porciento","68-teclas",
+  "sin-numpad","layout-es","layout-espanol","layout-latam","con-n","teclado-espanol",
+  "rgb","retroiluminado",
+  "con-cable","usb-c","usb-2-0","plug-and-play","sin-software","programable-por-fn",
+  "anti-ghosting","win-lock","atajos-multimedia","teclas-fn",
+  "keycaps-abs","carcasa-abs","resistencia-derrame",
+  "gaming","moba","mmorpg","oficina","teletrabajo","escritura",
+  "switch-red","switch-linear","fuerza-45g",
+  "tk68","zifriend",
+  "negro","setup-negro-minimal",
+  "mejor-calidad-precio"
+],
 },
 
 {
@@ -233,8 +289,21 @@ export const products: Product[] = [
    { id: "tk61-keys-1", label: "Teclado mecánico gamer TK61 Blanco RGB - Red Switch", url: "/images/tk61/rgb-tk61-keyboard.png" },
   ],
   mercadoLibreUrl:
-    "https://articulo.mercadolibre.cl/MLC-3108739144-teclado-mecanico-gamer-60-rgb-pcmac-blanconegro-espanol-_JM"
-,
+    "https://articulo.mercadolibre.cl/MLC-3108739144-teclado-mecanico-gamer-60-rgb-pcmac-blanconegro-espanol-_JM",
+    tags: [
+  "mecanico-gamer-60","teclado-gamer-60","60-porciento","61-teclas","compacto",
+  "sin-numpad","layout-es","layout-espanol","layout-latam","con-n","teclado-espanol",
+  "rgb","retroiluminado",
+  "hot-swap","hot-swap-3-pin","hot-swap-5-pin","compatible-3-5-pin",
+  "con-cable","usb-c","cable-usb-c-desmontable",
+  "anti-ghosting","win-lock","atajos-multimedia",
+  "keycaps-abs","doble-inyeccion","carcasa-abs",
+  "gaming","shooters","moba","mmorpg","oficina","teletrabajo","escritura",
+  "switch-red","switch-linear","fuerza-45g",
+  "tk61","zifriend",
+  "blanco","setup-blanco-clean"
+],
+
 
 },
 
@@ -274,7 +343,20 @@ export const products: Product[] = [
     
   ],
   mercadoLibreUrl:
-    "https://articulo.mercadolibre.cl/MLC-3108765400-teclado-mecanico-gamer-60-rgb-pcmac-negroblanco-espanol-_JM"
+    "https://articulo.mercadolibre.cl/MLC-3108765400-teclado-mecanico-gamer-60-rgb-pcmac-negroblanco-espanol-_JM",
+    tags: [
+  "mecanico-gamer-60","teclado-gamer-60","60-porciento","61-teclas","compacto",
+  "sin-numpad","layout-es","layout-espanol","layout-latam","con-n","teclado-espanol",
+  "rgb","retroiluminado",
+  "hot-swap","hot-swap-3-pin","hot-swap-5-pin","compatible-3-5-pin",
+  "con-cable","usb-c","cable-usb-c-desmontable",
+  "anti-ghosting","win-lock","atajos-multimedia",
+  "keycaps-abs","doble-inyeccion","carcasa-abs",
+  "gaming","shooters","moba","mmorpg","oficina","teletrabajo","escritura",
+  "switch-red","switch-linear","fuerza-45g",
+  "tk61","zifriend",
+  "negro","setup-negro-minimal"
+]
 }
 
 
