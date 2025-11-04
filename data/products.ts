@@ -87,7 +87,8 @@ export const products: Product[] = [
   "keycaps-abs","doble-inyeccion","carcasa-abs",
   "gaming","shooters","moba","mmorpg","oficina","teletrabajo","escritura",
   "azul","azul-claro","tema-azul",
-  "ag61","saintgeek","mejor-relacion-precio"
+  "ag61","saintgeek","mejor-relacion-precio",
+  "teclado-mecanico-gamer"
 ],
 }
 ,
@@ -143,7 +144,8 @@ export const products: Product[] = [
   "keycaps-abs","doble-inyeccion","carcasa-abs",
   "gaming","shooters","moba","mmorpg","oficina","teletrabajo","escritura",
   "negro","setup-negro-minimal",
-  "ag61","saintgeek","mejor-relacion-precio"
+  "ag61","saintgeek","mejor-relacion-precio",
+  "teclado-mecanico-gamer"
 ],
 },
 
@@ -202,7 +204,8 @@ export const products: Product[] = [
   "switch-red","switch-linear","fuerza-45g",
   "tk68","zifriend",
   "blanco","setup-blanco-clean",
-  "mejor-calidad-precio"
+  "mejor-calidad-precio",
+  "teclado-mecanico-gamer"
 ],
 },
 {
@@ -250,7 +253,8 @@ export const products: Product[] = [
   "switch-red","switch-linear","fuerza-45g",
   "tk68","zifriend",
   "negro","setup-negro-minimal",
-  "mejor-calidad-precio"
+  "mejor-calidad-precio",
+  "teclado-mecanico-gamer"
 ],
 },
 
@@ -301,7 +305,8 @@ export const products: Product[] = [
   "gaming","shooters","moba","mmorpg","oficina","teletrabajo","escritura",
   "switch-red","switch-linear","fuerza-45g",
   "tk61","zifriend",
-  "blanco","setup-blanco-clean"
+  "blanco","setup-blanco-clean",
+  "teclado-mecanico-gamer"
 ],
 
 
@@ -355,7 +360,9 @@ export const products: Product[] = [
   "gaming","shooters","moba","mmorpg","oficina","teletrabajo","escritura",
   "switch-red","switch-linear","fuerza-45g",
   "tk61","zifriend",
-  "negro","setup-negro-minimal"
+  "negro","setup-negro-minimal",
+  "teclado-mecanico-gamer"
+  
 ]
 }
 

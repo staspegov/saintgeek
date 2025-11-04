@@ -150,6 +150,12 @@ export const COPY: Record<string, { h1: string; p: string; title?: string; descr
     title: "Teclados 68 teclas | SaintGeek",
     description: "Elige 65% con RGB y switches mecánicos Red/Blue/Brown."
   },
+  "teclado-mecanico-gamer":{
+    h1: "Teclados mecánicos gamer",
+    p: "Teclados mecánicos gamer, contabilidad y gaming. Robustez, estabilidad y máximo control.",
+    title: "Teclados mecánico gamer | SaintGeek",
+    description: "Teclados mecánico gamer, RGB y anti-ghosting. Ideales para jugar."
+ },
   "sin-numpad": {
     h1: "Teclados mecánicos sin numpad",
     p: "Gana espacio para el mouse y mejora tu postura. Ideales para setups compactos y competitivos.",
