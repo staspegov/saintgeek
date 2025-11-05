@@ -50,7 +50,7 @@ export const products: Product[] = [
   switch: "Blue",
   switchType: "Mecánicos",
   description:
-    "Teclado mecánico gamer 60% (61 teclas) con switches azules clicky (~50 g), hot-swap 3/5-pin, N-key rollover y anti-ghosting. Montaje con junta (gasket) con espuma de doble capa para menor ruido y mejor sensación; estabilizadores lubricados y calibrados en teclas grandes. Keycaps ABS de doble inyección resistentes al brillo. Retroiluminación RGB tipo arcoíris con 6 efectos dinámicos. Cable USB-C desmontable de 1,5 m. Carcasa ABS. Ideal para gaming y escritura.",
+    "Teclado mecánico gamer 60% (61 teclas) con switches azules clicky (~50 g), hot-swap 3/5-pin, N-key rollover y anti-ghosting. Montaje con junta (gasket) con espuma de doble capa para menor ruido y mejor sensación; estabilizadores lubricados y calibrados en teclas grandes. Keycaps ABS de doble inyección resistentes al brillo. Retroiluminación RGB tipo arcoíris con 6 efectos dinámicos. Cable USB-C desmontable de 1,5 m. Carcasa ABS. Ideal para gaming y escritura. Envíos a todo Chile, retiro en Ñuñoa y garantía SaintGeek.",
   keys: 61,
   switchPrice: 5500,
   actuationForce: "50 g",
@@ -107,7 +107,7 @@ export const products: Product[] = [
   switch: "Blue",
   switchType: "Mecánicos",
   description:
-    "Teclado mecánico gamer 60% (61 teclas) con switches azules clicky (~50 g), hot-swap 3/5-pin, N-key rollover y anti-ghosting. Montaje con junta (gasket) con espuma de doble capa para menor ruido y mejor sensación; estabilizadores lubricados y calibrados en teclas grandes. Keycaps ABS de doble inyección resistentes al brillo. Retroiluminación RGB tipo arcoíris con 6 efectos dinámicos. Cable USB-C desmontable de 1,5 m. Carcasa ABS. Ideal para gaming y escritura.",
+    "Teclado mecánico gamer 60% (61 teclas) con switches azules clicky (~50 g), hot-swap 3/5-pin, N-key rollover y anti-ghosting. Montaje con junta (gasket) con espuma de doble capa para menor ruido y mejor sensación; estabilizadores lubricados y calibrados en teclas grandes. Keycaps ABS de doble inyección resistentes al brillo. Retroiluminación RGB tipo arcoíris con 6 efectos dinámicos. Cable USB-C desmontable de 1,5 m. Carcasa ABS. Ideal para gaming y escritura. Envíos a todo Chile, retiro en Ñuñoa y garantía SaintGeek.",
   keys: 61,
   switchPrice: 5500,
   actuationForce: "50 g",
@@ -164,7 +164,7 @@ export const products: Product[] = [
   switch: "Red",
   switchType: "Mecánicos",
   description:
-    "Teclado mecánico gamer 65% (68 teclas) con retroiluminación RGB, conexión por cable USB-C (USB 2.0), anti-ghosting y tecla Win-Lock. Layout Español (LatAm) con Ñ impresa. Atajos multimedia por combinación. Carcasa y keycaps en ABS, resistente a derrames. Plug & play. No programable por software.",
+    "Teclado mecánico gamer 65% (68 teclas) con retroiluminación RGB, conexión por cable USB-C (USB 2.0), anti-ghosting y tecla Win-Lock. Layout Español (LatAm) con Ñ impresa. Atajos multimedia por combinación. Carcasa y keycaps en ABS, resistente a derrames. Plug & play. No programable por software. Envíos a todo Chile, retiro en Ñuñoa y garantía SaintGeek.",
   keys: 68,
   switchPrice: 5500,
   actuationForce: "45 g",
@@ -223,7 +223,7 @@ export const products: Product[] = [
   switch: "Red",
   switchType: "Mecánicos",
   description:
-    "Teclado mecánico gamer 65% (68 teclas) con retroiluminación RGB, conexión por cable USB-C (USB 2.0), anti-ghosting y tecla Win-Lock. Layout Español (LatAm) con Ñ impresa. Atajos multimedia por combinación. Carcasa y keycaps en ABS, resistente a derrames. Plug & play. No programable por software.",
+    "Teclado mecánico gamer 65% (68 teclas) con retroiluminación RGB, conexión por cable USB-C (USB 2.0), anti-ghosting y tecla Win-Lock. Layout Español (LatAm) con Ñ impresa. Atajos multimedia por combinación. Carcasa y keycaps en ABS, resistente a derrames. Plug & play. No programable por software. Envíos a todo Chile, retiro en Ñuñoa y garantía SaintGeek.",
   keys: 68,
   switchPrice: 5500,
   actuationForce: "45 g",
@@ -273,7 +273,7 @@ export const products: Product[] = [
   switch: "Red",
   switchType: "Mecánicos",
   description:
-    "Teclado mecánico compacto 60% (61 teclas) con retroiluminación RGB y cable USB-C desmontable. Ideal para gamers y oficina gracias a su tamaño reducido y switches mecánicos intercambiables en caliente (Hot-Swap). Carcasa de plástico ABS resistente, keycaps de doble inyección y funciones multimedia por combinación. Layout Español con Ñ impresa. Compatible con PC, Mac y tablet.",
+    "Teclado mecánico compacto 60% (61 teclas) con retroiluminación RGB y cable USB-C desmontable. Ideal para gamers y oficina gracias a su tamaño reducido y switches mecánicos intercambiables en caliente (Hot-Swap). Carcasa de plástico ABS resistente, keycaps de doble inyección y funciones multimedia por combinación. Layout Español con Ñ impresa. Compatible con PC, Mac y tablet. Envíos a todo Chile, retiro en Ñuñoa y garantía SaintGeek.",
   keys: 61,
   switchPrice: 5500,
   actuationForce: "45 g",
@@ -327,7 +327,7 @@ export const products: Product[] = [
   switch: "Red",
   switchType: "Mecánicos",
   description:
-    "Teclado mecánico gamer compacto 60% (61 teclas) con iluminación RGB y cable USB-C desmontable. Diseño minimalista, carcasa ABS resistente y switches mecánicos intercambiables en caliente (Hot-Swap). Soporta anti-ghosting, tecla Win-Lock y atajos multimedia. Layout Español (LatAm) con Ñ impresa. Ideal para gaming, oficina o trabajo diario.",
+    "Teclado mecánico gamer compacto 60% (61 teclas) con iluminación RGB y cable USB-C desmontable. Diseño minimalista, carcasa ABS resistente y switches mecánicos intercambiables en caliente (Hot-Swap). Soporta anti-ghosting, tecla Win-Lock y atajos multimedia. Layout Español (LatAm) con Ñ impresa. Ideal para gaming, oficina o trabajo diario. Envíos a todo Chile, retiro en Ñuñoa y garantía SaintGeek.",
   keys: 61,
   switchPrice: 5500,
   actuationForce: "45 g",
