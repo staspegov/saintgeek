@@ -5,6 +5,7 @@ import Topbar from "@/components/Topbar";
 import Footer from "@/components/Footer";
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import Script from "next/script"; // ← GA4
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -93,6 +94,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         {/* Always at bottom */}
         <Footer />
+
+        {/* Google tag (gtag.js) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-62TCFZY6NZ"
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-gtag" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            window.gtag = window.gtag || gtag;
+            gtag('js', new Date());
+            gtag('config', 'G-62TCFZY6NZ');
+          `}
+        </Script>
       </body>
     </html>
   );
