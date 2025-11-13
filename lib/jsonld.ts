@@ -1,5 +1,6 @@
+// lib/jsonld.ts
 import { site } from "@/lib/utils"
-import type { Product, } from "@/data/products"
+import type { Product } from "@/data/products"
 import type { BlogPost, FAQItem } from "./blog"
 
 export function orgJsonLd() {
@@ -26,7 +27,6 @@ export function websiteJsonLd() {
   }
 }
 
-
 export function localBusinessJsonLd() {
   return {
     "@context": "https://schema.org",
@@ -41,29 +41,27 @@ export function localBusinessJsonLd() {
       "@type": "PostalAddress",
       addressCountry: "CL",
       addressRegion: "RM",
-      addressLocality: "Santiago"
+      addressLocality: "Santiago",
     },
     areaServed: "CL",
-    sameAs: [
-      "https://www.instagram.com/saintgeek.cl"
-    ],
+    sameAs: ["https://www.instagram.com/saintgeek.cl"],
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
         opens: "10:00",
-        closes: "19:00"
+        closes: "19:00",
       },
       {
         "@type": "OpeningHoursSpecification",
         dayOfWeek: ["Saturday"],
         opens: "10:00",
-        closes: "14:00"
-      }
-    ]
+        closes: "14:00",
+      },
+    ],
   }
 }
-// lib/jsonld.ts
+
 export function relatedItemListJsonLd(
   items: { name: string; url: string }[],
   listName = "Productos relacionados"
@@ -76,8 +74,8 @@ export function relatedItemListJsonLd(
       "@type": "ListItem",
       position: i + 1,
       url: it.url,
-      name: it.name
-    }))
+      name: it.name,
+    })),
   }
 }
 
@@ -120,7 +118,21 @@ export function faqJsonLdFromItems(items: FAQItem[]) {
   }
 }
 
-export function faqJsonLd() {
+/**
+ * FAQ genérico del sitio + FAQs opcionales que se le pasen.
+ * - Puedes seguir usando faqJsonLd() sin argumentos en otras partes.
+ * - En páginas de tags puedes hacer faqJsonLd(copy.faq) y se agregan al final.
+ */
+export function faqJsonLd(faq?: { question: string; answer: string }[]) {
+  const dynamicFaq =
+    faq && faq.length
+      ? faq.map((qa) => ({
+          "@type": "Question",
+          name: qa.question,
+          acceptedAnswer: { "@type": "Answer", text: qa.answer },
+        }))
+      : []
+
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -197,10 +209,11 @@ export function faqJsonLd() {
             "Anti-Ghosting permite que el teclado detecte múltiples teclas presionadas al mismo tiempo sin errores, lo cual es esencial para juegos que requieren combinaciones rápidas.",
         },
       },
+      // FAQs específicas que se inyectan desde otras partes (ej. páginas de tag)
+      ...dynamicFaq,
     ],
   }
 }
-
 
 export function breadcrumbJsonLd(items: { name: string; url: string }[]) {
   return {
@@ -214,7 +227,6 @@ export function breadcrumbJsonLd(items: { name: string; url: string }[]) {
     })),
   }
 }
-
 
 export function blogCollectionJsonLd(posts: Pick<BlogPost, "title" | "slug">[]) {
   return {
@@ -259,8 +271,8 @@ export function productJsonLd(p: Product) {
     },
     offers: {
       "@type": "Offer",
-      priceCurrency: "CLP",                              // cambia a "RUB" si corresponde
-      price: Number(p.priceRub).toFixed(0),              // CLP sin decimales
+      priceCurrency: "CLP", // cambia a "RUB" si corresponde
+      price: Number(p.priceRub).toFixed(0), // CLP sin decimales
       availability:
         p.status === "in_stock"
           ? "https://schema.org/InStock"
