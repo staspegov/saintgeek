@@ -3,8 +3,12 @@ import "./globals.css";
 import { site } from "@/lib/utils";
 import Topbar from "@/components/Topbar";
 import Footer from "@/components/Footer";
-import { Analytics } from "@vercel/analytics/next"
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import Script from "next/script";
+import GAProvider from "@/lib/ga-provider";
+
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "G-62TCFZY6NZ";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -14,17 +18,12 @@ export const metadata: Metadata = {
   publisher: site.name,
   category: "technology",
   keywords: [
-    // core
     "teclados mecánicos", "teclado mecánico", "teclados gamer",
     "teclado gamer", "teclados para juegos",
-    // tamaños / form factor
     "60%", "65%", "70%", "75%", "80%", "TKL", "full size",
-    // layout / idioma
     "layout en español", "layout latinoamericano", "layout ANSI", "ISO",
-    // features
     "hot-swap", "RGB", "keycaps PBT", "N-Key Rollover", "anti-ghosting",
     "switches lineales", "switches táctiles", "switches clicky",
-    // intención de compra / local
     "tienda de teclados", "teclados en Chile", "envío rápido", "garantía"
   ],
   title: {
@@ -56,22 +55,16 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
-    // útil para vistas enriquecidas en Google Imágenes
-    // y evitar recortes pobres en previas
-    // (opcional, puedes quitar si no lo necesitas)
-    // 'max-image-preview': 'large'
   }
 }
-
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es">
-       <head>
+      <head>
         {/* ✅ Explicit favicon for Googlebot */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-
         {/* ✅ Comprehensive favicon set */}
         <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png" />
@@ -82,16 +75,36 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="theme-color" content="#0C0D0E" />
       </head>
       <body className="flex flex-col min-h-screen bg-[#0C0D0E] text-[#e9e9ea] ">
-      
         {/* Always at the top */}
         <Topbar />
-        <SpeedInsights/>
-        <Analytics/>
+
+        {/* Vercel tooling */}
+        <SpeedInsights />
+        <Analytics />
+
         {/* Main content expands to fill available height */}
         <main className="flex-1">{children}</main>
 
         {/* Always at bottom */}
         <Footer />
+
+        {/* ---------- GA4 (gtag.js) ---------- */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-gtag" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            window.gtag = window.gtag || gtag;
+            gtag('js', new Date());
+            gtag('config', '${GA_ID}', { page_path: window.location.pathname });
+          `}
+        </Script>
+
+        {/* Send page_view on client-side route changes */}
+        <GAProvider gaId={GA_ID} />
       </body>
     </html>
   );
