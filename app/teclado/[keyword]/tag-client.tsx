@@ -5,10 +5,22 @@ import { useMemo, useState } from "react"
 import Script from "next/script"
 import ProductCard from "@/components/ProductCard"
 import SidebarFilters from "@/components/SidebarFilters"
-import { orgJsonLd, websiteJsonLd, faqJsonLd, productJsonLd, localBusinessJsonLd } from "@/lib/jsonld"
+import {
+  orgJsonLd,
+  websiteJsonLd,
+  faqJsonLd,
+  productJsonLd,
+  localBusinessJsonLd
+} from "@/lib/jsonld"
 import type { Product } from "@/data/products"
 
-type Copy = { h1: string; p: string }
+type Copy = {
+  h1: string
+  p: string
+  // ahora faq viene del nuevo TagCopy: [{ question, answer }]
+  faq?: { question: string; answer: string }[]
+}
+
 export default function ClientTagPage({
   tag,
   copy,
@@ -45,7 +57,7 @@ export default function ClientTagPage({
           radial-gradient(circle at top right, rgba(141, 215, 223, 0), transparent 40%),
           linear-gradient(180deg, #0e0e0f 0%, #0a0a0b 100%)
         `,
-        color: '#e9e9ea',
+        color: "#e9e9ea"
       }}
     >
       <div className="max-w-[1450px] mx-auto px-6 pb-20 pt-10">
@@ -61,9 +73,8 @@ export default function ClientTagPage({
             onClick={() => setOpen(true)}
             className="inline-block font-semibold text-[14px] px-4 py-2 rounded-full"
             style={{
-              background: '#89ff00',
-              color: '#101010',
-              boxShadow: '0 8px 24px rgba(137,255,0,.25)',
+              background: "#C0FF03",
+              color: "#101010"
             }}
           >
             Saber más
@@ -78,11 +89,49 @@ export default function ClientTagPage({
             onSwitch={setSwitchName}
             onSwitchType={setSwitchType}
           />
-          <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {filtered.map((p) => (
-              <ProductCard key={p.slug} p={p} />
-            ))}
-          </section>
+
+          {/* Columna derecha: productos + FAQ alineados */}
+          <div className="space-y-10">
+            <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {filtered.map((p) => (
+                <ProductCard key={p.slug} p={p} />
+              ))}
+            </section>
+
+            {/* FAQ Accordion debajo de las cards, alineado con ellas */}
+            {copy.faq && copy.faq.length > 0 && (
+              <section className="max-w-[900px] mx-auto w-full">
+                {/* Línea verde separadora */}
+                <div className="h-[2px] w-full bg-[#C0FF03] mb-6" />
+
+                <h2 className="text-2xl font-semibold mb-4 text-[#f4f4f5]">
+                  Preguntas frecuentes sobre {copy.h1}
+                </h2>
+                <div className="space-y-3">
+                  {copy.faq.map((item, idx) => (
+                    <details
+                      key={idx}
+                      className="group border border-[#2a2a2d] rounded-lg bg-[#141416] px-4 py-3"
+                    >
+                      <summary className="flex cursor-pointer items-center justify-between gap-3 list-none text-[15px] font-medium text-[#f4f4f5]">
+                        <span>{item.question}</span>
+                        <span className="text-[#9c9ca0] group-open:rotate-45 transition-transform">
+                          +
+                        </span>
+                      </summary>
+
+                      {/* Línea verde que separa pregunta y respuesta */}
+                      <div className="mt-3 h-[1px] w-full bg-[#C0FF03] opacity-80" />
+
+                      <p className="mt-3 text-[14px] leading-relaxed text-[#b6b6b8]">
+                        {item.answer}
+                      </p>
+                    </details>
+                  ))}
+                </div>
+              </section>
+            )}
+          </div>
         </div>
       </div>
 
@@ -111,8 +160,9 @@ export default function ClientTagPage({
             <section>
               <h3 className="text-xl font-semibold mb-2">¿Qué son y por qué elegirlos?</h3>
               <p className="mb-4">
-                Los teclados mecánicos gamer ofrecen mejor respuesta, durabilidad y personalización.
-                Elige por formato (60/65/TKL), tipo de switch (Red/Blue/Brown) y funciones como RGB u Hot-Swap.
+                Los teclados mecánicos gamer ofrecen mejor respuesta, durabilidad y
+                personalización. Elige por formato (60/65/TKL), tipo de switch
+                (Red/Blue/Brown) y funciones como RGB u Hot-Swap.
               </p>
 
               <h3 className="text-xl font-semibold mb-2">Juegos donde marcan la diferencia</h3>
@@ -124,10 +174,18 @@ export default function ClientTagPage({
 
               <h3 className="text-xl font-semibold mb-2">Características clave</h3>
               <ul className="list-disc list-inside mb-4 space-y-1 text-[#c9c9c9]">
-                <li><strong>Switches:</strong> hasta ~50M pulsaciones</li>
-                <li><strong>Respuesta:</strong> rápida y consistente</li>
-                <li><strong>RGB:</strong> visibilidad y estilo</li>
-                <li><strong>Hot-Swap:</strong> cambia switches sin soldar</li>
+                <li>
+                  <strong>Switches:</strong> hasta ~50M pulsaciones
+                </li>
+                <li>
+                  <strong>Respuesta:</strong> rápida y consistente
+                </li>
+                <li>
+                  <strong>RGB:</strong> visibilidad y estilo
+                </li>
+                <li>
+                  <strong>Hot-Swap:</strong> cambia switches sin soldar
+                </li>
               </ul>
 
               <p>Compara modelos y encuentra el que mejor se adapta a tu estilo.</p>
@@ -137,20 +195,40 @@ export default function ClientTagPage({
       )}
 
       {/* JSON-LD dinámico */}
-      <Script id="ld-org" type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd()) }} />
-      <Script id="ld-local-business" type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd()) }} />
-      <Script id="ld-website" type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd()) }} />
-      <Script id="ld-faq" type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd()) }} />
-      <Script id="ld-products" type="application/ld+json"
+      <Script
+        id="ld-org"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd()) }}
+      />
+      <Script
+        id="ld-local-business"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd()) }}
+      />
+      <Script
+        id="ld-website"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd()) }}
+      />
+
+      {/* ✅ FAQ JSON-LD usando el nuevo formato de copy.faq */}
+      {copy.faq && copy.faq.length > 0 && (
+        <Script
+          id="ld-faq"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(faqJsonLd(copy.faq))
+          }}
+        />
+      )}
+
+      <Script
+        id="ld-products"
+        type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(
-            filtered.map((p) => productJsonLd(p))
-          ),
-        }} />
+          __html: JSON.stringify(filtered.map((p) => productJsonLd(p)))
+        }}
+      />
     </div>
   )
 }

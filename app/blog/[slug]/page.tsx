@@ -278,7 +278,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
   className="prose prose-saint prose-invert md:prose-lg max-w-none
              leading-relaxed
              prose-headings:scroll-mt-28
-             prose-a:text-[var(--brand,#89ff00)] hover:prose-a:text-lime-300
+             prose-a:text-[var(--brand,#C0FF03)] hover:prose-a:text-lime-300
              prose-p:my-4 prose-li:my-2 prose-ul:my-4 prose-ol:my-4
              prose-code:break-words
              prose-img:rounded-xl prose-img:border prose-img:border-zinc-800
@@ -299,7 +299,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
               <Link
                 key={rp.slug}
                 href={`/blog/${rp.slug}`}
-                className="group border border-zinc-800 rounded-xl overflow-hidden hover:border-[var(--brand,#89ff00)] transition-colors"
+                className="group border border-zinc-800 rounded-xl overflow-hidden hover:border-[var(--brand,#C0FF03)] transition-colors"
               >
                 {rp.cover ? (
                   <div className="relative h-32 w-full overflow-hidden">
@@ -315,7 +315,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
                   <div className="h-32 w-full bg-zinc-900" />
                 )}
                 <div className="p-4">
-                  <p className="text-sm font-medium line-clamp-2 group-hover:text-[var(--brand,#89ff00)]">
+                  <p className="text-sm font-medium line-clamp-2 group-hover:text-[var(--brand,#C0FF03)]">
                     {rp.title}
                   </p>
                   {!!rp.tags?.length && (
@@ -340,7 +340,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
         <Link
           key={p.slug}
           href={`/products/${p.slug}`}
-          className="group rounded-2xl border border-zinc-800 bg-gradient-to-b from-base-cardTop to-base-cardBottom hover:border-[var(--brand,#89ff00)] transition-colors shadow-card overflow-hidden"
+          className="group rounded-2xl border border-zinc-800 bg-gradient-to-b from-base-cardTop to-base-cardBottom hover:border-[var(--brand,#C0FF03)] transition-colors shadow-card overflow-hidden"
         >
           {/* Imagen compacta, centrada y en object-contain */}
           <div className="relative h-28 md:h-32 w-full flex items-center justify-center bg-zinc-900/40">
@@ -355,7 +355,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
 
           <div className="p-4">
             <p className="text-[11px] text-zinc-500">{p.brand || site.name}</p>
-            <p className="mt-1 text-sm font-semibold leading-snug line-clamp-2 group-hover:text-[var(--brand,#89ff00)]">
+            <p className="mt-1 text-sm font-semibold leading-snug line-clamp-2 group-hover:text-[var(--brand,#C0FF03)]">
               {p.name}
             </p>
             <p className="mt-2 text-sm font-extrabold tracking-tight">
@@ -374,14 +374,14 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
         <a
           href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(`${site.url}/blog/${post.slug}`)}&text=${encodeURIComponent(post.title)}`}
           target="_blank" rel="noopener noreferrer"
-          className="rounded border border-zinc-800 px-3 py-1 hover:border-[var(--brand,#89ff00)]"
+          className="rounded border border-zinc-800 px-3 py-1 hover:border-[var(--brand,#C0FF03)]"
         >
           Compartir en X
         </a>
         <a
           href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`${site.url}/blog/${post.slug}`)}`}
           target="_blank" rel="noopener noreferrer"
-          className="rounded border border-zinc-800 px-3 py-1 hover:border-[var(--brand,#89ff00)]"
+          className="rounded border border-zinc-800 px-3 py-1 hover:border-[var(--brand,#C0FF03)]"
         >
           Compartir en Facebook
         </a>

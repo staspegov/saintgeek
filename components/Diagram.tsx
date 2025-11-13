@@ -78,13 +78,13 @@ export default function ForceTravelDiagram() {
 
   return (
     <section className="  mt-20 w-full flex flex-col items-center justify-center text-white">
-  <div className=" rounded-2xl
- bg-[#111] max-w-7xl w-full flex flex-col lg:flex-row gap-10 items-stretch justify-center">
+  <div className=" 
+  max-w-7xl w-full flex flex-col lg:flex-row gap-10 items-stretch justify-center">
     {/* Chart */}
     <div className="
-        flex items-center justify-center 
+      bg-[#111] rounded-2xl flex items-center justify-center 
       w-full lg:w-1/2  
-      p-6 sm:p-8 
+    
       min-h-[320px] sm:min-h-[380px] md:min-h-[450px] lg:min-h-[500px]
       ">
       <ForceChart 
@@ -95,7 +95,7 @@ export default function ForceTravelDiagram() {
 
     {/* Info */}
   {/* Info Section — styled like ProductSpecs */}
-<div className="  p-6 sm:p-8 w-full lg:w-1/2 flex flex-col justify-between   min-h-[380px] sm:min-h-[450px] lg:min-h-[500px]">
+<div className="   w-full lg:w-1/2 flex flex-col justify-between   min-h-[380px] sm:min-h-[450px] lg:min-h-[500px]">
   <div className="space-y-8">
     {/* Title + description */}
     <div>

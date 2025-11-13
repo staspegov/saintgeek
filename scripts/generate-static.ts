@@ -31,7 +31,7 @@ const hero = `
         A diferencia de un modelo de oficina estándar, este dispositivo ofrece una experiencia más placentera gracias a su atractivo diseño,
         comodidad de uso y funciones adicionales.
       </p>
-      <a href="#more" style="display:inline-block;background:#89ff00;color:#101010;text-decoration:none;padding:10px 16px;border-radius:999px;font-weight:600;font-size:14px;box-shadow:0 8px 24px rgba(137,255,0,.25);">
+      <a href="#more" style="display:inline-block;background:#C0FF03;color:#101010;text-decoration:none;padding:10px 16px;border-radius:999px;font-weight:600;font-size:14px;box-shadow:0 8px 24px rgba(137,255,0,.25);">
         Saber más
       </a>
     </div>
@@ -64,7 +64,7 @@ function card(p: typeof products[number]) {
         <div style="font-weight:800;font-size:18px;color:#ffffff;">${p.priceRub.toLocaleString('es-CL')} ₽</div>
         <div style="font-size:12px;color:#8d8f95;margin-top:2px;">desde ${p.monthlyRub.toLocaleString('es-CL')} ₽/mes</div>
       </div>
-      <a href="./products/${p.slug}.html" style="display:inline-flex;align-items:center;gap:8px;background:#89ff00;color:#121313;text-decoration:none;padding:10px 14px;border-radius:12px;font-weight:700;font-size:13px;box-shadow:0 8px 22px rgba(137,255,0,.25);">Comprar</a>
+      <a href="./products/${p.slug}.html" style="display:inline-flex;align-items:center;gap:8px;background:#C0FF03;color:#121313;text-decoration:none;padding:10px 14px;border-radius:12px;font-weight:700;font-size:13px;box-shadow:0 8px 22px rgba(137,255,0,.25);">Comprar</a>
     </div>
   </article>`
 }
@@ -101,7 +101,7 @@ for (const p of products) {
       <h1 style="color:#f4f4f5;">${p.name}</h1>
       <p style="color:#b6b6b8;">${p.brand}</p>
       <p><strong style="color:#fff;">${p.priceRub.toLocaleString('es-CL')} ₽</strong> <span style="color:#8d8f95;">desde ${p.monthlyRub.toLocaleString('es-CL')} ₽/mes</span></p>
-      <a href="${p.mercadoLibreUrl || '#'}" rel="sponsored nofollow" style="display:inline-block;background:#89ff00;color:#121313;text-decoration:none;padding:10px 14px;border-radius:12px;font-weight:700;font-size:13px;box-shadow:0 8px 22px rgba(137,255,0,.25);">Comprar en MercadoLibre</a>
+      <a href="${p.mercadoLibreUrl || '#'}" rel="sponsored nofollow" style="display:inline-block;background:#C0FF03;color:#121313;text-decoration:none;padding:10px 14px;border-radius:12px;font-weight:700;font-size:13px;box-shadow:0 8px 22px rgba(137,255,0,.25);">Comprar en MercadoLibre</a>
     </div>
   </body></html>`
   fs.writeFileSync(path.join(prodDir, `${p.slug}.html`), html, 'utf8')

@@ -10,7 +10,7 @@ function A({ href = "#", children, className = "", ...rest }: AProps) {
     return (
       <Link
         href={href}
-        className={`no-underline border-b border-dotted border-[var(--brand,#89ff00)] hover:border-solid hover:text-lime-300 ${className}`}
+        className={`no-underline border-b border-dotted border-[var(--brand,#C0FF03)] hover:border-solid hover:text-lime-300 ${className}`}
         {...(rest as any)}
       >
         {children}
@@ -22,7 +22,7 @@ function A({ href = "#", children, className = "", ...rest }: AProps) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={`no-underline border-b border-dotted border-[var(--brand,#89ff00)] hover:border-solid hover:text-lime-300 ${className}`}
+      className={`no-underline border-b border-dotted border-[var(--brand,#C0FF03)] hover:border-solid hover:text-lime-300 ${className}`}
       {...rest}
     >
       {children}

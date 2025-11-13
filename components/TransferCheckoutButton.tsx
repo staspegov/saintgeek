@@ -253,7 +253,7 @@ export default function TransferCheckoutButton({ productName, productUrl, priceL
                 <button
                   type="submit"
                   disabled={!isValid}
-                  className="flex-1 rounded-lg bg-lime-400 text-black font-semibold px-4 py-3 text-sm shadow-md hover:brightness-95 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="flex-1 rounded-lg bg-[#C0FF03] text-black font-semibold px-4 py-3 text-sm shadow-md hover:brightness-95 disabled:opacity-50 disabled:cursor-not-allowed"
                   title={!isValid ? "Completa los campos requeridos" : "Enviar por WhatsApp"}
                 >
                   Enviar por WhatsApp

@@ -33,7 +33,7 @@ export default function Page() {
         minHeight: "100vh",
         margin: 0,
         background: `
-          radial-gradient(circle at top right, rgba(141, 215, 223, 0), transparent 40%),
+          radial-gradient(circle at top right, #141414, transparent 40%),
           linear-gradient(180deg, #0e0e0f 0%, #0a0a0b 100%)
         `,
         color: '#e9e9ea',
@@ -57,9 +57,9 @@ export default function Page() {
             onClick={() => setOpen(true)}
             className="inline-block font-semibold text-[14px] px-4 py-2 rounded-full"
             style={{
-              background: '#89ff00',
+              background: '#C0FF03',
               color: '#101010',
-              boxShadow: '0 8px 24px rgba(137,255,0,.25)',
+              
             }}
           >
             Saber más

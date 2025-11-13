@@ -69,7 +69,7 @@ export default function GalleryModal({ images }: { images: Img[] }) {
                 <button
                   key={img.id}
                   onClick={()=>setActive(idx)}
-                  className={"min-w-24 h-16 rounded-lg border " + (active===idx ? "border-[#89ff00]" : "border-[#2a2a2d]")}
+                  className={"min-w-24 h-16 rounded-lg border " + (active===idx ? "border-[#C0FF03]" : "border-[#2a2a2d]")}
                   aria-label={img.label}
                 >
                   <div className="w-full h-full grid place-items-center text-xs opacity-70">{img.label}</div>

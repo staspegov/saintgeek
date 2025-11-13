@@ -18,7 +18,7 @@ export default function Topbar() {
       <header className="sticky top-0 z-40 w-full bg-[#0c0c0d] border-b border-[#1a1a1c]">
         <div className="max-w-[1450px] mx-auto px-6 h-14 flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="text-lime-400 font-extrabold text-lg no-underline">
+          <Link href="/" className="text-[#C0FF03] font-extrabold text-lg no-underline">
             SaintGeek
           </Link>
 
@@ -32,7 +32,7 @@ export default function Topbar() {
           {/* CTA */}
           <button
             onClick={() => setOpenPopup("contact")}
-            className="hidden sm:inline-block bg-lime-400 text-[#101010] px-3.5 py-1.5 rounded-full font-semibold text-sm shadow-md hover:brightness-95"
+            className="hidden sm:inline-block bg-[#C0FF03] text-[#101010] px-3.5 py-1.5 rounded-full font-semibold text-sm shadow-md hover:brightness-95"
           >
             Contactar
           </button>
@@ -89,7 +89,7 @@ export default function Topbar() {
                 <button
                   onClick={handleSendWhatsApp}
                   disabled={!message.trim()}
-                  className="mt-3 w-full bg-lime-400 text-[#101010] py-2 rounded-full font-semibold text-sm shadow-md hover:brightness-95 disabled:opacity-50"
+                  className="mt-3 w-full bg-[#C0FF03] text-[#101010] py-2 rounded-full font-semibold text-sm shadow-md hover:brightness-95 disabled:opacity-50"
                 >
                   Enviar a WhatsApp
                 </button>

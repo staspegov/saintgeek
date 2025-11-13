@@ -16,10 +16,10 @@ const config: Config = {
           border: "#1a1a1c",
           text: "#e9e9ea",
           sub: "#b6b6b8",
-          accent: "#89ff00",
+          accent: "#C0FF03",
         },
         // handy alias used in components/classes
-        brand: { DEFAULT: "#89ff00" },
+        brand: { DEFAULT: "#C0FF03" },
       },
       boxShadow: {
         card: "0 10px 28px rgba(0,0,0,.45)",

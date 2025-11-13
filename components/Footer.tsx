@@ -98,7 +98,7 @@ export default function Footer() {
                 <button
                   onClick={handleSendWhatsApp}
                   disabled={!message.trim()}
-                  className="mt-3 w-full bg-lime-400 text-[#101010] py-2 rounded-full font-semibold text-sm shadow-md hover:brightness-95 disabled:opacity-50"
+                  className="mt-3 w-full bg-[#C0FF03] text-[#101010] py-2 rounded-full font-semibold text-sm shadow-md hover:brightness-95 disabled:opacity-50"
                 >
                   Enviar a WhatsApp
                 </button>

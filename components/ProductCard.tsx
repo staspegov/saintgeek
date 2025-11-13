@@ -112,7 +112,7 @@ export default function ProductCard({ p }: { p: Product }) {
           <Link
             href={`/products/${p.slug}`}
             className="inline-flex items-center gap-2 rounded-xl font-bold text-[13px] px-3.5 py-2 no-underline"
-            style={{ background: "#89ff00", color: "#121313" }}
+            style={{ background: "#C0FF03", color: "#121313" }}
           >
             <svg width="16" height="16" viewBox="0 0 24 24">
               <path

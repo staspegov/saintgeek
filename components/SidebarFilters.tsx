@@ -71,7 +71,7 @@ export default function SidebarFilters({
           <div className="flex items-center gap-2 px-2 pb-3 border-b border-[#1a1a1c]">
             <svg width="18" height="18" viewBox="0 0 24 24" className="opacity-80">
               <path
-                fill={anySelected ? '#89ff00' : '#b6b6b8'} // 👈 verde si hay filtros
+                fill={anySelected ? '#C0FF03' : '#b6b6b8'} // 👈 verde si hay filtros
                 d="M3 6h18v2H3V6zm4 5h10v2H7v-2zm3 5h4v2h-4v-2z"
               />
             </svg>
@@ -87,7 +87,7 @@ export default function SidebarFilters({
                     key={n}
                     onClick={() => handleSelect('numpad', n, onNumpad)}
                     className={`rounded-lg py-1 border transition ${
-                      selected['numpad'] === n ? 'border-lime-400' : 'border-[#262629] hover:border-[#89ff00]'
+                      selected['numpad'] === n ? 'border-lime-400' : 'border-[#262629] hover:border-[#C0FF03]'
                     }`}
                   >
                     {n}
@@ -112,7 +112,7 @@ export default function SidebarFilters({
                     key={sw}
                     onClick={() => handleSelect('switch', sw, onSwitch)}
                     className={`rounded-lg py-1 border transition ${
-                      selected['switch'] === sw ? 'border-lime-400' : 'border-[#262629] hover:border-[#89ff00]'
+                      selected['switch'] === sw ? 'border-lime-400' : 'border-[#262629] hover:border-[#C0FF03]'
                     }`}
                   >
                     {sw}
@@ -137,7 +137,7 @@ export default function SidebarFilters({
                     key={t}
                     onClick={() => handleSelect('switch-type', t, onSwitchType)}
                     className={`rounded-lg py-1 border transition ${
-                      selected['switch-type'] === t ? 'border-lime-400' : 'border-[#262629] hover:border-[#89ff00]'
+                      selected['switch-type'] === t ? 'border-lime-400' : 'border-[#262629] hover:border-[#C0FF03]'
                     }`}
                   >
                     {t}
@@ -162,7 +162,7 @@ export default function SidebarFilters({
                     key={m}
                     onClick={() => handleSelect('model', m, onModel)}
                     className={`rounded-lg py-1 border transition ${
-                      selected['model'] === m ? 'border-lime-400' : 'border-[#262629] hover:border-[#89ff00]'
+                      selected['model'] === m ? 'border-lime-400' : 'border-[#262629] hover:border-[#C0FF03]'
                     }`}
                   >
                     {m}

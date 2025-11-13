@@ -41,7 +41,7 @@ export default function CreditCalcButton({ amount }: Props) {
     <>
       <button
         onClick={() => setOpen(true)}
-        className="inline-block rounded-lg border border-lime-400 px-4 py-2 text-sm text-lime-400 hover:bg-lime-400 hover:text-black transition"
+        className="inline-block rounded-lg border border-lime-400 px-4 py-2 text-sm text-lime-400 hover:bg-[#C0FF03] hover:text-black transition"
       >
         Calcular crédito
       </button>
