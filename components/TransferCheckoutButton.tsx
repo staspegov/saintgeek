@@ -9,26 +9,74 @@ type Props = {
 }
 
 const CHILE_REGIONS = [
-  "Arica y Parinacota",
-  "Tarapacá",
-  "Antofagasta",
-  "Atacama",
-  "Coquimbo",
-  "Valparaíso",
-  "Metropolitana de Santiago",
-  "Libertador General Bernardo O'Higgins",
-  "Maule",
-  "Ñuble",
-  "Biobío",
-  "La Araucanía",
-  "Los Ríos",
-  "Los Lagos",
-  "Aysén del General Carlos Ibáñez del Campo",
-  "Magallanes y de la Antártica Chilena",
+  // Provincia de Santiago
+  "Santiago",
+  "Cerrillos",
+  "Cerro Navia",
+  "Conchalí",
+  "El Bosque",
+  "Estación Central",
+  "Huechuraba",
+  "Independencia",
+  "La Cisterna",
+  "La Florida",
+  "La Granja",
+  "La Pintana",
+  "La Reina",
+  "Las Condes",
+  "Lo Barnechea",
+  "Lo Espejo",
+  "Lo Prado",
+  "Macul",
+  "Maipú",
+  "Ñuñoa",
+  "Pedro Aguirre Cerda",
+  "Peñalolén",
+  "Providencia",
+  "Pudahuel",
+  "Quilicura",
+  "Quinta Normal",
+  "Recoleta",
+  "Renca",
+  "San Joaquín",
+  "San Miguel",
+  "San Ramón",
+  "Vitacura",
+
+  // Provincia de Cordillera
+  "Puente Alto",
+  "Pirque",
+  "San José de Maipo",
+
+  // Provincia de Chacabuco
+  "Colina",
+  "Lampa",
+  "Tiltil",
+
+  // Provincia de Maipo
+  "San Bernardo",
+  "Buin",
+  "Paine",
+  "Calera de Tango",
+
+  // Provincia de Melipilla
+  "Melipilla",
+  "Alhué",
+  "Curacaví",
+  "María Pinto",
+  "San Pedro",
+
+  // Provincia de Talagante
+  "Talagante",
+  "El Monte",
+  "Isla de Maipo",
+  "Padre Hurtado",
+  "Peñaflor",
 ]
 
+
 const SHIPPING_METHODS = [
-  { id: "express", label: "Envío express en 2 horas (Solo RM)" },
+  { id: "express", label: "Envío express (Solo RM)" },
   { id: "estandar", label: "Envío estándar — 3 a 5 días" },
   { id: "retiro", label: "Retiro en tienda" },
 ] as const
@@ -139,7 +187,7 @@ export default function TransferCheckoutButton({ productName, productUrl, priceL
                 {/* Info de precio por transferencia */}
                 {transferPrice > 0 && (
                   <p className="text-xs text-lime-300 mt-2">
-                    Precio transferencia (10% OFF):{" "}
+                    Precio transferencia (20% OFF):{" "}
                     <span className="font-semibold text-white">{formatCLP(transferPrice)}</span>
                   </p>
                 )}
@@ -209,7 +257,7 @@ export default function TransferCheckoutButton({ productName, productUrl, priceL
               {!isPickup && !isExpress && (
                 <div>
                   <label className="block text-sm text-[#a9abb0] mb-1" htmlFor="region">
-                    Región
+                    Comuna
                   </label>
                   <select
                     id="region"

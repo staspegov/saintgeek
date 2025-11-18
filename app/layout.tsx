@@ -83,7 +83,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="manifest" href="/favicon_io/site.webmanifest" />
         <meta name="theme-color" content="#0C0D0E" />
       </head>
-      <body className="flex flex-col min-h-screen bg-[#0C0D0E] text-[#e9e9ea] ">
+      <body className="flex flex-col min-h-screen bg-[#0A0A0B] text-[#e9e9ea] ">
       
         {/* Always at the top */}
         <Topbar />

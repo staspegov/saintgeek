@@ -56,6 +56,38 @@ function semanticScore(a: MinimalProduct, b: MinimalProduct) {
   return s
 }
 
+
+function getExpressDeliveryText() {
+  const chileTime = new Date().toLocaleString("en-US", { timeZone: "America/Santiago" });
+  const now = new Date(chileTime);
+
+  const day = now.getDay(); // 0 = Domingo, 1 = Lunes, ... 6 = Sábado
+  const hour = now.getHours();
+
+  // CASO: Domingo → siempre lunes
+  if (day === 0) {
+    return "Llega el lunes";
+  }
+
+  // CASO: Sábado después de 20:00 → lunes
+  if (day === 6 && hour >= 20) {
+    return "Llega el lunes";
+  }
+
+  // CASO: Viernes después de 20:00 → sábado
+  if (day === 5 && hour >= 20) {
+    return "Llega el sábado";
+  }
+
+  // Hora de corte general
+  if (hour < 20) {
+    return "Llega hoy";
+  } else {
+    return "Llega mañana";
+  }
+}
+
+
 function getRelatedProducts(base: MinimalProduct, all: MinimalProduct[], count = 6) {
   // orden estable por score desc y tie-breaker por slug asc
   const scored = all
@@ -206,25 +238,32 @@ export default function ProductPage({ params }: Props) {
           </div>
 
           {/* Métodos de envío */}
-          <div className="border-t border-[#2c2c2f] pt-4 space-y-3">
-            <h3 className="text-lg font-semibold text-white">
-              Métodos de entrega (Compras por transferencia)
-            </h3>
-            <div className="space-y-2 text-sm text-[#d4d4d8]">
-              <div className="flex justify-between">
-                <span>Envío express en 2 horas (Solo RM)</span>
-                <span className="text-white font-bold">desde $5.000</span>
-              </div>
-              <div className="flex justify-between">
-                <span>Envío estándar — 3 a 5 días</span>
-                <span className="text-white font-bold">desde $3.000</span>
-              </div>
-              <div className="flex justify-between">
-                <span>Retiro en tienda</span>
-                <span className="text-white font-bold">Gratis</span>
-              </div>
-            </div>
-          </div>
+     
+<div className="border-t border-[#2c2c2f] pt-4 space-y-3">
+  <h3 className="text-lg font-semibold text-white">
+    Métodos de entrega RM (Compras por transferencia)
+  </h3>
+
+  <div className="space-y-2 text-sm text-[#d4d4d8]">
+
+    <div className="flex justify-between">
+      <span>Envío express ({getExpressDeliveryText()})</span>
+      <span className="text-white font-bold">$2.500</span>
+    </div>
+
+    <div className="flex justify-between">
+      <span>Envío estándar — 3 a 5 días</span>
+      <span className="text-white font-bold">Gratis</span>
+    </div>
+
+    <div className="flex justify-between">
+      <span>Retiro en tienda</span>
+      <span className="text-white font-bold">Gratis</span>
+    </div>
+
+  </div>
+</div>
+
         </div>
       </div>
 

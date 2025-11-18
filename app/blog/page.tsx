@@ -58,6 +58,33 @@ function firstImage(p: any): string {
   return "/og.jpg"
 }
 
+// 🔹 NUEVA FUNCIÓN: filtra solo productos con stock
+function hasStock(p: any): boolean {
+  if (!p) return false
+
+  const status = typeof p.status === "string" ? p.status.toLowerCase() : ""
+
+  // si hay status, lo usamos como fuente principal
+  if (status === "in_stock" || status === "instock" || status === "available") {
+    return true
+  }
+  if (status === "out_of_stock" || status === "soldout" || status === "sold_out" || status === "unavailable") {
+    return false
+  }
+
+  // fallback a campos numéricos de stock si existen
+  const stock =
+    typeof p.stock === "number"
+      ? p.stock
+      : typeof p.quantity === "number"
+      ? p.quantity
+      : typeof p.qty === "number"
+      ? p.qty
+      : 0
+
+  return stock > 0
+}
+
 function toMinimal(p: any): MinimalProduct {
   const inf = inferAttrsFromName(p?.name ?? "")
   return {
@@ -110,7 +137,8 @@ export default function BlogPage() {
   const topPicks = getMarkovRelated(BLOG_HOME_SEED, minimals, 8)
   const topPicksFull = topPicks
     .map((m) => products.find((p: any) => p.slug === m.slug))
-    .filter(Boolean) as any[]
+    .filter(Boolean)
+    .filter(hasStock) as any[] // 🔹 solo teclados con stock
 
   const topPicksLd = relatedItemListJsonLd(
     topPicksFull.map((p) => ({ name: p.name, url: `${site.url}/products/${p.slug}` })),

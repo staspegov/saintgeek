@@ -79,6 +79,32 @@ function firstImage(p: any): string {
 }
 
 import type { MinimalProduct as MP } from "@/lib/markov"
+
+// 🔹 NUEVA FUNCIÓN: filtra solo productos con stock
+function hasStock(p: any): boolean {
+  if (!p) return false
+
+  const status = typeof p.status === "string" ? p.status.toLowerCase() : ""
+
+  if (status === "in_stock" || status === "instock" || status === "available") {
+    return true
+  }
+  if (status === "out_of_stock" || status === "soldout" || status === "sold_out" || status === "unavailable") {
+    return false
+  }
+
+  const stock =
+    typeof p.stock === "number"
+      ? p.stock
+      : typeof p.quantity === "number"
+      ? p.quantity
+      : typeof p.qty === "number"
+      ? p.qty
+      : 0
+
+  return stock > 0
+}
+
 function toMinimal(p: any): MP {
   const inf = inferAttrsFromName(p?.name ?? "")
   return {
@@ -181,7 +207,8 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
   const relatedProducts = getMarkovRelated(seedProduct, minimals, 6)
   const relatedProductsFull = relatedProducts
     .map((m) => products.find((p: any) => p.slug === m.slug))
-    .filter(Boolean) as any[]
+    .filter(Boolean)
+    .filter(hasStock) as any[] // 🔹 solo productos con stock
 
   const relatedProductsLd = relatedItemListJsonLd(
     relatedProductsFull.map((p) => ({ name: p.name, url: `${site.url}/products/${p.slug}` })),
