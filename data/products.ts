@@ -41,8 +41,8 @@ export const products: Product[] = [
   brand: "SaintGeek",
   subtitle: "Teclado mecánico gamer 60% RGB, Hot-Swap",
   status: "in_stock",
-  priceRub: 35284,
-  monthlyRub: 2940,
+  priceRub: 32990,
+  monthlyRub: 5498,
   model: "AG61",
   color: "Azul",
   colors: ["Negro", "Azul"],
@@ -78,7 +78,7 @@ export const products: Product[] = [
     tags: [
   "mecanico-gamer-60","teclado-gamer-60","60-porciento","61-teclas","compacto","teclado-espanol",
   
-  "teclado-mecanico-gamer"
+  "teclado-mecanico-gamer", "teclado-mecanico-ag61"
 ],
 }
 ,
@@ -89,7 +89,7 @@ export const products: Product[] = [
   subtitle: "Teclado mecánico gamer 60% RGB, Hot-Swap",
   status: "in_stock",
   priceRub: 31990,
-  monthlyRub: 2665,
+  monthlyRub: 5339,
   model: "AG61",
   color: "Negro",
   colors: ["Negro", "Azul"],
@@ -124,7 +124,7 @@ export const products: Product[] = [
     "https://articulo.mercadolibre.cl/MLC-1679399583-teclado-mecanico-60-ag61-negro-espanol-gamer-rgbblueswitch-_JM",
     tags: [
   "mecanico-gamer-60","teclado-gamer-60","60-porciento",
-  "teclado-mecanico-gamer"
+  "teclado-mecanico-gamer", "teclado-mecanico-ag61"
 ],
 },
 
@@ -175,7 +175,7 @@ export const products: Product[] = [
     tags: [
   "mecanico-gamer-65","teclado-gamer-65","65-porciento","68-teclas",
   "sin-numpad","layout-es",
-  "teclado-mecanico-gamer"
+  "teclado-mecanico-gamer","teclado-mecanico-tk68"
 ],
 },
 {
@@ -213,7 +213,7 @@ export const products: Product[] = [
   mercadoLibreUrl:
     "https://articulo.mercadolibre.cl/MLC-3089243272-teclado-gamer-mecanico-70-abs-red-switches-espanol-rgb-_JM?has_official_store=false&highlight=false&searchVariation=184950318186&pdp_filters=seller_id%3A1952815992&headerTopBrand=false#polycard_client=search-nordic&searchVariation=184950318186&search_layout=stack&position=6&type=item&tracking_id=5d7af681-5e2c-4b2c-8b63-73d54ac5dcbb",
     tags: [
-  "mecanico-gamer-65","teclado-gamer-65","65-porciento","68-teclas","teclado-mecanico-gamer"
+  "mecanico-gamer-65","teclado-gamer-65","65-porciento","68-teclas","teclado-mecanico-gamer", "teclado-mecanico-tk68"
 ],
 },
 
@@ -222,7 +222,7 @@ export const products: Product[] = [
   name: "Teclado mecánico gamer TK61 Blanco RGB - Red Switch",
   brand: "Zifriend",
   subtitle: "Teclado mecánico 60% (61 teclas) RGB con cable USB-C desmontable",
-  status: "in_stock",
+  status: "out_of_stock",
   priceRub: 32990,
   monthlyRub: 2749,
   model: "TK61",
@@ -254,7 +254,7 @@ export const products: Product[] = [
   mercadoLibreUrl:
     "https://articulo.mercadolibre.cl/MLC-3108739144-teclado-mecanico-gamer-60-rgb-pcmac-blanconegro-espanol-_JM",
     tags: [
-  "mecanico-gamer-60","teclado-gamer-60","60-porciento","61-teclas", "teclado-mecanico-gamer"
+  "mecanico-gamer-60","teclado-gamer-60","60-porciento","61-teclas", "teclado-mecanico-gamer", "teclado-mecanico-tk61"
 ],
 
 
@@ -266,8 +266,8 @@ export const products: Product[] = [
   brand: "Zifriend",
   subtitle: "Teclado mecánico 60% (61 teclas) RGB con cable USB-C desmontable",
   status: "in_stock",
-  priceRub: 32990,
-  monthlyRub: 2749,
+  priceRub: 31340,
+  monthlyRub: 5223,
   model: "TK61",
   color: "Negro",
   colors: ["Blanco", "Negro"],
@@ -298,7 +298,7 @@ export const products: Product[] = [
   mercadoLibreUrl:
     "https://articulo.mercadolibre.cl/MLC-3108765400-teclado-mecanico-gamer-60-rgb-pcmac-negroblanco-espanol-_JM",
     tags: [
-  "mecanico-gamer-60","teclado-gamer-60","60-porciento","61-teclas", "teclado-mecanico-gamer"
+  "mecanico-gamer-60","teclado-gamer-60","60-porciento","61-teclas", "teclado-mecanico-gamer", "teclado-mecanico-tk61"
   
 ]
 }

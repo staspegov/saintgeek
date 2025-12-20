@@ -15,7 +15,7 @@ export default function CreditCalcButton({ amount }: Props) {
     return Number.isFinite(n) ? n : 0
   }, [amount])
 
-  const cuota = useMemo(() => (base > 0 ? base / 12 : 0), [base])
+  const cuota = useMemo(() => (base > 0 ? base / 6 : 0), [base])
 
   const formatCLP = (v: number) =>
     new Intl.NumberFormat("es-CL", {
@@ -58,7 +58,7 @@ export default function CreditCalcButton({ amount }: Props) {
           {/* Modal pequeño centrado */}
           <div className="w-full max-w-sm rounded-2xl border border-[#1f1f20] bg-[#0f0f11] p-4 shadow-xl">
             <div className="flex items-start justify-between mb-2">
-              <h3 className="text-white text-base font-semibold">Crédito en 12 cuotas sin interés</h3>
+              <h3 className="text-white text-base font-semibold">Crédito en 6 cuotas sin interés</h3>
               <button
                 aria-label="Cerrar"
                 onClick={() => setOpen(false)}
@@ -72,12 +72,12 @@ export default function CreditCalcButton({ amount }: Props) {
               Precio: <span className="text-white font-semibold">{formatCLP(base)}</span>
             </p>
             <p className="text-sm text-[#a9abb0] mt-1">
-              12 cuotas de:{" "}
+              6 cuotas de:{" "}
               <span className="text-white font-semibold">{formatCLP(Math.round(cuota))}</span>
             </p>
 
             <div className="text-[11px] text-[#7d7f86] mt-3">
-              *Cálculo referencial dividiendo el precio en 12 partes iguales. No incluye costos de
+              *Cálculo referencial dividiendo el precio en 6 partes iguales. No incluye costos de
               financiamiento del banco o tarjeta.
             </div>
 

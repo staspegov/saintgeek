@@ -321,44 +321,54 @@ export default function ProductPage({ params }: Props) {
       </div>
 
       {/* --------- Productos relacionados (Markov SEO) --------- */}
-      <section className="mt-12">
-        <h2 className="text-xl font-semibold mb-4">También te puede interesar</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-          {related.map((rp) => {
-            const img = rp.images?.[0]?.url ?? "/placeholder.jpg"
-            return (
-              <Link
-                key={rp.slug}
-                href={`/products/${rp.slug}`}
-                className="group rounded-xl border border-[#1f1f20] bg-[#0f0f11] hover:border-[#2a2a2d] hover:bg-[#141416] transition"
-              >
-               <div className="relative aspect-square w-full overflow-hidden rounded-t-xl">
-  <Image
-    src={img}
-    alt={rp.name}
-    fill
-    sizes="(min-width:1024px) 500px, 33vw"
-    className="object-contain scale-90 transition-transform duration-300"
-  />
-</div>
-                <div className="p-3">
-                  <div className="text-xs text-[#a9abb0] mb-1 line-clamp-1">
-                    {rp.brand ?? "—"}
-                  </div>
-                  <div className="text-sm text-white font-medium line-clamp-2">
-                    {rp.name}
-                  </div>
-                  {typeof rp.priceRub === "number" && (
-                    <div className="mt-1 text-[13px] text-white font-semibold">
-                      ${rp.priceRub.toLocaleString("es-CL")} CLP
-                    </div>
-                  )}
-                </div>
-              </Link>
-            )
-          })}
-        </div>
-      </section>
+    {/*
+<section className="mt-12">
+  <h2 className="text-xl font-semibold mb-4">
+    También te puede interesar
+  </h2>
+
+  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+    {related.map((rp) => {
+      const img = rp.images?.[0]?.url ?? "/placeholder.jpg"
+
+      return (
+        <Link
+          key={rp.slug}
+          href={`/products/${rp.slug}`}
+          className="group rounded-xl border border-[#1f1f20] bg-[#0f0f11] hover:border-[#2a2a2d] hover:bg-[#141416] transition"
+        >
+          <div className="relative aspect-square w-full overflow-hidden rounded-t-xl">
+            <Image
+              src={img}
+              alt={rp.name}
+              fill
+              sizes="(min-width:1024px) 500px, 33vw"
+              className="object-contain scale-90 transition-transform duration-300"
+            />
+          </div>
+
+          <div className="p-3">
+            <div className="text-xs text-[#a9abb0] mb-1 line-clamp-1">
+              {rp.brand ?? "—"}
+            </div>
+
+            <div className="text-sm text-white font-medium line-clamp-2">
+              {rp.name}
+            </div>
+
+            {typeof rp.priceRub === "number" && (
+              <div className="mt-1 text-[13px] text-white font-semibold">
+                ${rp.priceRub.toLocaleString("es-CL")} CLP
+              </div>
+            )}
+          </div>
+        </Link>
+      )
+    })}
+  </div>
+</section>
+*/}
+
       {/* -------------------------------------------------------- */}
 
       {/* JSON-LD */}

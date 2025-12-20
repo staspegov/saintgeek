@@ -8,7 +8,7 @@ export default function Footer() {
   const [message, setMessage] = useState("")
 
   const handleSendWhatsApp = () => {
-    const phone = "56963335579" // 👈 aquí tu WhatsApp real
+    const phone = "56975682588" // 👈 aquí tu WhatsApp real
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`
     window.open(url, "_blank")
   }

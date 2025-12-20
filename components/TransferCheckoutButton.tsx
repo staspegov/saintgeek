@@ -151,7 +151,7 @@ export default function TransferCheckoutButton({ productName, productUrl, priceL
 
   const sendWhatsApp = () => {
     if (!isValid) return
-    const phone = "56963335579" // sin '+'
+    const phone = "56975682588" // sin '+'
     const text = encodeURIComponent(buildMessage())
     const wa = `https://wa.me/${phone}?text=${text}`
     window.open(wa, "_blank", "noopener,noreferrer")
