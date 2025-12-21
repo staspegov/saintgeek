@@ -1,11 +1,10 @@
 // app/teclado/page.tsx
-import type { Metadata, Route } from "next"
-import { notFound } from "next/navigation"
+import type { Metadata } from "next"
 import Link from "next/link"
 import Image from "next/image"
 
 import { products } from "@/data/products"
-import { slugifyTag, getTagCopy } from "@/lib/tags"
+import { slugifyTag, getTagCopy, getAllTagSlugs } from "@/lib/tags"
 
 // ---------- TAG PRINCIPAL PARA TECLADOS ----------
 const MAIN_KEYBOARD_TAG = slugifyTag("teclado mecanico gamer")
@@ -31,130 +30,167 @@ export const metadata: Metadata = {
   },
 }
 
-// ---------- HERO DATA ----------
+// ---------- UI TYPES ----------
 type KeyboardHeroItem = {
-  slug?: string
-  href?: string
   title: string
   subtitle: string
   image: string
-  video: string
+  keyword: string // slug de /teclado/[keyword]
 }
 
-const heroItems: KeyboardHeroItem[] = [
-  {
-    slug: "teclado-mecanico-tk68",
-    title: "TK68",
-    subtitle: "Teclados 60% compactos y potentes.",
-    image: "/images/testimage2.png",
-    video: "/media/teclados/60/reverse.mp4",
-  },
-  {
-    slug: "teclado-mecanico-ag61",
-    title: "AG61",
-    subtitle: "Equilibrio entre tamaño y funcionalidad.",
-    image: "/images/testimage.png",
-    video: "/media/teclados/65-75/reverse.mp4",
-  },
-  {
-    slug: "teclado-mecanico-tk61",
-    title: "TK61",
-    subtitle: "TKL para setups limpios y gaming competitivo.",
-    image: "/images/testimage3.png",
-    video: "/media/teclados/tkl/reverse.mp4",
-  },
-  {
-    title: "Todos los modelos",
-    subtitle: "Full size para máxima comodidad y productividad.",
-    image: "/images/testimage5.png",
-    video: "/media/teclados/full/reverse.mp4",
-    href: "https://saintgeek.cl",
-  },
-]
+export default function TecladoIndexPage() {
+  // 4 cards “hero” (ajusta textos/keywords a tu gusto)
+  const heroItems: KeyboardHeroItem[] = [
+    {
+      title: "Teclados 60%",
+      subtitle: "Compactos, rápidos y minimalistas",
+      image: "/images/hero/teclados-60.jpg",
+      keyword: slugifyTag("teclado 60"),
+    },
+    {
+      title: "Hot-Swap",
+      subtitle: "Cambia switches sin soldar",
+      image: "/images/hero/hotswap.jpg",
+      keyword: slugifyTag("hot swap"),
+    },
+    {
+      title: "RGB Dinámico",
+      subtitle: "Iluminación personalizable",
+      image: "/images/hero/rgb.jpg",
+      keyword: slugifyTag("rgb dinamico"),
+    },
+    {
+      title: "Layout Español",
+      subtitle: "Ideal para escribir en ES",
+      image: "/images/hero/layout-es.jpg",
+      keyword: slugifyTag("layout espanol"),
+    },
+  ]
 
-export default function Page() {
-  const list = products.filter((p) =>
-    (p.tags || []).map(slugifyTag).includes(MAIN_KEYBOARD_TAG)
-  )
+  // Tags (ejemplo: toma algunos para mostrar “explorar”)
+  const allTags = getAllTagSlugs()
+  const topTags = allTags.slice(0, 18)
 
-  if (list.length === 0) notFound()
+  // Productos destacados (simple: primeros 12)
+  const featured = (products ?? []).filter((p: any) => p?.slug).slice(0, 12)
 
   return (
-    <>
-      {/* ================= HERO ================= */}
-      <section className="py-14 md:py-20">
-        <div className="mx-auto max-w-6xl px-4">
-          {/* HEADER */}
-          <header className="mb-10 md:mb-14 text-center">
-            <h1 className="mt-3 text-3xl md:text-5xl font-semibold text-white">
-              SAINTGEEK.{" "}
-              <span className="text-zinc-300">
-                El equilibrio perfecto entre precio y rendimiento en teclados
-                mecánicos.
-              </span>
-            </h1>
-          </header>
+    <main className="mx-auto w-full max-w-6xl px-4 py-10">
+      {/* Header */}
+      <header className="flex flex-col gap-3">
+        <h1 className="text-3xl font-semibold tracking-tight">{copy.title}</h1>
+        <p className="text-sm text-zinc-400 max-w-2xl">{copy.description}</p>
 
-          {/* GRID */}
-          <div className="grid gap-6 md:grid-cols-2">
-            {heroItems.map((item) => {
-              const href = item.href
-                ? item.href
-                : (`/teclado/${item.slug}` as Route)
+        <div className="pt-2">
+          {/* ✅ typedRoutes-safe */}
+          <Link
+            href={{ pathname: "/teclado/[keyword]", query: { keyword: MAIN_KEYBOARD_TAG } }}
+            className="inline-flex items-center justify-center rounded-full border border-zinc-800 bg-zinc-950 px-4 py-2 text-sm font-medium text-zinc-100 hover:bg-zinc-900 transition"
+            aria-label="Ver teclados mecánicos gamer"
+          >
+            Ver teclados mecánicos gamer
+          </Link>
+        </div>
+      </header>
 
-              return (
-                <Link
-                  key={item.title}
-                  href={href}
-                  className="group relative block overflow-hidden rounded-[32px] border border-zinc-800 shadow-[0_20px_60px_rgba(0,0,0,0.7)] transition-colors duration-300 hover:border-cyan-400/70"
-                  aria-label={`Ver ${item.title}`}
-                >
-                  <div className="relative aspect-[4/3] overflow-hidden rounded-[32px] bg-[#111111]">
-                    {/* BACKLIGHT */}
-                    <div
-                      className="
-                        absolute inset-0 z-0
-                        bg-[radial-gradient(circle_at_80%_20%,#35F2FF_0%,#00D6FF_28%,transparent_60%),
-                            radial-gradient(circle_at_0%_100%,#22E9FF_0%,#009EC5_30%,transparent_65%)]
-                      "
-                    />
+      {/* Hero grid */}
+      <section className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {heroItems.map((item) => (
+          <Link
+            key={item.title}
+            // ✅ typedRoutes-safe (UrlObject)
+            href={{ pathname: "/teclado/[keyword]", query: { keyword: item.keyword } }}
+            className="group relative overflow-hidden rounded-3xl border border-zinc-800 bg-zinc-950 hover:bg-zinc-900 transition"
+            aria-label={`Ver ${item.title}`}
+          >
+            <div className="relative aspect-[16/10] w-full">
+              <Image
+                src={item.image}
+                alt={item.title}
+                fill
+                sizes="(min-width:1024px) 25vw, (min-width:640px) 50vw, 100vw"
+                className="object-cover opacity-90 group-hover:opacity-100 transition"
+              />
+            </div>
+            <div className="p-5">
+              <div className="text-base font-semibold text-zinc-100">{item.title}</div>
+              <div className="mt-1 text-sm text-zinc-400">{item.subtitle}</div>
+              <div className="mt-4 text-xs text-zinc-500">
+                Explorar →
+              </div>
+            </div>
+          </Link>
+        ))}
+      </section>
 
-                    {/* IMAGE */}
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      fill
-                      className="z-10 object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                      sizes="(min-width:1024px) 540px, 100vw"
-                      priority
-                    />
+      {/* Tags */}
+      <section className="mt-12">
+        <div className="flex items-end justify-between gap-4">
+          <h2 className="text-xl font-semibold text-zinc-100">Explorar por tags</h2>
 
-                    {/* VIDEO HOVER */}
-                    <video
-                      src={item.video}
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      className="pointer-events-none absolute inset-0 z-20 h-full w-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                    />
+          {/* ✅ typedRoutes-safe */}
+          <Link
+            href={{ pathname: "/teclado/[keyword]", query: { keyword: MAIN_KEYBOARD_TAG } }}
+            className="text-sm text-zinc-300 hover:text-zinc-100 transition"
+          >
+            Ver todos →
+          </Link>
+        </div>
 
-                    {/* TEXT */}
-                    <div className="pointer-events-none absolute inset-x-0 top-0 z-30 flex flex-col items-center px-6 pt-6 md:px-8 md:pt-7 text-center">
-                      <p className="text-xs md:text-sm text-zinc-100 drop-shadow-[0_0_10px_rgba(0,0,0,0.8)]">
-                        {item.subtitle}
-                      </p>
-                      <h3 className="mt-2 text-3xl md:text-4xl lg:text-5xl font-semibold uppercase tracking-[0.25em] text-white drop-shadow-[0_0_12px_rgba(0,0,0,0.9)]">
-                        {item.title}
-                      </h3>
-                    </div>
-                  </div>
-                </Link>
-              )
-            })}
-          </div>
+        <div className="mt-4 flex flex-wrap gap-2">
+          {topTags.map((tag) => (
+            <Link
+              key={tag}
+              // ✅ typedRoutes-safe
+              href={{ pathname: "/teclado/[keyword]", query: { keyword: tag } }}
+              className="rounded-full border border-zinc-800 bg-zinc-950 px-3 py-1 text-xs text-zinc-200 hover:bg-zinc-900 transition"
+              aria-label={`Ver tag ${tag}`}
+            >
+              {tag}
+            </Link>
+          ))}
         </div>
       </section>
-    </>
+
+      {/* Featured products */}
+      <section className="mt-12">
+        <h2 className="text-xl font-semibold text-zinc-100">Productos destacados</h2>
+
+        <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+          {featured.map((p: any) => {
+            const img = p?.images?.[0]?.url ?? "/placeholder.jpg"
+            return (
+              <Link
+                key={p.slug}
+                // ✅ typedRoutes-safe para /products/[slug]
+                href={{ pathname: "/products/[slug]", query: { slug: p.slug } }}
+                className="group rounded-2xl border border-zinc-800 bg-zinc-950 hover:bg-zinc-900 transition overflow-hidden"
+                aria-label={`Ver ${p.name ?? p.slug}`}
+              >
+                <div className="relative aspect-square w-full">
+                  <Image
+                    src={img}
+                    alt={p.name ?? p.slug}
+                    fill
+                    sizes="(min-width:1024px) 16vw, (min-width:640px) 33vw, 50vw"
+                    className="object-contain p-3 transition-transform duration-300 group-hover:scale-[1.03]"
+                  />
+                </div>
+                <div className="p-3">
+                  <div className="line-clamp-2 text-xs font-medium text-zinc-100">
+                    {p.name ?? p.slug}
+                  </div>
+                  {typeof p.price === "number" && (
+                    <div className="mt-2 text-xs text-zinc-400">
+                      ${p.price.toLocaleString("es-CL")}
+                    </div>
+                  )}
+                </div>
+              </Link>
+            )
+          })}
+        </div>
+      </section>
+    </main>
   )
 }
