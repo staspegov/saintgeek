@@ -137,7 +137,7 @@ export default function TransferCheckoutButton({ productName, productUrl, priceL
       "Hola, quiero comprar por transferencia 👋",
       `Producto: ${productName}`,
       `Link: ${productUrl}`,
-      transferPrice ? `Precio transferencia (10% OFF): ${formatCLP(transferPrice)}` : undefined,
+      transferPrice ? `Precio transferencia (16% OFF): ${formatCLP(transferPrice)}` : undefined,
       `Nombre completo: ${fullName}`,
       `Método de entrega: ${SHIPPING_METHODS.find((m) => m.id === method)?.label ?? method}`,
       !isPickup && !isExpress ? `Región: ${region}` : undefined,
@@ -187,7 +187,7 @@ export default function TransferCheckoutButton({ productName, productUrl, priceL
                 {/* Info de precio por transferencia */}
                 {transferPrice > 0 && (
                   <p className="text-xs text-lime-300 mt-2">
-                    Precio transferencia (20% OFF):{" "}
+                    Precio transferencia (16% OFF):{" "}
                     <span className="font-semibold text-white">{formatCLP(transferPrice)}</span>
                   </p>
                 )}
