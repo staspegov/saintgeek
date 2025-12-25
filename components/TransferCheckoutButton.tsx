@@ -98,7 +98,7 @@ export default function TransferCheckoutButton({ productName, productUrl, priceL
     return Number.isFinite(n) ? n : 0
   }, [priceLabel])
 
-  const transferPrice = useMemo(() => (base > 0 ? Math.round(base * 0.9) : 0), [base])
+  const transferPrice = useMemo(() => (base > 0 ? Math.round(base * 0.90) : 0), [base])
 
   const formatCLP = (v: number) =>
     new Intl.NumberFormat("es-CL", {

@@ -202,7 +202,7 @@ export default function ProductPage({ params }: Props) {
               Precio: {Number(p.priceRub).toLocaleString("es-CL")} CLP
             </div>
             <div className="text-white text-[13px] mb-2 mt-1">
-              Precio transferencia: {(Number(p.priceRub) * 0.9).toLocaleString("es-CL")} CLP
+              Precio transferencia: {(Number(p.priceRub) * 0.84).toLocaleString("es-CL")} CLP
             </div>
 
             <CreditCalcButton amount={p.priceRub} />
