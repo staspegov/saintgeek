@@ -87,7 +87,7 @@ export const products: Product[] = [
   name: "Teclado mecánico gamer AG61 Negro RGB - Azul Switch",
   brand: "SaintGeek",
   subtitle: "Teclado mecánico gamer 60% RGB, Hot-Swap",
-  status: "in_stock",
+  status: "out_of_stock",
   priceRub: 31990,
   monthlyRub: 5339,
   model: "AG61",
