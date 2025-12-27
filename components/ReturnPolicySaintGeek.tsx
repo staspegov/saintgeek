@@ -101,7 +101,7 @@ export default function ReturnPolicySaintGeek() {
         {/* Reembolsos */}
         <div className="rounded-2xl border border-[#1f1f20] bg-[#0f0f11] p-6">
           <h2 className="text-lg font-medium text-white mb-2">
-            Reembolsos
+            Reembolsos.
           </h2>
           <p className="text-sm text-[#a9abb0] leading-relaxed">
             Una vez aprobada la devolución, el reembolso se realizará dentro de
