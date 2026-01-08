@@ -265,7 +265,7 @@ export const products: Product[] = [
   name: "Teclado mecánico gamer TK61 Negro RGB - Red Switch",
   brand: "Zifriend",
   subtitle: "Teclado mecánico 60% (61 teclas) RGB con cable USB-C desmontable",
-  status: "in_stock",
+  status: "out_of_stock",
   priceRub: 31340,
   monthlyRub: 5223,
   model: "TK61",
