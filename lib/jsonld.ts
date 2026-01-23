@@ -1,7 +1,10 @@
-// lib/jsonld.ts
+// /lib/jsonld.ts
 import { site } from "@/lib/utils"
 import type { Product } from "@/data/products"
 import type { BlogPost, FAQItem } from "./blog"
+
+// ✅ ADD: type guards (si ya los exportas desde /data/products)
+import { isKeyboardProduct, isMouseProduct } from "@/data/products"
 
 export function orgJsonLd() {
   return {
@@ -209,7 +212,6 @@ export function faqJsonLd(faq?: { question: string; answer: string }[]) {
             "Anti-Ghosting permite que el teclado detecte múltiples teclas presionadas al mismo tiempo sin errores, lo cual es esencial para juegos que requieren combinaciones rápidas.",
         },
       },
-      // FAQs específicas que se inyectan desde otras partes (ej. páginas de tag)
       ...dynamicFaq,
     ],
   }
@@ -255,6 +257,61 @@ export function productJsonLd(p: Product) {
     .map((u) => (u.startsWith("http") ? u : `${site.url}${u.startsWith("/") ? "" : "/"}${u}`))
     .slice(0, 6)
 
+  // ✅ ADD: additionalProperty para diferenciar Teclado vs Mouse (Merchant Center friendly)
+  const additionalProperty: Array<{ "@type": "PropertyValue"; name: string; value: string }> = []
+
+  // Teclados (mantiene compatibilidad con tus campos actuales)
+  if (isKeyboardProduct(p)) {
+    additionalProperty.push(
+      { "@type": "PropertyValue", name: "Categoría", value: "Teclados" },
+      { "@type": "PropertyValue", name: "Modelo", value: String(p.model) },
+      { "@type": "PropertyValue", name: "Teclas", value: String(p.keys) },
+      { "@type": "PropertyValue", name: "Switch", value: String(p.switch) },
+      { "@type": "PropertyValue", name: "Tipo de switch", value: String(p.switchType) },
+      { "@type": "PropertyValue", name: "Fuerza de actuación", value: String(p.actuationForce) }
+    )
+  }
+
+  // ✅ ADD: Ratones (usa los campos que definiste para mouse)
+  if (isMouseProduct(p)) {
+    additionalProperty.push(
+      { "@type": "PropertyValue", name: "Categoría", value: "Ratones gamer" },
+      { "@type": "PropertyValue", name: "Modelo", value: String(p.model) },
+      { "@type": "PropertyValue", name: "Sensor", value: String(p.sensor) },
+      { "@type": "PropertyValue", name: "DPI máx.", value: String(p.dpiMax) },
+      { "@type": "PropertyValue", name: "Botones", value: String(p.buttons) },
+      {
+        "@type": "PropertyValue",
+        name: "Conectividad",
+        value: Array.isArray(p.connectivity) ? p.connectivity.join(" + ") : String(p.connectivity),
+      },
+      { "@type": "PropertyValue", name: "Recargable", value: p.rechargeable ? "Sí" : "No" }
+    )
+
+    // opcionales si existen en tu type
+    if (typeof p.pollingRateHz === "number") {
+      additionalProperty.push({
+        "@type": "PropertyValue",
+        name: "Polling rate",
+        value: `${p.pollingRateHz} Hz`,
+      })
+    }
+    if (p.handedness) {
+      additionalProperty.push({
+        "@type": "PropertyValue",
+        name: "Ergonomía",
+        value: String(p.handedness),
+      })
+    }
+    if (p.software) {
+      additionalProperty.push({
+        "@type": "PropertyValue",
+        name: "Software",
+        value: String(p.software),
+      })
+    }
+  }
+
   return {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -265,6 +322,13 @@ export function productJsonLd(p: Product) {
     brand: { "@type": "Brand", name: p.brand },
     sku: (p.slug || "").toUpperCase(),
     url: `${site.url}/products/${p.slug}`,
+
+    // ✅ ADD: category en Product (ayuda a Merchant Center)
+    category: (p as any).category || undefined,
+
+    // ✅ ADD: extra specs por tipo de producto
+    additionalProperty: additionalProperty.length ? additionalProperty : undefined,
+
     hasMerchantReturnPolicy: {
       "@type": "MerchantReturnPolicy",
       url: `${site.url}/politica-de-devoluciones`, // tu URL en español
@@ -276,7 +340,9 @@ export function productJsonLd(p: Product) {
       availability:
         p.status === "in_stock"
           ? "https://schema.org/InStock"
-          : "https://schema.org/PreOrder",
+          : p.status === "pre_order"
+            ? "https://schema.org/PreOrder"
+            : "https://schema.org/OutOfStock",
       url: `${site.url}/products/${p.slug}`,
     },
     aggregateRating: {
