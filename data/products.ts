@@ -45,48 +45,129 @@ export type BaseProduct = {
   size?: "60%" | "65%" | "mouse"
 }
 
-// Lista de productos
-export const products: Product[] = [ 
- {
-  slug: "ag61-azul-rgb",
-  name: "Teclado mecánico gamer AG61 Azul Claro RGB - Azul Switch",
-  brand: "SaintGeek",
-  subtitle: "Teclado mecánico gamer 60% RGB, Hot-Swap",
-  status: "in_stock",
-  priceRub: 31340,
-  monthlyRub: 5223,
-  model: "AG61",
-  color: "Azul",
-  colors: ["Negro", "Azul"],
-  numpad: "No",
-  switch: "Blue",
-  switchType: "Mecánicos",
-  description:
-    "Teclado mecánico gamer 60% (61 teclas) con switches azules clicky (~50 g), hot-swap 3/5-pin, N-key rollover y anti-ghosting. Montaje con junta (gasket) con espuma de doble capa para menor ruido y mejor sensación; estabilizadores lubricados y calibrados en teclas grandes. Keycaps ABS de doble inyección resistentes al brillo. Retroiluminación RGB tipo arcoíris con 6 efectos dinámicos. Cable USB-C desmontable de 1,5 m. Carcasa ABS. Ideal para gaming y escritura. Envíos a todo Chile, retiro en Ñuñoa y garantía SaintGeek.",
-  keys: 61,
-  switchPrice: 5500,
-  actuationForce: "50 g",
-  lighting: "RGB",
-  dimensions: "293 × 103 × 39 mm",
-  ancho: "293 mm",
-  alto: "39 mm",
-  largo: "103 mm",
-  weight: "800 g",
-  images: [
-        { id: "ag61-azul",   label: "Azul",   url: "/images/tk61/blue-keycaps.png" },
-        { id: "ag61-negro",  label: "Negro",  url: "/images/tk61/black-keycaps.png" },
-        { id: "ag61-azul",   label: "Azul",   url: "/images/tk61/blue-keycaps-1.png" },
-        { id: "",  label: "Teclado mecánico gamer AG61 Azul Claro RGB - Azul Switch",  url: "/images/ag61/blue-keyboard-2.webp" },
-        { id: "",  label: "Teclado mecánico gamer AG61 Azul Claro RGB - Azul Switch",  url: "/images/ag61/blue-keyboard-3.webp" },
-        { id: "",  label: "Teclado mecánico gamer AG61 Azul Claro RGB - Azul Switch",  url: "/images/ag61/blue-keyboard-4.webp" },
-        { id: "",  label: "Teclado mecánico gamer AG61 Azul Claro RGB - Azul Switch",  url: "/images/ag61/blue-keyboard-rgb-1.webp" },
-        { id: "",  label: "Teclado mecánico gamer AG61 Azul Claro RGB - Azul Switch",  url: "/images/ag61/blue-keycaps-1.webp" },
-        { id: "",  label: "Teclado mecánico gamer AG61 Azul Claro RGB - Azul Switch",  url: "/images/ag61/blue-keyclap-tool-1.webp" },
-        { id: "",  label: "Teclado mecánico gamer AG61 Azul Claro RGB - Azul Switch",  url: "/images/blue-switch-1.webp" },
-        { id: "",  label: "Teclado mecánico gamer AG61 Azul Claro RGB - Azul Switch",  url: "/images/blue-switch-2.webp" },
-  ],
-  mercadoLibreUrl:
-    "https://articulo.mercadolibre.cl/MLC-3074094542-teclado-mecanico-60-ag61-azulclaro-espanol-gamer-rgbswitch-_JM",
+/* ----------------------------- Keyboards ----------------------------- */
+export type KeyboardModel = "AG61" | "TK68" | "TK61"
+export type KeyboardSwitch = "Blue" | "Red" | "Brown" | "Silent"
+export type KeyboardSwitchType = "Mecánicos" | "De membrana"
+
+export type KeyboardProduct = BaseProduct & {
+  category: "teclados"
+  model: KeyboardModel
+
+  numpad: "Sí" | "No"
+  switch: KeyboardSwitch
+  switchType: KeyboardSwitchType
+
+  keys: number
+  switchPrice: number
+  actuationForce: string
+}
+
+/* ----------------------------- Mice ----------------------------- */
+export type MouseModel = "G13PRO" | "G11" | "G13" | "OTRO"
+
+export type MouseProduct = BaseProduct & {
+  category: "ratones"
+  model: MouseModel
+
+  sensor: string
+  dpiMax: number
+  buttons: number
+  connectivity: string[] // ["2.4GHz", "Bluetooth", "Cable"]
+  rechargeable: boolean
+
+  // opcionales
+  pollingRateHz?: number
+  software?: "Sí" | "No"
+  handedness?: "Ambidiestro" | "Derecha" | "Izquierda"
+}
+
+/* ----------------------------- Union ----------------------------- */
+export type Product = KeyboardProduct | MouseProduct
+
+export const isKeyboardProduct = (p: Product): p is KeyboardProduct =>
+  p.category === "teclados"
+
+export const isMouseProduct = (p: Product): p is MouseProduct =>
+  p.category === "ratones"
+
+/* ----------------------------- Products ----------------------------- */
+export const products: Product[] = [
+  /* ========================= TECLADOS ========================= */
+  {
+    category: "teclados",
+    size: "60%",
+    slug: "ag61-azul-rgb",
+    name: "Teclado mecánico gamer AG61 Azul Claro RGB - Azul Switch",
+    brand: "SaintGeek",
+    subtitle: "Teclado mecánico gamer 60% RGB, Hot-Swap",
+    status: "in_stock",
+    priceRub: 31340,
+    monthlyRub: 5223,
+    model: "AG61",
+    color: "Azul",
+    colors: ["Negro", "Azul"],
+    numpad: "No",
+    switch: "Blue",
+    switchType: "Mecánicos",
+    description:
+      "Teclado mecánico gamer 60% (61 teclas) con switches azules clicky (~50 g), hot-swap 3/5-pin, N-key rollover y anti-ghosting. Montaje con junta (gasket) con espuma de doble capa para menor ruido y mejor sensación; estabilizadores lubricados y calibrados en teclas grandes. Keycaps ABS de doble inyección resistentes al brillo. Retroiluminación RGB tipo arcoíris con 6 efectos dinámicos. Cable USB-C desmontable de 1,5 m. Carcasa ABS. Ideal para gaming y escritura. Envíos a todo Chile, retiro en Ñuñoa y garantía SaintGeek.",
+    keys: 61,
+    switchPrice: 5500,
+    actuationForce: "50 g",
+    lighting: "RGB",
+    dimensions: "293 × 103 × 39 mm",
+    ancho: "293 mm",
+    alto: "39 mm",
+    largo: "103 mm",
+    weight: "800 g",
+    images: [
+      { id: "ag61-azul", label: "Azul", url: "/images/tk61/blue-keycaps.png" },
+      { id: "ag61-negro", label: "Negro", url: "/images/tk61/black-keycaps.png" },
+      { id: "ag61-azul", label: "Azul", url: "/images/tk61/blue-keycaps-1.png" },
+      {
+        id: "",
+        label: "Teclado mecánico gamer AG61 Azul Claro RGB - Azul Switch",
+        url: "/images/ag61/blue-keyboard-2.webp",
+      },
+      {
+        id: "",
+        label: "Teclado mecánico gamer AG61 Azul Claro RGB - Azul Switch",
+        url: "/images/ag61/blue-keyboard-3.webp",
+      },
+      {
+        id: "",
+        label: "Teclado mecánico gamer AG61 Azul Claro RGB - Azul Switch",
+        url: "/images/ag61/blue-keyboard-4.webp",
+      },
+      {
+        id: "",
+        label: "Teclado mecánico gamer AG61 Azul Claro RGB - Azul Switch",
+        url: "/images/ag61/blue-keyboard-rgb-1.webp",
+      },
+      {
+        id: "",
+        label: "Teclado mecánico gamer AG61 Azul Claro RGB - Azul Switch",
+        url: "/images/ag61/blue-keycaps-1.webp",
+      },
+      {
+        id: "",
+        label: "Teclado mecánico gamer AG61 Azul Claro RGB - Azul Switch",
+        url: "/images/ag61/blue-keyclap-tool-1.webp",
+      },
+      {
+        id: "",
+        label: "Teclado mecánico gamer AG61 Azul Claro RGB - Azul Switch",
+        url: "/images/blue-switch-1.webp",
+      },
+      {
+        id: "",
+        label: "Teclado mecánico gamer AG61 Azul Claro RGB - Azul Switch",
+        url: "/images/blue-switch-2.webp",
+      },
+    ],
+    mercadoLibreUrl:
+      "https://articulo.mercadolibre.cl/MLC-3074094542-teclado-mecanico-60-ag61-azulclaro-espanol-gamer-rgbswitch-_JM",
     tags: [
       "mecanico-gamer-60",
       "teclado-gamer-60",
@@ -370,49 +451,69 @@ export const products: Product[] = [
     mercadoLibreUrl:
       "https://articulo.mercadolibre.cl/MLC-3108739144-teclado-mecanico-gamer-60-rgb-pcmac-blanconegro-espanol-_JM",
     tags: [
-  "mecanico-gamer-60","teclado-gamer-60","60-porciento","61-teclas", "teclado-mecanico-gamer", "teclado-mecanico-tk61"
-],
+      "mecanico-gamer-60",
+      "teclado-gamer-60",
+      "60-porciento",
+      "61-teclas",
+      "teclado-mecanico-gamer",
+      "teclado-mecanico-tk61",
+    ],
+  },
 
-
-},
-
-{
-  slug: "tk61-negro-rgb-red",
-  name: "Teclado mecánico gamer TK61 Negro RGB - Red Switch",
-  brand: "Zifriend",
-  subtitle: "Teclado mecánico 60% (61 teclas) RGB con cable USB-C desmontable",
-  status: "in_stock",
-  priceRub: 31340,
-  monthlyRub: 5223,
-  model: "TK61",
-  color: "Negro",
-  colors: ["Blanco", "Negro"],
-  numpad: "No",
-  switch: "Red",
-  switchType: "Mecánicos",
-  description:
-    "Teclado mecánico gamer compacto 60% (61 teclas) con iluminación RGB y cable USB-C desmontable. Diseño minimalista, carcasa ABS resistente y switches mecánicos intercambiables en caliente (Hot-Swap). Soporta anti-ghosting, tecla Win-Lock y atajos multimedia. Layout Español (LatAm) con Ñ impresa. Ideal para gaming, oficina o trabajo diario. Envíos a todo Chile, retiro en Ñuñoa y garantía SaintGeek.",
-  keys: 61,
-  switchPrice: 5500,
-  actuationForce: "45 g",
-  lighting: "RGB",
-  dimensions: "400 × 200 × 70 mm",
-  ancho: "400 mm",
-  alto: "70 mm",
-  largo: "200 mm",
-  weight: "800 g",
-  images: [
-    { id: "tk61-negro-1", label: "Negro", url: "/images/tk61/tk-61-black.png" },
-    { id: "tk61-blanco-1", label: "Blanco", url: "/images/tk61/tk-61-white.png" },
-    { id: "tk61-negro-1", label: "Negro", url: "/images/tk61/tk-61-black-1.png" },
-    { id: "tk61-rgb-1", label: "Teclado mecánico gamer TK61 Negro RGB - Red Switch", url: "/images/tk61/keyboatf-tk61-2.png" },
-    { id: "tk61-keys-1", label: "Teclado mecánico gamer TK61 Negro RGB - Red Switch", url: "/images/tk61/keyboatf-tk61-3.png" },
-    { id: "tk61-keys-1", label: "Teclado mecánico gamer TK61 Negro RGB - Red Switch", url: "/images/tk61/keyboatf-tk61-4.png" },
-    { id: "tk61-keys-1", label: "Teclado mecánico gamer TK61 Negro RGB - Red Switch", url: "/images/tk61/rgb-tk61-keyboard.png" },
-    
-  ],
-  mercadoLibreUrl:
-    "https://articulo.mercadolibre.cl/MLC-3108765400-teclado-mecanico-gamer-60-rgb-pcmac-negroblanco-espanol-_JM",
+  {
+    category: "teclados",
+    size: "60%",
+    slug: "tk61-negro-rgb-red",
+    name: "Teclado mecánico gamer TK61 Negro RGB - Red Switch",
+    brand: "Zifriend",
+    subtitle: "Teclado mecánico 60% (61 teclas) RGB con cable USB-C desmontable",
+    status: "in_stock",
+    priceRub: 31340,
+    monthlyRub: 5223,
+    model: "TK61",
+    color: "Negro",
+    colors: ["Blanco", "Negro"],
+    numpad: "No",
+    switch: "Red",
+    switchType: "Mecánicos",
+    description:
+      "Teclado mecánico gamer compacto 60% (61 teclas) con iluminación RGB y cable USB-C desmontable. Diseño minimalista, carcasa ABS resistente y switches mecánicos intercambiables en caliente (Hot-Swap). Soporta anti-ghosting, tecla Win-Lock y atajos multimedia. Layout Español (LatAm) con Ñ impresa. Ideal para gaming, oficina o trabajo diario. Envíos a todo Chile, retiro en Ñuñoa y garantía SaintGeek.",
+    keys: 61,
+    switchPrice: 5500,
+    actuationForce: "45 g",
+    lighting: "RGB",
+    dimensions: "400 × 200 × 70 mm",
+    ancho: "400 mm",
+    alto: "70 mm",
+    largo: "200 mm",
+    weight: "800 g",
+    images: [
+      { id: "tk61-negro-1", label: "Negro", url: "/images/tk61/tk-61-black.png" },
+      { id: "tk61-blanco-1", label: "Blanco", url: "/images/tk61/tk-61-white.png" },
+      { id: "tk61-negro-1", label: "Negro", url: "/images/tk61/tk-61-black-1.png" },
+      {
+        id: "tk61-rgb-1",
+        label: "Teclado mecánico gamer TK61 Negro RGB - Red Switch",
+        url: "/images/tk61/keyboatf-tk61-2.png",
+      },
+      {
+        id: "tk61-keys-1",
+        label: "Teclado mecánico gamer TK61 Negro RGB - Red Switch",
+        url: "/images/tk61/keyboatf-tk61-3.png",
+      },
+      {
+        id: "tk61-keys-1",
+        label: "Teclado mecánico gamer TK61 Negro RGB - Red Switch",
+        url: "/images/tk61/keyboatf-tk61-4.png",
+      },
+      {
+        id: "tk61-keys-1",
+        label: "Teclado mecánico gamer TK61 Negro RGB - Red Switch",
+        url: "/images/tk61/rgb-tk61-keyboard.png",
+      },
+    ],
+    mercadoLibreUrl:
+      "https://articulo.mercadolibre.cl/MLC-3108765400-teclado-mecanico-gamer-60-rgb-pcmac-negroblanco-espanol-_JM",
     tags: [
       "mecanico-gamer-60",
       "teclado-gamer-60",
