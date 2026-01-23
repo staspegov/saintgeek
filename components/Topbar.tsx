@@ -1,18 +1,17 @@
-"use client";
+'use client'
 
-import Link from "next/link";
-import { useState } from "react";
-import CartButton from "@/components/cart/CartButton";
+import Link from "next/link"
+import { useState } from "react"
 
 export default function Topbar() {
-  const [openPopup, setOpenPopup] = useState<null | "help" | "about" | "contact">(null);
-  const [message, setMessage] = useState("");
+  const [openPopup, setOpenPopup] = useState<null | "help" | "about" | "contact">(null)
+  const [message, setMessage] = useState("")
 
   const handleSendWhatsApp = () => {
-    const phone = "56975682588";
-    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-    window.open(url, "_blank");
-  };
+    const phone = "56975682588" // 👈 aquí coloca tu WhatsApp en formato internacional (sin +)
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`
+    window.open(url, "_blank")
+  }
 
   return (
     <>
@@ -25,29 +24,18 @@ export default function Topbar() {
 
           {/* Nav */}
           <nav className="flex gap-6 text-sm text-[#d4d4d8]">
-            <button onClick={() => setOpenPopup("about")} className="hover:text-white">
-              Sobre nosotros
-            </button>
-            <button onClick={() => setOpenPopup("help")} className="hover:text-white">
-              Ayuda
-            </button>
-            <Link href="/blog" className="hover:text-white">
-              Blog
-            </Link>
+            <button onClick={() => setOpenPopup("about")} className="hover:text-white">Sobre nosotros</button>
+            <button onClick={() => setOpenPopup("help")} className="hover:text-white">Ayuda</button>
+            <Link href="/blog" className="hover:text-white">Blog</Link>
           </nav>
 
-          {/* CTA + Cart */}
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => setOpenPopup("contact")}
-              className="hidden sm:inline-block bg-[#C0FF03] text-[#101010] px-3.5 py-1.5 rounded-full font-semibold text-sm shadow-md hover:brightness-95"
-            >
-              Contactar
-            </button>
-
-            {/* Carrito al lado del botón Contactar */}
-            <CartButton className="text-[#e9e9ea]" />
-          </div>
+          {/* CTA */}
+          <button
+            onClick={() => setOpenPopup("contact")}
+            className="hidden sm:inline-block bg-[#C0FF03] text-[#101010] px-3.5 py-1.5 rounded-full font-semibold text-sm shadow-md hover:brightness-95"
+          >
+            Contactar
+          </button>
         </div>
       </header>
 
@@ -67,7 +55,7 @@ export default function Topbar() {
               <>
                 <h2 className="text-xl font-bold mb-3">Sobre nosotros</h2>
                 <p className="text-sm text-[#b6b6b8]">
-                  Somos el equipo de SaintGeek, nos dedicamos a los teclados y a la periferia gamer.
+                  Somos el equipo de SaintGeek, nos dedicamos a los teclados y a la periferia gamer. 
                   Nuestro objetivo es hacer que los productos sean accesibles en Chile con un servicio y soporte de calidad.
                 </p>
               </>
@@ -80,10 +68,7 @@ export default function Topbar() {
                 <ul className="list-disc pl-4 space-y-2 text-sm text-[#b6b6b8]">
                   <li>¿Cómo comprar? → Las compras se realizan en MercadoLibre.</li>
                   <li>¿Envíos? → Si compras en MercadoLibre, enviamos a todo Chile vía Chilexpress.</li>
-                  <li>
-                    ¿Transferencia bancaria? → Aceptada; por ahora la entrega es solo en Santiago. Próximamente habilitaremos
-                    envíos a todo Chile para compras por transferencia.
-                  </li>
+                  <li>¿Transferencia bancaria? → Aceptada; por ahora la entrega es solo en Santiago. Próximamente habilitaremos envíos a todo Chile para compras por transferencia.</li>
                   <li>¿Garantía? → 6 meses (no cubre daño físico).</li>
                   <li>¿Pruebas de calidad? → Todos los teclados se prueban antes del despacho.</li>
                 </ul>
@@ -114,5 +99,5 @@ export default function Topbar() {
         </div>
       )}
     </>
-  );
+  )
 }
