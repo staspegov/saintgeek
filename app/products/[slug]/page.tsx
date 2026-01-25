@@ -1,22 +1,27 @@
-// app/products/[slug]/page.tsx
+// /app/products/[slug]/page.tsx
 import type { Metadata } from "next"
 import Image from "next/image"
 import { notFound } from "next/navigation"
 import Link from "next/link"
 import Script from "next/script"
 
-import { products } from "@/data/products"
+import { products, isKeyboardProduct, isMouseProduct } from "@/data/products"
 import { productJsonLd, breadcrumbJsonLd } from "@/lib/jsonld"
 import { site } from "@/lib/utils"
 
 import ProductGallery from "@/components/ProductGallery"
+import TransferCheckoutButton from "@/components/TransferCheckoutButton"
+import CreditCalcButton from "@/components/CreditCalcButton"
+import AddToCartButton from "@/components/cart/AddToCartButton"
+import MercadoPagoCheckoutButton from "@/components/MercadoPagoCheckoutButton"
+
+// Teclado-only components (se renderizan solo si el producto es teclado)
 import ProductSpecs from "@/components/ProductSpecs"
 import VideoSection from "@/components/VideoSection"
 import ProductFeatures from "@/components/ProductFeatures"
 import SelectorKeycaps from "@/components/SelectorKeycaps"
-import TransferCheckoutButton from "@/components/TransferCheckoutButton"
-import CreditCalcButton from "@/components/CreditCalcButton"
 import Diagram from "@/components/Diagram"
+import MouseFeatures from "@/components/mouse/MouseFeatures"
 
 type Props = { params: { slug: string } }
 
@@ -27,11 +32,12 @@ type MinimalProduct = {
   name: string
   brand?: string
   category?: string
-  size?: string        // "60%", "65%", "TKL", etc.
-  switchType?: string  // "red" | "blue" | ...
+  size?: string // "60%", "65%", "mouse", etc.
+  switchType?: string
   color?: string
   priceRub?: number
-  status?: "in_stock" | "preorder" | "out_of_stock"
+  status?: "in_stock" | "out_of_stock" | "pre_order"
+  sensor?: string
   images?: Img[]
 }
 
@@ -43,6 +49,9 @@ function semanticScore(a: MinimalProduct, b: MinimalProduct) {
   if (a.switchType && b.switchType && a.switchType === b.switchType) s += 1.2
   if (a.category && b.category && a.category === b.category) s += 1.0
   if (a.color && b.color && a.color === b.color) s += 0.5
+
+  // extra: para ratones, emparejar sensor cuando exista
+  if (a.sensor && b.sensor && a.sensor === b.sensor) s += 1.0
 
   const pa = a.priceRub ?? 0
   const pb = b.priceRub ?? 0
@@ -56,54 +65,40 @@ function semanticScore(a: MinimalProduct, b: MinimalProduct) {
   return s
 }
 
-
 function getExpressDeliveryText() {
-  const chileTime = new Date().toLocaleString("en-US", { timeZone: "America/Santiago" });
-  const now = new Date(chileTime);
+  const chileTime = new Date().toLocaleString("en-US", { timeZone: "America/Santiago" })
+  const now = new Date(chileTime)
 
-  const day = now.getDay(); // 0 = Domingo, 1 = Lunes, ... 6 = Sábado
-  const hour = now.getHours();
+  const day = now.getDay() // 0 = Domingo, 1 = Lunes, ... 6 = Sábado
+  const hour = now.getHours()
 
-  // CASO: Domingo → siempre lunes
-  if (day === 0) {
-    return "Llega el lunes";
-  }
+  // Domingo → lunes
+  if (day === 0) return "Llega el lunes"
 
-  // CASO: Sábado después de 20:00 → lunes
-  if (day === 6 && hour >= 20) {
-    return "Llega el lunes";
-  }
+  // Sábado después de 20:00 → lunes
+  if (day === 6 && hour >= 20) return "Llega el lunes"
 
-  // CASO: Viernes después de 20:00 → sábado
-  if (day === 5 && hour >= 20) {
-    return "Llega el sábado";
-  }
+  // Viernes después de 20:00 → sábado
+  if (day === 5 && hour >= 20) return "Llega el sábado"
 
-  // Hora de corte general
-  if (hour < 20) {
-    return "Llega hoy";
-  } else {
-    return "Llega mañana";
-  }
+  // corte general
+  return hour < 20 ? "Llega hoy" : "Llega mañana"
 }
 
-
 function getRelatedProducts(base: MinimalProduct, all: MinimalProduct[], count = 6) {
-  // orden estable por score desc y tie-breaker por slug asc
   const scored = all
-    .filter(x => x.slug !== base.slug)
-    .map(x => ({ p: x, score: semanticScore(base, x) }))
+    .filter((x) => x.slug !== base.slug)
+    .map((x) => ({ p: x, score: semanticScore(base, x) }))
     .sort((a, b) => {
       if (b.score !== a.score) return b.score - a.score
       return a.p.slug.localeCompare(b.p.slug)
     })
 
-  const picks = scored.slice(0, count).map(x => x.p)
+  const picks = scored.slice(0, count).map((x) => x.p)
 
-  // fallback estable si hubiese pocos candidatos (cat/tamaño y luego alfabético)
   if (picks.length < count) {
     const fallback = all
-      .filter(x => x.slug !== base.slug && !picks.some(y => y.slug === x.slug))
+      .filter((x) => x.slug !== base.slug && !picks.some((y) => y.slug === x.slug))
       .sort((a, b) => {
         const catA = a.category ?? ""
         const catB = b.category ?? ""
@@ -113,14 +108,12 @@ function getRelatedProducts(base: MinimalProduct, all: MinimalProduct[], count =
       .slice(0, count - picks.length)
     return [...picks, ...fallback]
   }
+
   return picks
 }
 
 // JSON-LD ItemList para la sección de relacionados
-function relatedItemListJsonLd(
-  items: { name: string; url: string }[],
-  listName = "Productos relacionados"
-) {
+function relatedItemListJsonLd(items: { name: string; url: string }[], listName = "Productos relacionados") {
   return {
     "@context": "https://schema.org",
     "@type": "ItemList",
@@ -136,13 +129,20 @@ function relatedItemListJsonLd(
 /* ---------------------------------------------------------------------------------- */
 
 export async function generateStaticParams() {
-  return products.map(p => ({ slug: p.slug }))
+  return products.map((p) => ({ slug: p.slug }))
 }
 
 export function generateMetadata({ params }: Props): Metadata {
-  const p = products.find(x => x.slug === params.slug)
+  const p = products.find((x) => x.slug === params.slug)
   if (!p) return {}
+
   const url = `${site.url}/products/${p.slug}`
+  const ogImg = p.images?.[0]?.url
+    ? p.images[0].url.startsWith("http")
+      ? p.images[0].url
+      : `${site.url}${p.images[0].url.startsWith("/") ? "" : "/"}${p.images[0].url}`
+    : `${site.url}/og.jpg`
+
   return {
     title: p.name,
     description: `${p.brand} — ${p.description}`,
@@ -153,35 +153,55 @@ export function generateMetadata({ params }: Props): Metadata {
       title: p.name,
       description: `${p.brand} — ${p.description}`,
       siteName: site.name,
-      images: p.images?.length ? [{ url: p.images[0].url }] : undefined,
+      images: [{ url: ogImg }],
     },
     twitter: {
       card: "summary_large_image",
       title: p.name,
       description: `${p.brand} — ${p.description}`,
-      images: p.images?.length ? [p.images[0].url] : undefined,
+      images: [ogImg],
     },
   }
 }
 
 export default function ProductPage({ params }: Props) {
-  const p = products.find(x => x.slug === params.slug)
+  const p = products.find((x) => x.slug === params.slug)
   if (!p) return notFound()
 
   const productUrl = `${site.url}/products/${p.slug}`
 
-  // Relacionados SSR (determinísticos, SEO friendly)
-  const related = getRelatedProducts(p as MinimalProduct, products as MinimalProduct[], 6)
+  const categoryLabel = p.category === "ratones" ? "Ratones gamer" : "Teclados"
+  const categoryUrl = p.category === "ratones" ? `${site.url}/ratones-gamer` : `${site.url}/`
+
+  // Relacionados SSR (solo misma categoría para evitar mezclar teclados/ratones)
+  const pool = (products as unknown as MinimalProduct[]).filter(
+    (x) => (x.category ?? "") === (p.category ?? "")
+  )
+  const related = getRelatedProducts(p as unknown as MinimalProduct, pool, 6)
+
+  const primaryImg = p.images?.[0]?.url ?? "/og.jpg"
 
   return (
     <div className="max-w-[1300px] mx-auto px-6 pb-20 pt-10 text-[#e9e9ea]">
-      {/* Migas de pan */}
-      <nav className="text-sm text-[#a9abb0] mb-4">
-        <Link href="/" className="hover:text-white">
-          Inicio
-        </Link>{" "}
-        / <span>{p.name}</span>
-      </nav>
+{/* Migas de pan */}
+<nav className="text-sm text-[#a9abb0] mb-4">
+  <Link href={{ pathname: "/" }} className="hover:text-white">
+    Inicio
+  </Link>{" "}
+  /{" "}
+  {p.category === "ratones" ? (
+    <Link href={{ pathname: "/ratones-gamer" }} className="hover:text-white">
+      Ratones gamer
+    </Link>
+  ) : (
+    <Link href={{ pathname: "/" }} className="hover:text-white">
+      Teclados
+    </Link>
+  )}{" "}
+  / <span>{p.name}</span>
+</nav>
+
+
 
       {/* Galería + Info derecha */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
@@ -191,9 +211,7 @@ export default function ProductPage({ params }: Props) {
           {/* Título + Descripción */}
           <div>
             <h1 className="text-3xl text-white font-semibold">{p.name}</h1>
-            <p className="text-sm text-[#b6b6b8] mt-2 leading-relaxed">
-              {p.description}
-            </p>
+            <p className="text-sm text-[#b6b6b8] mt-2 leading-relaxed">{p.description}</p>
           </div>
 
           {/* Precio + Crédito */}
@@ -218,10 +236,22 @@ export default function ProductPage({ params }: Props) {
               Comprar en Mercadolibre
             </a>
 
-            <TransferCheckoutButton
-              productName={p.name}
-              productUrl={productUrl}
-              priceLabel={p.priceRub}
+            <TransferCheckoutButton productName={p.name} productUrl={productUrl} priceLabel={p.priceRub} />
+
+            <AddToCartButton
+              product={{
+                slug: p.slug,
+                name: p.name,
+                priceRub: p.priceRub,
+                image: primaryImg,
+              }}
+              quantity={1}
+            />
+
+            <MercadoPagoCheckoutButton
+              amount={Number(p.priceRub)}
+              description={p.name}
+              payerEmail="comprador@test.com"
             />
 
             <div className="flex items-center gap-2 text-sm text-[#9ea0a6]">
@@ -231,144 +261,220 @@ export default function ProductPage({ params }: Props) {
                   backgroundColor: p.status === "in_stock" ? "#75ff00" : "#ffb02e",
                 }}
               />
-              <span>
-                {p.status === "in_stock" ? "Disponible" : "Por pedido"} • Santiago
-              </span>
+              <span>{p.status === "in_stock" ? "Disponible" : "Por pedido"} • Santiago</span>
             </div>
           </div>
 
           {/* Métodos de envío */}
-     
-<div className="border-t border-[#2c2c2f] pt-4 space-y-3">
-  <h3 className="text-lg font-semibold text-white">
-    Métodos de entrega RM (Compras por transferencia)
-  </h3>
+          <div className="border-t border-[#2c2c2f] pt-4 space-y-3">
+            <h3 className="text-lg font-semibold text-white">
+              Métodos de entrega RM (Compras por transferencia)
+            </h3>
 
-  <div className="space-y-2 text-sm text-[#d4d4d8]">
+            <div className="space-y-2 text-sm text-[#d4d4d8]">
+              <div className="flex justify-between">
+                <span>Envío express ({getExpressDeliveryText()})</span>
+                <span className="text-white font-bold">$2.500</span>
+              </div>
 
-    <div className="flex justify-between">
-      <span>Envío express ({getExpressDeliveryText()})</span>
-      <span className="text-white font-bold">$2.500</span>
-    </div>
+              <div className="flex justify-between">
+                <span>Envío estándar — 3 a 5 días</span>
+                <span className="text-white font-bold">Gratis</span>
+              </div>
 
-    <div className="flex justify-between">
-      <span>Envío estándar — 3 a 5 días</span>
-      <span className="text-white font-bold">Gratis</span>
-    </div>
+              <div className="flex justify-between">
+                <span>Retiro en tienda</span>
+                <span className="text-white font-bold">Gratis</span>
+              </div>
+            </div>
+          </div>
 
-    <div className="flex justify-between">
-      <span>Retiro en tienda</span>
-      <span className="text-white font-bold">Gratis</span>
-    </div>
-
-  </div>
-</div>
-
+          {/* QUICK HIGHLIGHTS (solo ratones) */}
+          
         </div>
       </div>
 
-      <VideoSection videoId="MCRfz4EJz0o" />
-      <ProductSpecs product={p} />
-      <ProductFeatures />
-       <Diagram />
-      <SelectorKeycaps product={p} />
+      {/* BLOQUES por categoría */}
+      {isKeyboardProduct(p) && (
+        <>
+          <VideoSection videoId="MCRfz4EJz0o" />
+          <ProductSpecs product={p} />
+          <ProductFeatures />
+          <Diagram />
+          <SelectorKeycaps product={p} />
+        </>
+      )}
 
-      {/* Características */}
-      <div className="mt-12">
-        <h2 className="text-xl font-semibold mb-4">Características</h2>
-        <div className="overflow-x-auto rounded-xl border border-[#1f1f20] bg-[#0f0f11]">
-          <table className="w-full text-sm">
-            <tbody>
-              <tr className="border-b border-[#1f1f20]">
-                <td className="p-3 text-[#a9abb0]">Modelo</td>
-                <td className="p-3">{p.model}</td>
-              </tr>
-              <tr className="border-b border-[#1f1f20]">
-                <td className="p-3 text-[#a9abb0]">Color</td>
-                <td className="p-3">{p.color}</td>
-              </tr>
-              <tr className="border-b border-[#1f1f20]">
-                <td className="p-3 text-[#a9abb0]">Teclas</td>
-                <td className="p-3">{p.keys}</td>
-              </tr>
-              <tr className="border-b border-[#1f1f20]">
-                <td className="p-3 text-[#a9abb0]">Switches</td>
-                <td className="p-3">{p.switch}</td>
-              </tr>
-              <tr className="border-b border-[#1f1f20]">
-                <td className="p-3 text-[#a9abb0]">Tipo de switch</td>
-                <td className="p-3">{p.switchType}</td>
-              </tr>
-              <tr className="border-b border-[#1f1f20]">
-                <td className="p-3 text-[#a9abb0]">Fuerza de actuación</td>
-                <td className="p-3">{p.actuationForce}</td>
-              </tr>
-              <tr className="border-b border-[#1f1f20]">
-                <td className="p-3 text-[#a9abb0]">Iluminación</td>
-                <td className="p-3">{p.lighting}</td>
-              </tr>
-              <tr className="border-b border-[#1f1f20]">
-                <td className="p-3 text-[#a9abb0]">Dimensiones</td>
-                <td className="p-3">{p.dimensions}</td>
-              </tr>
-              <tr>
-                <td className="p-3 text-[#a9abb0]">Peso</td>
-                <td className="p-3">{p.weight}</td>
-              </tr>
-            </tbody>
-          </table>
+      {isMouseProduct(p) && (
+        <>
+
+       {/* <MouseFeatures product={p} />*/}
+        
+          {/* Aquí van tus futuros componentes de ratones.
+              Por ahora, dejo sección inline (compile-safe). */}
+          <section className="mt-10">
+            <h2 className="text-xl font-semibold mb-4">Especificaciones del mouse</h2>
+
+            <div className="overflow-x-auto rounded-xl border border-[#1f1f20] bg-[#0f0f11]">
+              <table className="w-full text-sm">
+                <tbody>
+                  <tr className="border-b border-[#1f1f20]">
+                    <td className="p-3 text-[#a9abb0]">Modelo</td>
+                    <td className="p-3">{p.model}</td>
+                  </tr>
+                  <tr className="border-b border-[#1f1f20]">
+                    <td className="p-3 text-[#a9abb0]">Color</td>
+                    <td className="p-3">{p.color}</td>
+                  </tr>
+                  <tr className="border-b border-[#1f1f20]">
+                    <td className="p-3 text-[#a9abb0]">Sensor</td>
+                    <td className="p-3">{p.sensor}</td>
+                  </tr>
+                  <tr className="border-b border-[#1f1f20]">
+                    <td className="p-3 text-[#a9abb0]">DPI máx.</td>
+                    <td className="p-3">{p.dpiMax}</td>
+                  </tr>
+                  <tr className="border-b border-[#1f1f20]">
+                    <td className="p-3 text-[#a9abb0]">Botones</td>
+                    <td className="p-3">{p.buttons}</td>
+                  </tr>
+                  <tr className="border-b border-[#1f1f20]">
+                    <td className="p-3 text-[#a9abb0]">Conectividad</td>
+                    <td className="p-3">
+                      {Array.isArray(p.connectivity) ? p.connectivity.join(" + ") : String(p.connectivity)}
+                    </td>
+                  </tr>
+                  <tr className="border-b border-[#1f1f20]">
+                    <td className="p-3 text-[#a9abb0]">Recargable</td>
+                    <td className="p-3">{p.rechargeable ? "Sí" : "No"}</td>
+                  </tr>
+                  {typeof p.pollingRateHz === "number" && (
+                    <tr className="border-b border-[#1f1f20]">
+                      <td className="p-3 text-[#a9abb0]">Polling rate</td>
+                      <td className="p-3">{p.pollingRateHz} Hz</td>
+                    </tr>
+                  )}
+                  {p.handedness && (
+                    <tr className="border-b border-[#1f1f20]">
+                      <td className="p-3 text-[#a9abb0]">Ergonomía</td>
+                      <td className="p-3">{p.handedness}</td>
+                    </tr>
+                  )}
+                  {p.software && (
+                    <tr className="border-b border-[#1f1f20]">
+                      <td className="p-3 text-[#a9abb0]">Software</td>
+                      <td className="p-3">{p.software}</td>
+                    </tr>
+                  )}
+                  <tr className="border-b border-[#1f1f20]">
+                    <td className="p-3 text-[#a9abb0]">Iluminación</td>
+                    <td className="p-3">{p.lighting}</td>
+                  </tr>
+                  <tr className="border-b border-[#1f1f20]">
+                    <td className="p-3 text-[#a9abb0]">Dimensiones</td>
+                    <td className="p-3">{p.dimensions}</td>
+                  </tr>
+                  <tr>
+                    <td className="p-3 text-[#a9abb0]">Peso</td>
+                    <td className="p-3">{p.weight}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </>
+      )}
+
+      {/* Características (tabla principal) — para teclados se mantiene como antes */}
+      {isKeyboardProduct(p) && (
+        <div className="mt-12">
+          <h2 className="text-xl font-semibold mb-4">Características</h2>
+          <div className="overflow-x-auto rounded-xl border border-[#1f1f20] bg-[#0f0f11]">
+            <table className="w-full text-sm">
+              <tbody>
+                <tr className="border-b border-[#1f1f20]">
+                  <td className="p-3 text-[#a9abb0]">Modelo</td>
+                  <td className="p-3">{p.model}</td>
+                </tr>
+                <tr className="border-b border-[#1f1f20]">
+                  <td className="p-3 text-[#a9abb0]">Color</td>
+                  <td className="p-3">{p.color}</td>
+                </tr>
+                <tr className="border-b border-[#1f1f20]">
+                  <td className="p-3 text-[#a9abb0]">Teclas</td>
+                  <td className="p-3">{p.keys}</td>
+                </tr>
+                <tr className="border-b border-[#1f1f20]">
+                  <td className="p-3 text-[#a9abb0]">Switches</td>
+                  <td className="p-3">{p.switch}</td>
+                </tr>
+                <tr className="border-b border-[#1f1f20]">
+                  <td className="p-3 text-[#a9abb0]">Tipo de switch</td>
+                  <td className="p-3">{p.switchType}</td>
+                </tr>
+                <tr className="border-b border-[#1f1f20]">
+                  <td className="p-3 text-[#a9abb0]">Fuerza de actuación</td>
+                  <td className="p-3">{p.actuationForce}</td>
+                </tr>
+                <tr className="border-b border-[#1f1f20]">
+                  <td className="p-3 text-[#a9abb0]">Iluminación</td>
+                  <td className="p-3">{p.lighting}</td>
+                </tr>
+                <tr className="border-b border-[#1f1f20]">
+                  <td className="p-3 text-[#a9abb0]">Dimensiones</td>
+                  <td className="p-3">{p.dimensions}</td>
+                </tr>
+                <tr>
+                  <td className="p-3 text-[#a9abb0]">Peso</td>
+                  <td className="p-3">{p.weight}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* --------- Productos relacionados (Markov SEO) --------- */}
-    {/*
-<section className="mt-12">
-  <h2 className="text-xl font-semibold mb-4">
-    También te puede interesar
-  </h2>
+      {/*
+      <section className="mt-12">
+        <h2 className="text-xl font-semibold mb-4">También te puede interesar</h2>
 
-  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-    {related.map((rp) => {
-      const img = rp.images?.[0]?.url ?? "/placeholder.jpg"
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+          {related.map((rp) => {
+            const img = rp.images?.[0]?.url ?? "/placeholder.jpg"
 
-      return (
-        <Link
-          key={rp.slug}
-          href={`/products/${rp.slug}`}
-          className="group rounded-xl border border-[#1f1f20] bg-[#0f0f11] hover:border-[#2a2a2d] hover:bg-[#141416] transition"
-        >
-          <div className="relative aspect-square w-full overflow-hidden rounded-t-xl">
-            <Image
-              src={img}
-              alt={rp.name}
-              fill
-              sizes="(min-width:1024px) 500px, 33vw"
-              className="object-contain scale-90 transition-transform duration-300"
-            />
-          </div>
+            return (
+              <Link
+                key={rp.slug}
+                href={`/products/${rp.slug}`}
+                className="group rounded-xl border border-[#1f1f20] bg-[#0f0f11] hover:border-[#2a2a2d] hover:bg-[#141416] transition"
+              >
+                <div className="relative aspect-square w-full overflow-hidden rounded-t-xl">
+                  <Image
+                    src={img}
+                    alt={rp.name}
+                    fill
+                    sizes="(min-width:1024px) 500px, 33vw"
+                    className="object-contain scale-90 transition-transform duration-300"
+                  />
+                </div>
 
-          <div className="p-3">
-            <div className="text-xs text-[#a9abb0] mb-1 line-clamp-1">
-              {rp.brand ?? "—"}
-            </div>
+                <div className="p-3">
+                  <div className="text-xs text-[#a9abb0] mb-1 line-clamp-1">{rp.brand ?? "—"}</div>
+                  <div className="text-sm text-white font-medium line-clamp-2">{rp.name}</div>
 
-            <div className="text-sm text-white font-medium line-clamp-2">
-              {rp.name}
-            </div>
-
-            {typeof rp.priceRub === "number" && (
-              <div className="mt-1 text-[13px] text-white font-semibold">
-                ${rp.priceRub.toLocaleString("es-CL")} CLP
-              </div>
-            )}
-          </div>
-        </Link>
-      )
-    })}
-  </div>
-</section>
-*/}
-
+                  {typeof rp.priceRub === "number" && (
+                    <div className="mt-1 text-[13px] text-white font-semibold">
+                      ${rp.priceRub.toLocaleString("es-CL")} CLP
+                    </div>
+                  )}
+                </div>
+              </Link>
+            )
+          })}
+        </div>
+      </section>
+      */}
       {/* -------------------------------------------------------- */}
 
       {/* JSON-LD */}
@@ -379,12 +485,13 @@ export default function ProductPage({ params }: Props) {
           __html: JSON.stringify(
             breadcrumbJsonLd([
               { name: "Inicio", url: site.url },
-              { name: "Teclados", url: site.url + "/" },
+              { name: categoryLabel, url: categoryUrl },
               { name: p.name, url: `${site.url}/products/${p.slug}` },
             ])
           ),
         }}
       />
+
       <Script
         id="ld-product"
         type="application/ld+json"
@@ -392,14 +499,14 @@ export default function ProductPage({ params }: Props) {
           __html: JSON.stringify(productJsonLd(p)),
         }}
       />
-      {/* JSON-LD: ItemList de relacionados */}
+
       <Script
         id="ld-related"
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(
             relatedItemListJsonLd(
-              related.map(rp => ({
+              related.map((rp) => ({
                 name: rp.name,
                 url: `${site.url}/products/${rp.slug}`,
               })),
