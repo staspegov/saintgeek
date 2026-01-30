@@ -238,7 +238,7 @@ export default function ProductPage({ params }: Props) {
 
             <TransferCheckoutButton productName={p.name} productUrl={productUrl} priceLabel={p.priceRub} />
 
-            <AddToCartButton
+         {/*   <AddToCartButton
               product={{
                 slug: p.slug,
                 name: p.name,
@@ -252,7 +252,7 @@ export default function ProductPage({ params }: Props) {
               amount={Number(p.priceRub)}
               description={p.name}
               payerEmail="comprador@test.com"
-            />
+            /> */}
 
             <div className="flex items-center gap-2 text-sm text-[#9ea0a6]">
               <span
