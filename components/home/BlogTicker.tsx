@@ -19,7 +19,7 @@ export default function BlogTicker() {
 
     ;(async () => {
       try {
-        const res = await fetch("/api/blog-ticker", { cache: "force-cache" })
+        const res = await fetch("/api/blog-ticker")
         const data = (await res.json()) as ApiPost[]
         if (!alive) return
         setItems(Array.isArray(data) ? data : [])
@@ -39,10 +39,11 @@ export default function BlogTicker() {
 
   const track = useMemo(() => {
     if (!items.length) return []
+    // duplicamos para loop infinito (-50% en la animación)
     return [...items, ...items]
   }, [items])
 
-  // skeleton simple si aún carga
+  // Skeleton (Tailwind)
   if (loading && !items.length) {
     return (
       <section className="relative w-full bg-[#0a0a0b] py-12">
@@ -50,8 +51,7 @@ export default function BlogTicker() {
           {Array.from({ length: 4 }).map((_, i) => (
             <div
               key={i}
-              className="w-[460px] shrink-0 overflow-hidden rounded-[22px] border border-white/10 bg-[#141416]"
-              style={{ boxShadow: "0 30px 70px rgba(0,0,0,0.55)" }}
+              className="w-[460px] shrink-0 overflow-hidden rounded-[22px] border border-white/10 bg-[#141416] shadow-[0_30px_70px_rgba(0,0,0,0.55)]"
             >
               <div className="h-[270px] w-full animate-pulse bg-white/5" />
               <div className="h-[86px] w-full animate-pulse bg-black/40" />
@@ -65,40 +65,61 @@ export default function BlogTicker() {
   if (!track.length) return null
 
   return (
-    <section className="relative w-full bg-[#0a0a0b] py-12">
-    {/* ✅ Texto grande centrado (tipo HyperPC) */}
-<div className="mx-auto max-w-[1180px] px-6 pb-6 text-center">
-  <p className="text-[28px] md:text-[44px] font-extrabold tracking-tight text-white/95">
-    Artículos, guías y novedades para gamers
-  </p>
-  <p className="mt-3 text-[14px] md:text-[16px] text-white/55">
-    Reviews, comparativas y tips para elegir teclados mecánicos y ratones ultralivianos.
-  </p>
-</div>
+    <section className="group relative w-full bg-[#0a0a0b] py-12">
+      {/* Texto */}
+      <div className="mx-auto max-w-[1180px] px-6 pb-6 text-center">
+        <p className="text-[28px] font-extrabold tracking-tight text-white/95 md:text-[44px]">
+          Artículos, guías y novedades para gamers
+        </p>
+        <p className="mt-3 text-[14px] text-white/55 md:text-[16px]">
+          Reviews, comparativas y tips para elegir teclados mecánicos y ratones ultralivianos.
+        </p>
+      </div>
 
-      {/* fade edges */}
-      <div className="pointer-events-none absolute left-0 top-0 z-20 h-full w-28 bg-gradient-to-r from-[#0a0a0b] to-transparent" />
-      <div className="pointer-events-none absolute right-0 top-0 z-20 h-full w-28 bg-gradient-to-l from-[#0a0a0b] to-transparent" />
+      {/* Contenedor con fade edges */}
+      <div className="relative overflow-hidden">
+        <div className="pointer-events-none absolute left-0 top-0 z-20 h-full w-24 bg-gradient-to-r from-[#0a0a0b] to-transparent" />
+        <div className="pointer-events-none absolute right-0 top-0 z-20 h-full w-24 bg-gradient-to-l from-[#0a0a0b] to-transparent" />
 
-      <div className="ticker">
-        <div className="ticker__track">
+        {/* Track animado (Tailwind class animate-ticker) */}
+        <div
+          className="
+            flex w-max items-stretch gap-[22px] px-[22px]
+            animate-ticker motion-reduce:animate-none
+            group-hover:[animation-play-state:paused]
+            transform-gpu [will-change:transform] [backface-visibility:hidden]
+          "
+        >
           {track.map((it, idx) => {
             const href = (`/blog/${it.slug}` as Route)
             const img = it.cover ?? "/og.jpg"
 
             return (
-              <Link key={`${it.slug}-${idx}`} href={href} className="group ticker__card">
-                <div className="ticker__imgWrap">
-                  <img src={img} alt={it.title} className="ticker__img" loading="lazy" />
+              <Link
+                key={`${it.slug}-${idx}`}
+                href={href}
+                className="group/card block w-[460px] shrink-0"
+              >
+                <div className="relative overflow-hidden rounded-[22px] border border-white/10 bg-[#141416] shadow-[0_30px_70px_rgba(0,0,0,0.55)]">
+                  <img
+                    src={img}
+                    alt={it.title}
+                    loading="lazy"
+                    className="h-[270px] w-full object-cover transition-transform duration-200 ease-out group-hover/card:scale-[1.02]"
+                  />
 
-                  {/* botón hover */}
-                  <div className="ticker__cta">
-                    <span className="ticker__ctaBtn">Ver</span>
+                  {/* CTA hover */}
+                  <div className="pointer-events-none absolute top-4 left-1/2 -translate-x-1/2 opacity-0 transition-opacity duration-150 group-hover/card:opacity-100">
+                    <span className="inline-flex h-[38px] items-center justify-center rounded-full bg-white/95 px-5 text-[13px] font-extrabold text-[#111] shadow-[0_14px_40px_rgba(0,0,0,0.5)]">
+                      Ver
+                    </span>
                   </div>
 
-                  {/* barra inferior */}
-                  <div className="ticker__bottom">
-                    <div className="ticker__title">{it.title}</div>
+                  {/* Bottom gradient */}
+                  <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 via-black/35 to-transparent px-5 pb-6 pt-5">
+                    <div className="text-[15px] font-extrabold leading-snug tracking-[0.01em] text-white/90">
+                      {it.title}
+                    </div>
                   </div>
                 </div>
               </Link>
@@ -107,128 +128,16 @@ export default function BlogTicker() {
         </div>
       </div>
 
-      <style jsx>{`
-        .ticker {
-          overflow: hidden;
-        }
-
-        .ticker__track {
-          display: flex;
-          gap: 22px;
-          width: max-content;
-          padding: 0 22px;
-          align-items: stretch;
-          animation: marquee 100s linear infinite;
-        }
-
-        /* Pausar al hover */
-        .ticker:hover .ticker__track {
-          animation-play-state: paused;
-        }
-
-        /* Respeta reduced motion */
-        @media (prefers-reduced-motion: reduce) {
-          .ticker__track {
-            animation: none;
-          }
-        }
-
-        .ticker__card {
-          display: block;
-          width: 460px;
-        }
-
-        .ticker__imgWrap {
-          position: relative;
-          overflow: hidden;
-          border-radius: 22px;
-          background: #141416;
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
-        }
-
-        .ticker__img {
-          width: 100%;
-          height: 270px;
-          object-fit: cover;
-          display: block;
-          transform: scale(1);
-          transition: transform 220ms ease;
-        }
-
-        .group:hover .ticker__img {
-          transform: scale(1.02);
-        }
-
-        .ticker__bottom {
-          position: absolute;
-          left: 0;
-          bottom: 0;
-          width: 100%;
-          padding: 20px 20px 22px;
-          background: linear-gradient(
-            to top,
-            rgba(0, 0, 0, 0.82),
-            rgba(0, 0, 0, 0.35),
-            rgba(0, 0, 0, 0)
-          );
-        }
-
-        .ticker__title {
-          color: rgba(255, 255, 255, 0.92);
-          font-weight: 800;
-          font-size: 15px;
-          letter-spacing: 0.01em;
-          line-height: 1.25;
-        }
-
-        /* Hover button */
-        .ticker__cta {
-          position: absolute;
-          top: 18px;
-          left: 50%;
-          transform: translateX(-50%);
-          opacity: 0;
-          transition: opacity 160ms ease, transform 160ms ease;
-          pointer-events: none;
-        }
-
-        .group:hover .ticker__cta {
-          opacity: 1;
-        }
-
-        .ticker__ctaBtn {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          height: 38px;
-          padding: 0 18px;
-          border-radius: 999px;
-          background: rgba(255, 255, 255, 0.94);
-          color: #111;
-          font-weight: 800;
-          font-size: 13px;
-          box-shadow: 0 14px 40px rgba(0, 0, 0, 0.5);
-        }
-
-        @keyframes marquee {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
-        }
-
+      {/* Mobile tweaks */}
+      <div className="hidden sm:block" />
+      <style jsx global>{`
+        /* Nada aquí: la animación va por Tailwind (ver tailwind.config abajo) */
         @media (max-width: 640px) {
-          .ticker__card {
+          .group .w-\\[460px\\] {
             width: 340px;
           }
-          .ticker__img {
+          .group img.h-\\[270px\\] {
             height: 220px;
-          }
-          .ticker__title {
-            font-size: 13px;
           }
         }
       `}</style>
