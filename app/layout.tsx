@@ -16,6 +16,18 @@ export const metadata: Metadata = {
   publisher: site.name,
   category: "technology",
   keywords: [
+    // ✅ General (teclados + ratones)
+    "accesorios gamer",
+    "periféricos gamer",
+    "setup gamer",
+    "gaming gear",
+    "tecnología",
+    "tienda gamer",
+    "envío rápido",
+    "garantía",
+    "Chile",
+
+    // ✅ Teclados
     "teclados mecánicos",
     "teclado mecánico",
     "teclados gamer",
@@ -40,37 +52,50 @@ export const metadata: Metadata = {
     "switches lineales",
     "switches táctiles",
     "switches clicky",
-    "tienda de teclados",
-    "teclados en Chile",
-    "envío rápido",
-    "garantía",
+
+    // ✅ Ratones
+    "ratón gamer",
+    "mouse gamer",
+    "ratón inalámbrico",
+    "mouse inalámbrico",
+    "ultraliviano",
+    "55g",
+    "65g",
+    "PAW3311",
+    "DPI",
+    "1000Hz",
+    "polling rate",
+    "baja latencia",
+    "FPS",
+    "esports",
   ],
   title: {
-    default: "Teclados mecánicos gamer 60/70/80% — SaintGeek",
-    template: "%s — Teclados mecánicos gamer",
+    default: "Accesorios gamer: teclados mecánicos y ratones — SaintGeek",
+    template: "%s — SaintGeek",
   },
   description:
-    "Teclados mecánicos gamer en Chile — SaintGeek: tamaños 60/65/80% y TKL, layout español, RGB y hot-swap. Switches lineales, táctiles o clicky. Envío rápido y garantía local.",
+    "Accesorios gamer en Chile — SaintGeek: teclados mecánicos (60/65/70/75/80% y TKL) y ratones gamer ultralivianos (inalámbricos y con cable). RGB, hot-swap, sensores PAW y baja latencia. Envío rápido y garantía local.",
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     url: site.url,
-    title: "Teclados mecánicos gamer 60/70/80% — SaintGeek",
+    title: "Accesorios gamer: teclados mecánicos y ratones — SaintGeek",
     description:
-      "Explora teclados mecánicos en español: 60/65/70/80% y TKL, RGB, hot-swap, keycaps PBT y más. Especificaciones, reseñas y mejores precios en Chile.",
+      "Explora teclados mecánicos en español y ratones gamer ultralivianos. Especificaciones claras, modelos para FPS y esports, envío rápido y garantía local en Chile.",
     siteName: site.name,
     locale: "es_CL",
     images: [{ url: `${site.url}/og.jpg` }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Teclados mecánicos gamer 60/70/80% — SaintGeek",
+    title: "Accesorios gamer: teclados mecánicos y ratones — SaintGeek",
     description:
-      "Teclados mecánicos en español con RGB, hot-swap y switches lineales/táctiles/clicky. Formatos 60/65/70/80% y TKL. Compra online en Chile.",
+      "Teclados mecánicos + ratones gamer ultralivianos. RGB, hot-swap, sensores PAW y baja latencia. Compra online en Chile con envío rápido y garantía.",
     images: [`${site.url}/og.jpg`],
   },
   robots: { index: true, follow: true },
-};
+}
+
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

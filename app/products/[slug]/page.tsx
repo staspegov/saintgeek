@@ -190,7 +190,7 @@ export default function ProductPage({ params }: Props) {
   </Link>{" "}
   /{" "}
   {p.category === "ratones" ? (
-    <Link href={{ pathname: "/ratones-gamer" }} className="hover:text-white">
+    <Link href={{ pathname: "/accesorios/ratones" }} className="hover:text-white">
       Ratones gamer
     </Link>
   ) : (
