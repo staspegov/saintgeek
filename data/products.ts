@@ -560,7 +560,7 @@ export const products: Product[] = [
     { id: "g11-1", label: "G11 Negro", url: "/images/mouse/g11/G11.png" },
     { id: "g11-rgb-1", label: "RGB 1", url: "/images/mouse/g11/rgb-g11.webp" },
     { id: "g11-rgb-2", label: "RGB 2", url: "/images/mouse/g11/rgb-g11-2.webp" },
-    { id: "g11-front-1", label: "Frente", url: "/images/mouse/g11/frente-g11.webp" },
+    { id: "g11-front-1", label: "Frente", url: "/images/mouse/g11/frente-g11.WEBP" },
     { id: "g11-back-1", label: "Back 1", url: "/images/mouse/g11/back-g11.webp" },
     { id: "g11-back-3", label: "Back 3", url: "/images/mouse/g11/back-g11-2.webp" },
     { id: "g11-back-5", label: "Back 5", url: "/images/mouse/g11/back-g11-4.webp" },
