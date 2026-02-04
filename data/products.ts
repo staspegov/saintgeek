@@ -555,9 +555,9 @@ export const products: Product[] = [
   largo: "—",
   weight: "65 g",
   images: [
-    { id: "g11-1", label: "G11 Negro", url: "/images/mouse/g11/g11.png" },
-    { id: "g11-1", label: "G11 Negro", url: "/images/mouse/g11/g11.png" },
-    { id: "g11-1", label: "G11 Negro", url: "/images/mouse/g11/g11.png" },
+    { id: "g11-1", label: "G11 Negro", url: "/images/mouse/g11/G11.png" },
+    { id: "g11-1", label: "G11 Negro", url: "/images/mouse/g11/G11.png" },
+    { id: "g11-1", label: "G11 Negro", url: "/images/mouse/g11/G11.png" },
     { id: "g11-rgb-1", label: "RGB 1", url: "/images/mouse/g11/rgb-g11.webp" },
     { id: "g11-rgb-2", label: "RGB 2", url: "/images/mouse/g11/rgb-g11-2.webp" },
     { id: "g11-front-1", label: "Frente", url: "/images/mouse/g11/frente-g11.webp" },
