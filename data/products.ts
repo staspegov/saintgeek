@@ -565,7 +565,7 @@ export const products: Product[] = [
     { id: "g11-back-3", label: "Back 3", url: "/images/mouse/g11/back-g11-2.webp" },
     { id: "g11-back-5", label: "Back 5", url: "/images/mouse/g11/back-g11-4.webp" },
   ],
-  mercadoLibreUrl: "https://tu-url-de-ml.cl",
+  mercadoLibreUrl: "https://www.mercadolibre.cl/furycube-g11-mouse-gamer-inalambrico-ultraliviano/up/MLCU3716125282",
   tags: [
     "mouse-gamer-inalambrico",
     "tri-mode",
@@ -622,7 +622,7 @@ export const products: Product[] = [
     { id: "g11w-2", label: "Vista 1", url: "/images/mouse/g11-blanco/g11w-2.png" },
     { id: "g11w-3", label: "Vista 2", url: "/images/mouse/g11-blanco/g11w-3.png" },
   ],
-  mercadoLibreUrl: "https://tu-url-de-ml.cl",
+  mercadoLibreUrl: "https://www.mercadolibre.cl/furycube-g11--mouse-gamer-inalambrico-ultraliviano/up/MLCU3707401505",
   tags: [
     "mouse-gamer-inalambrico",
     "tri-mode",
@@ -679,7 +679,7 @@ export const products: Product[] = [
       { id: "g13pro-w-1", label: "G13Pro Blanco", url: "/images/mouse/g13-white/g13white-5.png" },
       { id: "g13pro-w-1", label: "G13Pro Blanco", url: "/images/mouse/g13-white/g13white-6.png" },
   ],
-  mercadoLibreUrl: "https://tu-url-de-ml.cl",
+  mercadoLibreUrl: "https://www.mercadolibre.cl/mouse-gmaer-furycube-g13-pro-22000-dpi-inalambrico/up/MLCU3716145396",
   tags: [
     "mouse-gamer-inalambrico",
     "g13pro",
@@ -739,7 +739,7 @@ export const products: Product[] = [
       { id: "g13pro-w-1", label: "G13Pro Blanco", url: "/images/mouse/g13-black/g13black-8.png" },
       { id: "g13pro-w-1", label: "G13Pro Blanco", url: "/images/mouse/g13-black/g13black-7.png" },
   ],
-  mercadoLibreUrl: "https://tu-url-de-ml.cl",
+  mercadoLibreUrl: "https://www.mercadolibre.cl/mouse-gamer-inalambrico-furycube-g13-pro-paw3311-rgb/up/MLCU3707431947",
   tags: [
     "mouse-gamer-inalambrico",
     "g13pro",
