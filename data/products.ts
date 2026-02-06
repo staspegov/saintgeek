@@ -737,7 +737,6 @@ export const products: Product[] = [
       { id: "g13pro-w-1", label: "G13Pro Blanco", url: "/images/mouse/g13-black/g13black-4.png" },
       { id: "g13pro-w-1", label: "G13Pro Blanco", url: "/images/mouse/g13-black/g13black-6.png" },
       { id: "g13pro-w-1", label: "G13Pro Blanco", url: "/images/mouse/g13-black/g13black-8.png" },
-      { id: "g13pro-w-1", label: "G13Pro Blanco", url: "/images/mouse/g13-black/g13black-7.png" },
   ],
   mercadoLibreUrl: "https://www.mercadolibre.cl/mouse-gamer-inalambrico-furycube-g13-pro-paw3311-rgb/up/MLCU3707431947",
   tags: [
