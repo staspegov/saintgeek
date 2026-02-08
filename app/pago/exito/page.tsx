@@ -6,6 +6,8 @@ import Link from "next/link"
 import { useSearchParams } from "next/navigation"
 import { useCart } from "@/components/cart/useCart"
 
+export const dynamic = "force-dynamic"
+
 export default function Page() {
   const sp = useSearchParams()
   const { items, clear } = useCart()
