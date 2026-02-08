@@ -239,7 +239,7 @@ export default function ProductPage({ params }: Props) {
 
             <TransferCheckoutButton productName={p.name} productUrl={productUrl} priceLabel={p.priceRub} />
 
-            <AddToCartButton
+          {/*  <AddToCartButton
               product={{
                 slug: p.slug,
                 name: p.name,
@@ -247,7 +247,7 @@ export default function ProductPage({ params }: Props) {
                 image: primaryImg,
               }}
               quantity={1}
-            />
+            />*/}
 
            {/*  <MercadoPagoCheckoutButton
               amount={Number(p.priceRub)}
