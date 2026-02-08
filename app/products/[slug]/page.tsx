@@ -249,7 +249,7 @@ export default function ProductPage({ params }: Props) {
               quantity={1}
             />
 
-            <MercadoPagoCheckoutButton
+           {/*  <MercadoPagoCheckoutButton
               amount={Number(p.priceRub)}
               description={p.name}
               payerEmail="comprador@test.com"
@@ -269,7 +269,7 @@ export default function ProductPage({ params }: Props) {
                   },
                 ],
               }}
-            /> 
+            /> */}
 
             <div className="flex items-center gap-2 text-sm text-[#9ea0a6]">
               <span
