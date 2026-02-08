@@ -14,3 +14,8 @@ html, body {
 }
 
 a { @apply underline-offset-2; }
+
+/* Hide MP Brick skeleton leftovers (mobile) */
+[data-testid="skeleton-form"] {
+  display: none !important;
+}

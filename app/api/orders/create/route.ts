@@ -1,92 +1,118 @@
-import { NextResponse } from "next/server";
-import { getDB, admin } from "@/lib/firebaseAdmin";
-import crypto from "crypto";
+// app/api/orders/create/route.ts
+import { NextResponse } from "next/server"
+import { products } from "@/data/products"
+import { getDB, admin } from "@/lib/firebaseAdmin"
+import { mapMpCategoryId } from "@/lib/mpCategory"
 
-export const runtime = "nodejs";
+export const runtime = "nodejs"
 
-type IncomingItem = { productId: string; qty: number };
+type Body = {
+  items?: { productId?: string; productSlug?: string; qty?: number }[]
+  customer?: {
+    email?: string
+    name?: string
+    phone?: string
+    rut?: string
+    address?: string
+    notes?: string
+  }
+}
+
+function pickKey(it: { productId?: string; productSlug?: string }) {
+  const slug = String(it.productSlug ?? "").trim()
+  const id = String(it.productId ?? "").trim()
+  return slug || id
+}
+
+function findProductByAny(key: string) {
+  const k = String(key ?? "").trim()
+  if (!k) return null
+
+  return (
+    (products as any[]).find((p) => String(p?.slug ?? "") === k) ||
+    (products as any[]).find((p) => String(p?.id ?? "") === k) ||
+    (products as any[]).find((p) => String(p?.productId ?? "") === k) ||
+    null
+  )
+}
 
 export async function POST(req: Request) {
   try {
-    const db = getDB();
-    const body = (await req.json()) as {
-      items: IncomingItem[];
-      customer?: { email?: string; name?: string; phone?: string };
-    };
+    const body = (await req.json()) as Body
 
-    if (!body?.items?.length) {
-      return NextResponse.json({ error: "Cart is empty" }, { status: 400 });
+    const items = Array.isArray(body.items) ? body.items : []
+    if (!items.length) {
+      return NextResponse.json({ error: "Carrito vacío" }, { status: 400 })
     }
 
-    const map = new Map<string, number>();
-    for (const it of body.items) {
-      const q = Math.max(1, Math.min(99, Number(it.qty || 1)));
-      map.set(it.productId, (map.get(it.productId) ?? 0) + q);
-    }
+    const normalized = items.map((it) => {
+      const key = pickKey(it)
+      const qty = Math.max(1, Math.floor(Number(it.qty ?? 1)))
 
-    const productIds = Array.from(map.keys());
-    const snaps = await Promise.all(productIds.map((id) => db.collection("products").doc(id).get()));
+      const product = findProductByAny(key)
+      if (!product) throw new Error(`Product not found: ${key}`)
 
-    const items: any[] = [];
-    let subtotal = 0;
-
-    for (const snap of snaps) {
-      if (!snap.exists) return NextResponse.json({ error: "Product not found" }, { status: 400 });
-
-      const p = snap.data() as any;
-      if (!p.active) return NextResponse.json({ error: "Product inactive" }, { status: 400 });
-
-      const qty = map.get(snap.id)!;
-
-      if (typeof p.stock === "number" && p.stock < qty) {
-        return NextResponse.json({ error: "Insufficient stock" }, { status: 400 });
+      const unit =
+        Number(product?.priceRub ?? product?.price ?? product?.unitPrice ?? 0) || 0
+      if (unit <= 0) {
+        throw new Error(`Precio inválido para: ${String(product?.slug ?? "producto")}`)
       }
 
-      const unitPrice = Number(p.price ?? 0);
-      const lineTotal = unitPrice * qty;
-      subtotal += lineTotal;
+      const productSlug = String(product.slug)
+      const pictureUrl = Array.isArray(product?.images)
+        ? String(product?.images?.[0]?.url ?? "")
+        : ""
 
-      items.push({
-        productId: snap.id,
-        sku: p.sku ?? null,
-        slug: p.slug ?? null,
-        name: p.name ?? "Producto",
-        image: p.images?.[0] ?? null,
-        unitPrice,
+      return {
+        // ✅ AQUI: tu "productId" será el slug
+        productId: productSlug,
+        productSlug,
+        title: String(product?.name ?? product?.title ?? productSlug),
+        description: String(product?.subtitle ?? product?.description ?? product?.name ?? ""),
+        categoryId: mapMpCategoryId((product as any)?.category),
+        pictureUrl: pictureUrl || null,
         qty,
-        lineTotal,
-      });
-    }
+        unit: Math.round(unit),
+        line: Math.round(unit) * qty,
+      }
+    })
 
-    const shipping = 0;
-    const discount = 0;
-    const total = subtotal + shipping - discount;
+    const total = normalized.reduce((acc, x) => acc + x.line, 0)
 
-    const orderId = crypto.randomUUID();
+    const orderId =
+      globalThis.crypto?.randomUUID?.() ??
+      `sg_${Date.now()}_${Math.random().toString(16).slice(2)}`
 
+    const db = getDB()
+
+    // ✅ AQUI SE CREA LA ORDEN EN FIRESTORE
     await db.collection("orders").doc(orderId).set({
+      orderId,
       status: "created",
-      status_detail: null,
+      provider: "mercadopago",
       currency: "CLP",
-      amounts: { subtotal, shipping, discount, total },
-      customer: {
-        email: body.customer?.email ?? null,
-        name: body.customer?.name ?? null,
-        phone: body.customer?.phone ?? null,
-      },
-      items,
-      shipping: { required: false, method: null, address: null, cost: shipping },
-      mp: { paymentId: null, status: null, statusDetail: null, paymentMethodId: null, installments: null },
-      metadata: {
-        channel: "web",
-        env: process.env.MP_ACCESS_TOKEN?.startsWith("TEST-") ? "test" : "prod",
+      total,
+      items: normalized,
+      customer: body.customer ?? null,
+      shipping: {
+        required: Boolean(body.customer?.address),
+        address: body.customer?.address ?? null,
+        notes: body.customer?.notes ?? null,
       },
       createdAt: admin.firestore.FieldValue.serverTimestamp(),
       updatedAt: admin.firestore.FieldValue.serverTimestamp(),
-    });
+    })
 
-    return NextResponse.json({ orderId, total });
-  } catch (e: any) {
-    return NextResponse.json({ error: e?.message ?? "Order create failed" }, { status: 500 });
+    return NextResponse.json({
+      orderId,
+      total,
+      items: normalized,
+      customer: body.customer ?? null,
+    })
+  } catch (err: any) {
+    return NextResponse.json(
+      { error: err?.message ?? "Bad Request" },
+      { status: 400 }
+    )
   }
 }

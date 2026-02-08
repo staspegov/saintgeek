@@ -46,7 +46,7 @@ export default function Topbar() {
             </button>
 
             {/* Carrito al lado del botón Contactar */}
-          {/*  <CartButton className="text-[#e9e9ea]" /> */}
+           <CartButton className="text-[#e9e9ea]" />
           </div>
         </div>
       </header>

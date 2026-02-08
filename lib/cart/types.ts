@@ -1,27 +1,39 @@
-export type Currency = "CLP" | "USD" | "EUR";
+// lib/cart/types.ts
 
-export type CartVariant = Record<string, string>; 
-// Ej: { color: "Black", switch: "Blue" }
+export type Currency = "CLP" | "USD" | "EUR"
+
+export type CartVariant = Record<string, string>
 
 export type CartItem = {
-  key: string;            // slug + variantes (único en carrito)
-  productSlug: string;
-  productName: string;
-  productUrl?: string;
-  image?: string;
+  key: string
 
-  unitPrice: number;      // precio unitario (num)
-  currency: Currency;
+  productId?: string
+  productSlug?: string
+  productName: string
+  productUrl?: string
+  image?: string
 
-  quantity: number;
-  maxQuantity?: number;   // opcional: stock o límite
+  unitPrice: number
+  currency: Currency
 
-  variant?: CartVariant;  // opcional
-};
+  quantity: number
+  maxQuantity?: number
+
+  variant?: CartVariant
+
+  // legacy compat fields (read-only usage)
+  id?: string
+  slug?: string
+  name?: string
+  title?: string
+  price?: number
+  priceRub?: number
+  qty?: number
+}
 
 export type CartState = {
-  items: CartItem[];
-  currency: Currency;
-  isOpen: boolean;
-  hydrated: boolean; // para evitar parpadeos SSR/CSR
-};
+  items: CartItem[]
+  currency: Currency
+  isOpen: boolean
+  hydrated: boolean
+}
