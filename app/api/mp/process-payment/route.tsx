@@ -18,31 +18,41 @@ type BrickPayload = {
   metadata?: Record<string, any>
 }
 
+type MpItem = {
+  id: string
+  title: string
+  description?: string
+  category_id?: string
+  quantity: number
+  unit_price: number
+  picture_url?: string
+}
+
 function toOptionalNumber(v: unknown): number | undefined {
   if (v === undefined || v === null || v === "") return undefined
   const n = typeof v === "number" ? v : Number(v)
   return Number.isFinite(n) ? n : undefined
 }
 
-function toItemsFromMeta(metaItems: any[] | undefined) {
+function toItemsFromMeta(metaItems: any[] | undefined): MpItem[] {
   if (!Array.isArray(metaItems)) return []
-  return metaItems
-    .map((it) => {
-      const quantity = Math.max(1, Math.floor(Number(it?.quantity ?? it?.qty ?? 1)))
-      const unitPrice = Number(it?.unit_price ?? it?.unit ?? it?.price ?? 0)
-      if (!Number.isFinite(unitPrice) || unitPrice <= 0) return null
-      const pictureUrl = String(it?.picture_url ?? it?.pictureUrl ?? "")
-      return {
-        id: String(it?.id ?? it?.productId ?? it?.productSlug ?? it?.slug ?? ""),
-        title: String(it?.title ?? it?.name ?? "Producto"),
-        description: String(it?.description ?? ""),
-        category_id: mapMpCategoryId(it?.category_id ?? it?.categoryId),
-        quantity,
-        unit_price: Math.round(unitPrice),
-        picture_url: pictureUrl && /^https?:\/\//.test(pictureUrl) ? pictureUrl : undefined,
-      }
+  const out: MpItem[] = []
+  for (const it of metaItems) {
+    const quantity = Math.max(1, Math.floor(Number(it?.quantity ?? it?.qty ?? 1)))
+    const unitPrice = Number(it?.unit_price ?? it?.unit ?? it?.price ?? 0)
+    if (!Number.isFinite(unitPrice) || unitPrice <= 0) continue
+    const pictureUrl = String(it?.picture_url ?? it?.pictureUrl ?? "")
+    out.push({
+      id: String(it?.id ?? it?.productId ?? it?.productSlug ?? it?.slug ?? ""),
+      title: String(it?.title ?? it?.name ?? "Producto"),
+      description: String(it?.description ?? ""),
+      category_id: mapMpCategoryId(it?.category_id ?? it?.categoryId),
+      quantity,
+      unit_price: Math.round(unitPrice),
+      picture_url: pictureUrl && /^https?:\/\//.test(pictureUrl) ? pictureUrl : undefined,
     })
-    .filter(Boolean)
+  }
+  return out
 }
 
 function sanitizeForFirestore<T extends Record<string, any>>(obj: T): T {
@@ -143,7 +153,7 @@ export async function POST(req: Request) {
     const payment = new Payment(client)
 
     const metaItems = toItemsFromMeta(data.metadata?.items)
-    const orderItemsMapped = Array.isArray(orderItems)
+    const orderItemsMapped: MpItem[] = Array.isArray(orderItems)
       ? orderItems
           .map((it: any) => {
             const quantity = Math.max(1, Math.floor(Number(it?.qty ?? it?.quantity ?? 1)))
@@ -158,9 +168,9 @@ export async function POST(req: Request) {
               quantity,
               unit_price: Math.round(unitPrice),
               picture_url: pictureUrl && /^https?:\/\//.test(pictureUrl) ? pictureUrl : undefined,
-            }
+            } as MpItem
           })
-          .filter(Boolean)
+          .filter((it): it is MpItem => Boolean(it))
       : []
 
     const itemsForMP = orderItemsMapped.length ? orderItemsMapped : metaItems
