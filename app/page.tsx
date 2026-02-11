@@ -31,7 +31,7 @@ export default function HomePage() {
       {/* ✅ HERO full-bleed (como HyperPC) */}
       <div className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen">
         <HomeHeroVideo
-          videoSrc="/images/video/video.webm"
+          videoSrc="/images/video/video2.webm"
           title="SAINTGEEK"
           subtitle="Accesorios gamer premium"
         />
